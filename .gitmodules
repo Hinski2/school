@@ -1,0 +1,3 @@
+[submodule "pwi/lista5/zad2/2048-in-terminal"]
+	path = pwi/lista5/zad2/2048-in-terminal
+	url = https://github.com/Hinski2/2048-in-terminal.git
