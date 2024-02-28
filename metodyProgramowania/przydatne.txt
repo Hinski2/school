@@ -1,0 +1,2 @@
+dune init proj my_project .
+eval $(opam env)
