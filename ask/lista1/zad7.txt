@@ -1,0 +1,43 @@
+void insertion_sort(int arr[], int length) {
+    int j, temp;
+    for (int i = 0; i < length; i++) {
+        j = i;
+        while(j > 0 && arr[j] < arr[j-1]) {
+            temp = arr[j];
+            arr[j] = arr[j-1];
+            arr[j-1] = temp;
+            j--;
+        }
+    }
+}
+
+kod trójkowy:
+    j = 0
+    temp = 0
+    i = 0
+    if i >= length goto Koniec_for  (Początek_for) 
+    j = i
+    t1 = j > 0      //j > 0         (Początek_while)
+    t2 = j * 4
+    t3 = arr + t2   //arr[j]
+    t2 = t2 - 4
+    t4 = arr + t2   //arr[j - 1]
+    t5 = t3 < t4    //arr[j] < arr[j - 1]
+    t6 = t1 && t5   //warunek while
+    if !t6 goto Koniec_while
+    temp = t3
+    t3 = t4
+    t4 = temp
+    j = j - 1
+    goto (Początek_while)
+    i = i + 1                       (Koniec_while)
+    goto (Początek_for)
+    return                          (Koniec_for)
+           
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+kod w c: 
+    s += b[j+1] + b[--j];
+kod tójkowy:
+    t1 := j + 1
+    t2 := b[t1]
+    j  := j - 1
+    t3 := b[j]
+    t4 := t2 + t3
+    s := s + t4
+
+kod w c:
+    a[i++] -= *b * (c[j*2] + 1);
+
+kod trójkowy:
+    t1 := j * 2
+    t2 := c[t1]  //c[j * 2]
+    t3 := t2 + 1 //c[j * 2] + 1  
+    t4 := *b   
+    t5 := t4 * t3
+    a[i] := a[i] - t5
+    i := i + 1
+

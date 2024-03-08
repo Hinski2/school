@@ -1,0 +1,36 @@
+SŁOWA KLUCZOWE 
+(1) Jakie jest działanie «volatile» w stosunku do zmiennych?:
+Użycie volatile w języku C informuje kompilator, że zmienna może być zmieniona przez coś z zewnątrz.
+Może to być sprzęt, inny wątek, czy przerwanie. W związku z tym,
+kompilator zapewnia, że przy każdym dostępie do takiej zmiennej (czytaniu lub zapisie) będzie ona ponownie
+odczytywana z pamięci, a nie zoptymalizowana do użycia w rejestrze.
+Chodzi więc nie o "wyłączenie optymalizacji" w szerokim tego słowa znaczeniu, ale o ZAPOBIEGANIE KONKRETNYM OPTYMALIZACJĄ,
+które mogłyby pominąć ponowny odczyt wartości zmiennej z pamięci. To zapewnia, że program zawsze
+korzysta z aktualnej wartości zmiennej,
+
+(2) Kiedy programiści muszą go użyć, by program zachowywał się poprawnie?:
+Użycie volatile jest konieczne, by zapewnić poprawność działania programów w tych szczególnych przypadkach, gdzie
+zmiany stanu zmiennej mogą następować z zewnątrz wykonującego się kodu. Przykład optymalizaci while(coś) na while(true)
+
+(3)skutek użycia «static» w stosunku do zmiennych globalnych, zmiennych lokalnych i procedur?
+    (a)globalnuch:
+    Użycie static przy globalnej zmiennej sprawia, że jej zakres (scope) jest ograniczony do pliku, w którym została
+    zadeklarowana. Innymi słowy, inne pliki źródłowe nie będą miały do niej dostępu nawet przy użyciu extern.
+    
+    (b)lokalnych:
+    Zmienne lokalne: Zmienna lokalna oznaczona jako static zachowuje swoją wartość między kolejnymi wywołaniami funkcji.
+    Nie jest ponownie inicjowana przy każdym wywołaniu funkcji, a jej inicjalizacja następuje tylko raz, przy
+    pierwszym wywołaniu funkcji.
+    
+    (c)funkcji:Deklaracja funkcji jako static ogranicza jej widoczność do pliku, w którym jest zdefiniowana. Oznacza
+    to, że nie można jej wywołać z innych plików źródłowych.
+
+    (d)Kiedynależy go używać?:
+    static jest używane, gdy chcemy zachować stan między wywołaniami funkcji lub ograniczyć widoczność zmiennych/funkcji
+    do danego pliku źródłowego, co może pomóc UNIKNIĘCIU KONFLIKTU NAZW w większych projektach.
+
+(4)Jaką rolę pełni «restrict» odnośnie typów wskaźnikowych
+Słowo kluczowe restrict jest stosowane w deklaracjach wskaźnikowych, aby zapewnić kompilatorowi, że obiekt, na który
+wskaźnik wskazuje, będzie dostępny wyłącznie przez ten wskaźnik (nie istnieje inny wskaźnik, przez który można by
+dokonać dostępu do tego obiektu w tym samym zakresie). Pozwala to na pewne optymalizacje, ponieważ kompilator może
+założyć, że dwie różne referencje nie będą się "przenikać" i wpływać na siebie nawzajem. 

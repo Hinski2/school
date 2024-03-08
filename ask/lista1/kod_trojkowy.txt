@@ -1,0 +1,23 @@
+można używać:
+    etykiety
+    if 
+    go to
+    adresy + instrukcje
+nie można uzywać:
+    instrucji sterucjących
+    typów złożonych
+    procedur
+    zasięgów leksykograficznych
+instrukcje:
+    x := y binop z     (gdzie binpow to operator binarny)
+    x := unop y         (gdzie unop to operator unarny)
+    x := y              kopiowanie danej
+    goto L              skok bezwarunkowy do etykiety L
+    if b goto L         skok do etykiety L jeśli b jest prawdą
+    if x rel y goto L   jeśli zachodzi relacja rel pomięczy x i y to skok to L
+    x := &y             wyznaczanie wskaźnika do zmiennej
+    x := *y             dereferencja wskaźnika
+    *x := y             dereferencja wskaźnika
+    param x             użyj x jako parametru procedury, jeśli procedura przyjmuje wiele parametrów to piszesz param w kilku linijkach
+    call p, n           wywołanie procedury p z n argumentami
+    return n            zwróć n z procedury

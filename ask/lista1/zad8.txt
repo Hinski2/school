@@ -1,0 +1,53 @@
+#define N (sizeof(int32_t) * 8)
+
+int32_t isqrt(int32_t n) {
+    if (n < 0)
+        return INT32_MIN;
+
+    int32_t x = n;
+    int32_t c = 0;
+    int32_t d = 1 << (N - 2);
+
+    while (d > n)
+        d >>= 2;
+
+    while (d) {
+        if (x >= c + d) {
+            x -= c + d;
+            c = (c >> 1) + d;
+        } 
+        else {
+            c >>= 1;
+        }
+
+        d >>= 2;
+    }
+
+    return c;
+}
+
+N = 32
+if n < 0 goto (ReturnMini)
+
+x = n
+c = 0
+t1 = N - 2
+d = 1 << t1
+
+if d <= n goto (KoniecWhile1)       (PoczątekWhile1)
+d = d >> 2
+goto (PoczątekWhile1)
+
+if !d goto (KoniecWhile2)           (PoczątekWhile2)
+t2 = c + d  
+if x < t2 goto (Else)
+x -= t2
+c = c >> 1
+c = c + d   
+goto (KoniecPorownania)
+c = c >> 1                          (Else)
+d = d >> 2                          (KoniecPorownania)
+goto (PoczątekWhile2)
+
+return c                            (KoniecWhile2)
+return INT32_MIN                    (ReturnMini)

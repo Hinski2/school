@@ -1,0 +1,24 @@
+struct A {
+    int8_t a;   //1 bajt + 7 padding    //offset 0 
+    void *b;    //8 bajtów              //offset 8
+    int8_t c;   //1 bajt                //offset 16
+    int16_t d;  //2 bajty + 5 padding   //offset 17
+};
+
+kod w c:
+    vs->d = us[1].a + us[j].c;
+
+kod trójkowy:
+    t1 = us + 24 
+    t2 = *t1 //wartość us[1].a
+
+    t3 = j * 24
+    t4 = t3 + 16
+    t5 = us + t4
+    t6 = *t5 //wartość us[u].c
+
+    t7 = t1 + t4 //wartość prawej strony
+
+    t8 = vs + 17
+    *t8 = t7
+    
