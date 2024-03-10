@@ -2,7 +2,8 @@
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Shared cache location: /home/kuba/.cache/dune/db
-# Workspace root: /home/kuba/programowanie/Sprawdzenie/ocaml/camel1
+# Workspace root:
+# /mnt/c/Users/jakub/programowanie/school/metodyProgramowania/wyklad1/camel1
 # Auto-detected concurrency: 16
 # Dune context:
 #  { name = "default"
@@ -14,10 +15,8 @@
 #  ; installed_env =
 #      map
 #        { "INSIDE_DUNE" :
-#            "/home/kuba/programowanie/Sprawdzenie/ocaml/camel1/_build/default"
-#        ; "OCAML_COLOR" : "always"
-#        ; "OPAMCOLOR" : "always"
+#            "/mnt/c/Users/jakub/programowanie/school/metodyProgramowania/wyklad1/camel1/_build/default"
 #        }
 #  ; instrument_with = []
 #  }
-$ /usr/bin/ocamlc.opt -config > /tmp/dune_a95696_output
+$ /home/kuba/.opam/4.12.0/bin/ocamlc.opt -config > /tmp/dune_49f1e1_output
