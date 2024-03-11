@@ -3,6 +3,10 @@
 #include <limits.h>
 
 int main(){
-    int32_t x = INT32_MAX, y = 1, s = x + y;
-    ((x > 0) && (y > 0) && (s < 0)) || ((x < 0) && (y < 0) && (s >= 0));
+    int32_t x = 1, y = -2, s = x + y;
+    int32_t ans = ((x ^ s) & (y ^ s)) >> 31;
+
+    //1 źle, 0 jak dobrze
+    
+    printf("%d\n", ans & 1);
 }

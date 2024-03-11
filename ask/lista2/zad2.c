@@ -13,4 +13,5 @@ int main(){
     printf("%d %d\n", x, y);
     // bo (x ^ y) ^ y == x
     // bo (x ^ y) ^ x == y
+    //xor jest łączny i przemienny 
 }

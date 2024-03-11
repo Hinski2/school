@@ -35,7 +35,7 @@ int f8(int32_t x, int32_t y){
 }
 
 int main(){
-    // printf("%d\n", f1());        //ok
+    // printf("%d\n", f1());        //int_min
     // printf("%d\n", f2(1));       //ok
     // printf("%d\n", f3(46347));   //nie
     // printf("%d\n", f4());        //ok 
