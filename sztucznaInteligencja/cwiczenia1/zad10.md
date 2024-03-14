@@ -12,7 +12,7 @@
 
 ### b) można robić stopy
 
-![](untitled.png)
+![](10b.png)
 * najpierw robimy SSS (silnie spójne składowe (przeszukiwanie w głąb na grafie transponowanym w kolejności postorder))
 
 * SSS zwraca nam już graf posoftowany topologicznie
