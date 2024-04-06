@@ -13,25 +13,28 @@ change_endian:
 # implementacja z użyciem ror i rol
 # argument w edi
 # zwraca edx
+
+# dil rdi
+# 
 change_endian2:
     # edi: B4 B3 B2 B1
     # obsługa B1
-    movw    %di,    %ax     # edx: XX XX XX B1
+    movw    %dil,    %al     # edx: XX XX XX B1
     rol     $8,     %edx    # edx: XX XX B1 XX
     ror     $8,     %edi    # edi: B1 B4 B3 B2 
 
     # obsluga B2
-    movw    %di,    %ax     # edx: XX XX B1 B2
+    movw    %dil,    %al     # edx: XX XX B1 B2
     rol     $8,     %edx    # edx: XX B1 B2 XX
     ror     $8,     %edi    # edi: B2 B1 B4 B3
 
     # obsluga B3
-    movw    %di,    %ax     # edx: XX B1 B2 B3
+    movw    %dil,    %al     # edx: XX B1 B2 B3
     rol     $8,     %edx    # edx: B1 B2 B3 XX
     ror     $8,     %edi    # edi: B3 B2 B1 B4
     
     # obsluga B4
-    movw    %di,    %ax     # edx: B1 B2 B2 B4
+    movw    %dil,    %al     # edx: B1 B2 B2 B4
 
     # zwrócenie edx
     ret

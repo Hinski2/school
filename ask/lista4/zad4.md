@@ -5,8 +5,8 @@ ogolnie o co chodzi
     decode(ll x, ll y):
         //swapuje x i y
         rax = x + y
-        x ^= x + y
-        y ^= x + y
+        x ^= rax
+        y ^= rax
 
         rax = x     // wartość: y
         rax &= y    // and'uje x i y

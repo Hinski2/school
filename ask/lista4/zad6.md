@@ -11,7 +11,7 @@
     .global add_128
 
     add_128:
-            addq    %rsi,    %rsi    # dodanie młodszych bitów do rsi
+            addq    %rcx,    %rsi    # dodanie młodszych bitów do rsi
             adcq    %rdi,    %rdx    # dodanie starszych bitów do rdx z ewentualnym curring
 
             # rdx już jest na miejscu teraz tylko rax
