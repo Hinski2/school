@@ -10,7 +10,7 @@ type 'v nnf =
 ```
 
 #### zasada indukcji dla typu nnf
-chcemy pokazać że własność p zachodzi dla każdego 'v nnf
+ cel: chcemy pokazać że własność p zachodzi dla każdego 'v nnf
 
 ##### podstawa indukcji:
 musimy pokazać że P zachodzi dla każdego literału czyli formuły typu NNFLit (b, v), gdzie b jest flagą boolowską, a v zmienną. Czyli musimy pokazać że P zachodzi dla każdego literau

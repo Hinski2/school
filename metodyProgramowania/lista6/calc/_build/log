@@ -1,0 +1,26 @@
+# dune utop
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /home/kuba/.cache/dune/db
+# Workspace root:
+# /mnt/c/Users/jakub/programowanie/school/metodyProgramowania/lista6/calc
+# Auto-detected concurrency: 16
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; installed_env =
+#      map
+#        { "INSIDE_DUNE" :
+#            "/mnt/c/Users/jakub/programowanie/school/metodyProgramowania/lista6/calc/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; instrument_with = []
+#  }
+$ /home/kuba/.opam/4.12.0/bin/ocamlc.opt -config > /tmp/dune_7caec3_output
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -bin-annot -I .utop/.utop.eobjs/byte -I /home/kuba/.opam/4.12.0/lib/bytes -I /home/kuba/.opam/4.12.0/lib/findlib -I /home/kuba/.opam/4.12.0/lib/lambda-term -I /home/kuba/.opam/4.12.0/lib/logs -I /home/kuba/.opam/4.12.0/lib/lwt -I /home/kuba/.opam/4.12.0/lib/lwt/unix -I /home/kuba/.opam/4.12.0/lib/lwt_react -I /home/kuba/.opam/4.12.0/lib/mew -I /home/kuba/.opam/4.12.0/lib/mew_vi -I /home/kuba/.opam/4.12.0/lib/ocaml/compiler-libs -I /home/kuba/.opam/4.12.0/lib/ocaml/threads -I /home/kuba/.opam/4.12.0/lib/ocplib-endian -I /home/kuba/.opam/4.12.0/lib/ocplib-endian/bigstring -I /home/kuba/.opam/4.12.0/lib/react -I /home/kuba/.opam/4.12.0/lib/result -I /home/kuba/.opam/4.12.0/lib/trie -I /home/kuba/.opam/4.12.0/lib/uchar -I /home/kuba/.opam/4.12.0/lib/utop -I /home/kuba/.opam/4.12.0/lib/uucp -I /home/kuba/.opam/4.12.0/lib/uuseg -I /home/kuba/.opam/4.12.0/lib/uutf -I /home/kuba/.opam/4.12.0/lib/xdg -I /home/kuba/.opam/4.12.0/lib/zed -I src/.calc.objs/byte -no-alias-deps -o .utop/.utop.eobjs/byte/dune__exe__Utop.cmo -c -impl .utop/utop.ml-gen)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -o .utop/utop.bc /home/kuba/.opam/4.12.0/lib/ocaml/compiler-libs/ocamlcommon.cma /home/kuba/.opam/4.12.0/lib/ocaml/compiler-libs/ocamlbytecomp.cma /home/kuba/.opam/4.12.0/lib/ocaml/compiler-libs/ocamltoplevel.cma /home/kuba/.opam/4.12.0/lib/findlib/findlib.cma /home/kuba/.opam/4.12.0/lib/findlib/findlib_top.cma /home/kuba/.opam/4.12.0/lib/logs/logs.cma /home/kuba/.opam/4.12.0/lib/lwt/lwt.cma /home/kuba/.opam/4.12.0/lib/logs/logs_lwt.cma /home/kuba/.opam/4.12.0/lib/ocaml/unix.cma /home/kuba/.opam/4.12.0/lib/ocaml/bigarray.cma /home/kuba/.opam/4.12.0/lib/ocplib-endian/ocplib_endian.cma /home/kuba/.opam/4.12.0/lib/ocplib-endian/bigstring/ocplib_endian_bigstring.cma /home/kuba/.opam/4.12.0/lib/ocaml/threads/threads.cma /home/kuba/.opam/4.12.0/lib/lwt/unix/lwt_unix.cma -I /home/kuba/.opam/4.12.0/lib/lwt/../stublibs /home/kuba/.opam/4.12.0/lib/react/react.cma /home/kuba/.opam/4.12.0/lib/lwt_react/lwt_react.cma /home/kuba/.opam/4.12.0/lib/result/result.cma /home/kuba/.opam/4.12.0/lib/uutf/uutf.cma /home/kuba/.opam/4.12.0/lib/uucp/uucp.cma /home/kuba/.opam/4.12.0/lib/uuseg/uuseg.cma /home/kuba/.opam/4.12.0/lib/zed/zed.cma /home/kuba/.opam/4.12.0/lib/trie/trie.cma /home/kuba/.opam/4.12.0/lib/mew/mew.cma /home/kuba/.opam/4.12.0/lib/mew_vi/mew_vi.cma /home/kuba/.opam/4.12.0/lib/lambda-term/lambda_term.cma -I /home/kuba/.opam/4.12.0/lib/lambda-term/../stublibs /home/kuba/.opam/4.12.0/lib/xdg/xdg.cma -I /home/kuba/.opam/4.12.0/lib/xdg/../stublibs /home/kuba/.opam/4.12.0/lib/utop/uTop.cma src/calc.cma .utop/.utop.eobjs/byte/dune__exe__Utop.cmo -linkall -warn-error -31)
