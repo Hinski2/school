@@ -21,5 +21,10 @@ rule read =
   | "/" { DIV }
   | "(" { LPAREN }
   | ")" { RPAREN }
+  | ">" { GT }
+  | ">=" { GE }
+  | "<" { LT }
+  | "<=" { LE }
+  | "<>" { NEQ }
   | number { INT (int_of_string (Lexing.lexeme lexbuf)) } 
   | eof { EOF }

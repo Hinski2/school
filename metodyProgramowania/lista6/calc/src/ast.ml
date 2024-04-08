@@ -1,6 +1,9 @@
 (* abstract syntax tree *)
 
-type bop = Mult | Div | Add | Sub | Eq
+type bop = 
+  | Mult | Div | Add | Sub
+  | Eq | Neq                    (* Nowy operator różności *)
+  | Lt | Le | Gt | Ge           (* Nowe operatory porównań *)
 
 type expr =
   | Int of int

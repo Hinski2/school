@@ -7,13 +7,21 @@ type value =
   | VInt of int
   | VBool of bool
 
+let modulo = fun x -> (( x mod 5) + 5) mod 5;;
+let invm = fun x -> x * x * x |> modulo ;; (*a ^ (m - 2) == a ^ (-1) mod m*)
+
 let eval_op (op : bop) (v1 : value) (v2 : value) : value =
   match op, v1, v2 with
-  | Add,  VInt i1, VInt i2 -> VInt (i1 + i2)
-  | Sub,  VInt i1, VInt i2 -> VInt (i1 - i2)
-  | Mult, VInt i1, VInt i2 -> VInt (i1 * i2)
-  | Div,  VInt i1, VInt i2 -> VInt (i1 / i2)
-  | Eq,   VInt i1, VInt i2 -> VBool (i1 = i2)
+  | Add,  VInt i1, VInt i2 -> VInt ((modulo i1) + (modulo i2) |> modulo)
+  | Sub,  VInt i1, VInt i2 -> VInt ((modulo i1) - (modulo i2) |> modulo)
+  | Mult, VInt i1, VInt i2 -> VInt ((modulo i1) * (modulo i2) |> modulo)
+  | Div,  VInt i1, VInt i2 -> VInt ((modulo i1) * (invm i2) |> modulo)    (*działa tylko dla liczb współpierwszych*)
+  | Eq,   VInt i1, VInt i2 -> VBool ((modulo i1) = (modulo i2))
+  | Neq,  VInt i1, VInt i2 -> VBool ((modulo i1) <> (modulo i2))
+  | Lt,   VInt i1, VInt i2 -> VBool ((modulo i1) < (modulo i2))
+  | Le,   VInt i1, VInt i2 -> VBool ((modulo i1) <= (modulo i2))
+  | Gt,   VInt i1, VInt i2 -> VBool ((modulo i1) > (modulo i2))
+  | Ge,   VInt i1, VInt i2 -> VBool ((modulo i1) >= (modulo i2))
   | _ -> failwith "type error"
 
 let rec eval (e : expr) : value =

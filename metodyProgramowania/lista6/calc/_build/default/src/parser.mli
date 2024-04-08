@@ -7,10 +7,15 @@ type token =
   | THEN
   | RPAREN
   | PLUS
+  | NEQ
   | MINUS
+  | LT
   | LPAREN
+  | LE
   | INT of (int)
   | IF
+  | GT
+  | GE
   | FALSE
   | EQ
   | EOF
