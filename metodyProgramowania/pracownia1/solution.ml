@@ -43,7 +43,13 @@ let verify_row ps xs =
 	| h::t -> if ys = [] || List.hd ys <> h then false else itr ans t (List.tl ys)
 	in if ys = [] && ps = [] then true else itr true ps ys (* dodatkowe spawdzenie jeśli obie listy są puste to true*)
 ;;
-
+let transpose xss = 
+	let rec transRec acc xss =
+		match xss with
+		| [] :: _ -> List.rev acc
+		| xss -> transRec ((List.map List.hd xss) :: acc) (List.map List.tl xss)
+	in if xss = [] then [] else transRec [] xss
+;;  (* dzięki tamu działa tez dla listy pustej *)
 
 let build_row ps n = 
 	let maks = 1 lsl n and sum = sum_blocks_in_row ps in
@@ -60,13 +66,22 @@ let iloczyn_list (xss: bool list list list) (ys: bool list list) =
 		[b::a]
 ;;
 
-
-let build_candidate (pss: int list list) (n: int) = 
-	let rec generator acc = function
-	| [] -> List.map List.rev acc
-	| h::t -> generator (iloczyn_list acc (build_row h n)) t
-	in generator [[]] pss
+let partialy_verify_row ps xs =
+	let ys = from_bool_to_int_list xs in
+	let rec itr ans ps ys = match ps with
+	| [] -> if ys = [] then ans else false
+	| h::t -> match ys with
+        | [] -> true
+        | a::b -> if a > h then false else itr ans t b
+	in if ys = [] && ps = [] then true else itr true ps ys (* dodatkowe spawdzenie jeśli obie listy są puste to true*)
 ;;
+
+let partialy_verify_rows pss xss = 
+	let rec itr ans pss xss = match pss with
+	| [] -> ans
+	| h::t -> itr (partialy_verify_row h (List.hd xss) && ans) t (List.tl xss)
+	in itr true pss xss
+;; 
 
 let verify_rows pss xss = 
 	let rec itr ans pss xss = match pss with
@@ -75,17 +90,19 @@ let verify_rows pss xss =
 	in itr true pss xss
 ;; 
 
-let transpose xss = 
-	let rec transRec acc xss =
-		match xss with
-		| [] :: _ -> List.rev acc
-		| xss -> transRec ((List.map List.hd xss) :: acc) (List.map List.tl xss)
-	in if xss = [] then [] else transRec [] xss;;  (* dzięki tamu działa tez dla listy pustej *)
+let build_candidate pss n css = 
+	let rec generator acc = function
+	| [] -> List.map List.rev acc
+	| h::t -> let new_acc = iloczyn_list acc (build_row h n) in
+        let filterd_new_acc =  new_acc |> List.filter (fun xss -> xss |> List.rev |> transpose  |> partialy_verify_rows css) in
+        generator filterd_new_acc t
+	in generator [[]] pss
+;;
 
 type nonogram_spec = {rows: int list list; cols: int list list}
 
 let solve_nonogram nono =
-  build_candidate (nono.rows) (List.length (nono.cols))
+  build_candidate (nono.rows) (List.length (nono.cols)) (nono.cols)
   |> List.filter (fun xss -> transpose xss |> verify_rows nono.cols)
 
 let example_1 = {
