@@ -37,28 +37,70 @@ union elem {
 */
 
 
-//rdi to e
-void proc(union elem *e){
-    long *rdx = e -> e2.next;
-    rdx -= *(e + 2);
-    e -> e1.y = rdx;
+
+// void proc(union elem *ep) {
+//     long *rax = (long *)(ep->e2.next);      // Odpowiada linii 12 w asemblerze.
+//     long rdx = *(long *)(*rax);                   // Linie 13 i 14 w asemblerze.
+//     rdx -= *(rax + 1);                            // Linia 15 w asemblerze.
+//     *(long *) ep = rdx;                      // Linia 16 w asemblerze.
+// }
+
+
+// oblicza różnicę y - x dla next_elem
+void proc(union elem *elem_ptr) {
+    union elem *next_elem = elem_ptr->e2.next; //następna wartość
+
+    long rdx = *(long*) next_elem->e1.p;       //wartość na którą wskazuje next elem, może y
+
+    rdx -= next_elem->e1.y;                    //wartość wskaźnika 
+
+    elem_ptr->e2.x = rdx;
 }
-
-
-
 
 int main(){
-    printf("%ld\n", sizeof(union elem));
+    long someValue = 10;
+    long otherValue = 5;
+
+    // Tworzenie pierwszego elementu unii
+    union elem first_elem;
+    first_elem.e1.p = &someValue;  // przypisanie wskaźnika
+    first_elem.e1.y = 15;          // przypisanie wartości bezpośredniej
+
+    // Tworzenie drugiego elementu unii
+    union elem second_elem;
+    second_elem.e1.p = &otherValue;  // przypisanie wskaźnika
+    second_elem.e1.y = 20;           // przypisanie wartości bezpośredniej
+
+    // Powiązanie obu elementów
+    first_elem.e2.next = &second_elem;
+
+    //wypisanie
+    puts("before\n");
+    printf("first_elem.e1.y: %ld\n", first_elem.e1.y);              // Wartość y w e1
+    printf("first_elem.e2.x: %ld\n", first_elem.e2.x);              // Wartość x w e2
+    printf("second_elem.e1.y: %ld\n", second_elem.e1.y);              // Wartość x w e2
+    printf("second_elem.e2.x: %ld\n", second_elem.e2.x);              // Wartość x w e2
+
+    // Wywołanie procedury
+    proc(&first_elem);
+
+
+    //wypisanie
+    puts("after\n");
+    printf("first_elem.e1.y: %ld\n", first_elem.e1.y);              // Wartość y w e1
+    printf("first_elem.e2.x: %ld\n", first_elem.e2.x);              // Wartość x w e2
+    printf("second_elem.e1.y: %ld\n", second_elem.e1.y);              // Wartość x w e2
+    printf("second_elem.e2.x: %ld\n", second_elem.e2.x);              // Wartość x w e2
+
 }
 
-
 /*
-załużmy że mamy a i b
+ep
 proc:
-    movq 8(%rdi),   %rax       rax = rdi + 8    -> &(a -> next)
-    movq (%rax),    %rdx       rdx = *rax       -> a -> next
-    movq (%rdx),    %rdx       rdx = **rax      -> b
-    subq 8(%rax),   %rdx       rdx -= rdi + 16  
-    movq %rdx,      (%rdi)      
+    movq 8(%rdi),   %rax       rax = ep -> 
+    movq (%rax),    %rdx       
+    movq (%rdx),    %rdx        
+    subq 8(%rax),   %rdx       
+    movq %rdx,      (%rdi)     
 ret
 */
