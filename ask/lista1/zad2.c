@@ -4,22 +4,31 @@
 
 //hamming weight algorithm
 int main(){
-    uint32_t x; scanf("%u", &x);
+    const uint64_t m1  = 0x5555555555555555; //binary: 0101...
+    const uint64_t m2  = 0x3333333333333333; //binary: 00110011..
+    const uint64_t m4  = 0x0f0f0f0f0f0f0f0f; //binary:  4 zeros,  4 ones ...
+    const uint64_t m8  = 0x00ff00ff00ff00ff; //binary:  8 zeros,  8 ones ...
+    const uint64_t m16 = 0x0000ffff0000ffff; //binary: 16 zeros, 16 ones ...
+    const uint64_t m32 = 0x00000000ffffffff; //binary: 32 zeros, 32 ones
 
-    uint32_t b1 = 0x55555555;
-    uint32_t b2 = 0x33333333;
-    uint32_t b4 = 0x0F0F0F0F;
-    uint32_t b8 = 0x00FF00FF;
-    uint32_t b16 = 0x0000FFFF;
-    
+    uint64_t x; scanf("%ld", &x);
+    x |= (x >> 1);
+    x |= (x >> 2);
+    x |= (x >> 4);
+    x |= (x >> 8);
+    x |= (x >> 16);
+    x |= (x >> 32);
 
-    x = (x & b1) + ((x >> 1) & b1); // Sumowanie 2 bitowch bloków
-    x = (x & b2) + ((x >> 2) & b2); // Sumowanie 4 bitowych bloków
-    x = (x & b4) + ((x >> 4) & b4); // Sumowanie 8 bitowych bloków
-    x = (x & b8) + ((x >> 8) & b8); // Sumowanie 16 bitowych bloków
-    x = (x & b16) + ((x >> 16) & b16); // Sumowanie 32 bitowych bloków
+    x = ~x;
 
-    printf("%u\n", x);
+    x = (x & m1) + ((x >> 1) & m1); // Sumowanie 2 bitowch bloków
+    x = (x & m2) + ((x >> 2) & m2); // Sumowanie 4 bitowych bloków
+    x = (x & m4) + ((x >> 4) & m4); // Sumowanie 8 bitowych bloków
+    x = (x & m8) + ((x >> 8) & m8); // Sumowanie 16 bitowych bloków
+    x = (x & m16) + ((x >> 16) & m16); // Sumowanie 32 bitowych bloków
+    x = (x & m32) + ((x >> 32) & m32);
+
+    return  
 }
 
 /* 

@@ -46,7 +46,7 @@ union elem {
 // }
 
 
-// oblicza różnicę y - x dla next_elem
+// oblicza *p - y dla nex_elem i wpisuje do elem -> e2.x
 void proc(union elem *elem_ptr) {
     union elem *next_elem = elem_ptr->e2.next; //następna wartość
 
