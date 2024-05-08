@@ -47,7 +47,7 @@ module Zad3 = struct
   
   end
     (* 
-        funkcja generate przujmuje gramatyke i symbol terminalny 
+        funkcja generate przujmuje gramatyke i symbol nieterminalny 
         najpierw szukamy w gramatyce listy produkcji dla symbolu nieterminalnego
         jeśli znajdziezmy liste produjcji to losowy wynieramy jedna z nich przy użyciu Random.int i List.nth
         używamy map by dla każdego symbolu w wybranej produkcji:

@@ -1,0 +1,8 @@
+let x = z in let y = 3 in y;;                                    (*z niezwiązany*)
+let x = abs 2 in x + y;;                                         (*y niezwiązany*)
+let x = x + 1 in x;;                                             (*x niezwiązany*)
+fun x -> let y = x + y in y;;                                    (*y niezwiązany*)         
+let foo = fun x -> x + 1 in foo 7;;                              (*ok*)
+(fun x -> x + 1) 7;;                                             (*ok*)
+let (+) a b = a * b in 10 + 10;;                                 (*ok*)
+let rec fib n = if n <= 1 then n else fib (n - 1) + fib (n - 2);;(*ok*)

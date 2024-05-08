@@ -12,6 +12,7 @@ module MenhirBasics = struct
     | TIMES
     | THEN
     | RPAREN
+    | REC
     | PLUS
     | OR
     | NEQ
@@ -23,14 +24,14 @@ module MenhirBasics = struct
     | INT of (
 # 5 "src/parser.mly"
        (int)
-# 27 "src/parser.ml"
+# 28 "src/parser.ml"
   )
     | IN
     | IF
     | IDENT of (
 # 6 "src/parser.mly"
        (string)
-# 34 "src/parser.ml"
+# 35 "src/parser.ml"
   )
     | GT
     | GEQ
@@ -51,7 +52,7 @@ include MenhirBasics
   
 open Ast
 
-# 55 "src/parser.ml"
+# 56 "src/parser.ml"
 
 type ('s, 'r) _menhir_state = 
   | MenhirState00 : ('s, _menhir_box_prog) _menhir_state
@@ -176,7 +177,7 @@ and 's _menhir_cell0_IDENT =
   | MenhirCell0_IDENT of 's * (
 # 6 "src/parser.mly"
        (string)
-# 180 "src/parser.ml"
+# 181 "src/parser.ml"
 )
 
 and ('s, 'r) _menhir_cell1_IF = 
@@ -194,201 +195,201 @@ and _menhir_box_prog =
 let _menhir_action_01 =
   fun e1 e2 ->
     (
-# 69 "src/parser.mly"
+# 71 "src/parser.mly"
                         ( App(e1, e2) )
-# 200 "src/parser.ml"
+# 201 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_02 =
   fun e ->
     (
-# 70 "src/parser.mly"
+# 72 "src/parser.mly"
              ( e )
-# 208 "src/parser.ml"
+# 209 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_03 =
   fun i ->
     (
-# 74 "src/parser.mly"
+# 76 "src/parser.mly"
             ( Int i )
-# 216 "src/parser.ml"
+# 217 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_04 =
   fun x ->
     (
-# 75 "src/parser.mly"
+# 77 "src/parser.mly"
               ( Var x )
-# 224 "src/parser.ml"
+# 225 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_05 =
   fun e ->
     (
-# 76 "src/parser.mly"
+# 78 "src/parser.mly"
                                ( e )
-# 232 "src/parser.ml"
+# 233 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_06 =
   fun () ->
     (
-# 77 "src/parser.mly"
+# 79 "src/parser.mly"
          ( Bool true )
-# 240 "src/parser.ml"
+# 241 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_07 =
   fun () ->
     (
-# 78 "src/parser.mly"
+# 80 "src/parser.mly"
           ( Bool false )
-# 248 "src/parser.ml"
+# 249 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_08 =
   fun e1 e2 ->
     (
-# 53 "src/parser.mly"
+# 55 "src/parser.mly"
                                ( Binop(Add, e1, e2) )
-# 256 "src/parser.ml"
+# 257 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_09 =
   fun e1 e2 ->
     (
-# 54 "src/parser.mly"
+# 56 "src/parser.mly"
                                 ( Binop(Sub, e1, e2) )
-# 264 "src/parser.ml"
+# 265 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_10 =
   fun e1 e2 ->
     (
-# 55 "src/parser.mly"
+# 57 "src/parser.mly"
                               ( Binop(Div, e1, e2) )
-# 272 "src/parser.ml"
+# 273 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_11 =
   fun e1 e2 ->
     (
-# 56 "src/parser.mly"
+# 58 "src/parser.mly"
                                 ( Binop(Mult, e1, e2) )
-# 280 "src/parser.ml"
+# 281 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_12 =
   fun e1 e2 ->
     (
-# 57 "src/parser.mly"
+# 59 "src/parser.mly"
                              ( Binop(Eq, e1, e2) )
-# 288 "src/parser.ml"
+# 289 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_13 =
   fun e1 e2 ->
     (
-# 58 "src/parser.mly"
+# 60 "src/parser.mly"
                              ( Binop(Lt, e1, e2) )
-# 296 "src/parser.ml"
+# 297 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_14 =
   fun e1 e2 ->
     (
-# 59 "src/parser.mly"
+# 61 "src/parser.mly"
                              ( Binop(Gt, e1, e2) )
-# 304 "src/parser.ml"
+# 305 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_15 =
   fun e1 e2 ->
     (
-# 60 "src/parser.mly"
+# 62 "src/parser.mly"
                               ( Binop(Leq, e1, e2) )
-# 312 "src/parser.ml"
+# 313 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_16 =
   fun e1 e2 ->
     (
-# 61 "src/parser.mly"
+# 63 "src/parser.mly"
                               ( Binop(Geq, e1, e2) )
-# 320 "src/parser.ml"
+# 321 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_17 =
   fun e1 e2 ->
     (
-# 62 "src/parser.mly"
+# 64 "src/parser.mly"
                               ( Binop(Neq, e1, e2) )
-# 328 "src/parser.ml"
+# 329 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_18 =
   fun e1 e2 ->
     (
-# 63 "src/parser.mly"
+# 65 "src/parser.mly"
                               ( Binop(And, e1, e2) )
-# 336 "src/parser.ml"
+# 337 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_19 =
   fun e1 e2 ->
     (
-# 64 "src/parser.mly"
+# 66 "src/parser.mly"
                              ( Binop(Or, e1, e2) )
-# 344 "src/parser.ml"
+# 345 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_20 =
   fun e ->
     (
-# 65 "src/parser.mly"
+# 67 "src/parser.mly"
             ( e )
-# 352 "src/parser.ml"
+# 353 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_21 =
   fun e1 e2 e3 ->
     (
-# 46 "src/parser.mly"
+# 47 "src/parser.mly"
                                                           ( If(e1, e2, e3) )
-# 360 "src/parser.ml"
+# 361 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_22 =
   fun e1 e2 x ->
     (
-# 47 "src/parser.mly"
+# 48 "src/parser.mly"
                                                      ( Let(x, e1, e2) )
-# 368 "src/parser.ml"
+# 369 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_23 =
   fun e x ->
     (
-# 48 "src/parser.mly"
+# 49 "src/parser.mly"
                                    ( Fun(x, e) )
-# 376 "src/parser.ml"
+# 377 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_24 =
   fun e ->
     (
-# 49 "src/parser.mly"
+# 50 "src/parser.mly"
              ( e )
-# 384 "src/parser.ml"
+# 385 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_action_25 =
   fun e ->
     (
-# 42 "src/parser.mly"
+# 43 "src/parser.mly"
                     ( e )
-# 392 "src/parser.ml"
+# 393 "src/parser.ml"
      : (Ast.expr))
 
 let _menhir_print_token : token -> string =
@@ -438,6 +439,8 @@ let _menhir_print_token : token -> string =
         "OR"
     | PLUS ->
         "PLUS"
+    | REC ->
+        "REC"
     | RPAREN ->
         "RPAREN"
     | THEN ->

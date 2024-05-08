@@ -1,3 +1,42 @@
+(*
+	README.ml
+	pomysł na program był taki, że dla każdego wiersza
+	 	1. tworze liste kandydatów zgodnych ze spocyfikacja dla konkretnego wiersza
+		2. (mam liste częściowo obliczonych kandydatów na rozwiązanie całego nanogramu, na samym początku to lista pusta) 
+			dla każdego potencjalnego rozwiązania dla każdego elementu z wygenerowane listy z kroku 1. dodaje na koniec
+			potencjalnego kondydata nowy wiersz 
+				np.
+				jeden z potencjalnych kandydatów na rozwiązanie
+				#0###0#
+				000#000
+				#00000#
+				mam liste nowych wierszy zgodnych z konkretną specyfikacją wiersza [[#####00]; [0#####0]; [00#####]]
+				i dokłdam każdy z wierszy na koniec kandydata otrzymując:
+				#0###0#		#0###0# 	#0###0#  
+				000#000		000#000 	000#000 
+				#00000#		#00000# 	#00000# 
+				#####00		#####00		#####00
+				tę czynność powtarzam dla wszystkich kandydatów na rozwiązanie
+		3. podczas etapu 2. nasza lista kandydatów na rozwiązanie mocno rośnie więc w tym momencie robie nawroty
+			przy użyciu filtracji i specyfilacji kolumn usówam kandadatów którzy nie spełniają specyfikacji kolumnowej
+	na sam koniec otrzymuje rozwiązanie
+
+	Czas wykonywania się example_1: instant
+	Czas wykonywania się example_2: instant
+	Czas wykonywania się big_Example: ~3s (gdyby nie krok 3. big_Example by się nie obliczyło)
+
+	poco sią niektóre funkcje:
+		Popcnt i sum_blocks_in_row: pozwalają mi szybciej odrzucić kandydatów na nowy wiersz niezgodne ze specyfikacją
+		list_from_mask: dla zadanej maski zwraca mi liste booli, pozwala mi to na łatwe generowanie nowych wierszy
+		from_bool_to_int_list: dzięki niej zamieniał liste booli otrzymaną przy pomocy list_from mask na liste bloków,
+		 	dzięki czemu łatwo mi sprawdzić czy dany wiersz jest zgodny ze specyfikacją
+		iloczyn_list: dzięki niej łatwo mogę wykonać krok 2. 
+		cz1 i cz2: webcat wymaga by build_candidate był postaci: int list list -> int -> bool list list list,
+			ale do robiena nawrotów (filtracji) potrzebuje oprócz nono.rows nono.cols, ale nie mogę ich przekazać oddzielnie
+			więc przekazuje ich połączenie a cz1 i cz2 pozwalają mi na ich rozłączenie
+		partialy_verify_row i partialy_verify_rows: służą do kroku 3. sprawdzają czy kandydat jest zgodny
+			ze specyfikacją kolumn
+*)
 let ( let* ) xs ys = List.concat_map ys xs
 
 let rec choose m n =
@@ -72,7 +111,8 @@ let partialy_verify_row ps xs =
 	| [] -> if ys = [] then ans else false
 	| h::t -> match ys with
         | [] -> true
-        | a::b -> if a > h then false else itr ans t b
+		| [x] -> if x > h then false else true
+        | a::b -> if a <> h then false else itr ans t b
 	in if ys = [] && ps = [] then true else itr true ps ys (* dodatkowe spawdzenie jeśli obie listy są puste to true*)
 ;;
 
@@ -88,9 +128,27 @@ let verify_rows pss xss =
 	| [] -> ans
 	| h::t -> itr (verify_row h (List.hd xss) && ans) t (List.tl xss)
 	in itr true pss xss
+;;
+let cz2 xss n = 
+	let m = List.length xss - n in 
+	let rec itr acc idx = function
+	| [] -> List.rev acc
+	| h::t -> if idx >= m then itr (h :: acc) (idx + 1) t 
+	else itr acc (idx + 1) t
+	in itr [] 0 xss
 ;; 
 
-let build_candidate pss n css = 
+let cz1 xss n = 
+	let m = List.length xss - n in
+	let rec itr acc idx = function
+	| [] -> List.rev acc
+	| h::t -> if idx < m then itr (h :: acc) (idx + 1) t 
+	else itr acc (idx + 1) t
+	in itr [] 0 xss
+;; 
+
+let build_candidate xss n = 
+	let pss = cz1 xss n and css = cz2 xss n in
 	let rec generator acc = function
 	| [] -> List.map List.rev acc
 	| h::t -> let new_acc = iloczyn_list acc (build_row h n) in
@@ -102,7 +160,7 @@ let build_candidate pss n css =
 type nonogram_spec = {rows: int list list; cols: int list list}
 
 let solve_nonogram nono =
-  build_candidate (nono.rows) (List.length (nono.cols)) (nono.cols)
+  build_candidate ((nono.rows) @ (nono.cols)) (List.length (nono.cols)) (* lekko zmieniam specyfikacje i daje do liste kolumn i wierszy by móc robić nawroty (potem rozdzielie tą liste na cols i rows, ale musze je polączyć bo webcat narzeka)*)
   |> List.filter (fun xss -> transpose xss |> verify_rows nono.cols)
 
 let example_1 = {

@@ -1,4 +1,4 @@
-# dune build
+# dune utop
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Shared cache location: /home/kuba/.cache/dune/db
@@ -21,28 +21,4 @@
 #        }
 #  ; instrument_with = []
 #  }
-$ /home/kuba/.opam/4.12.0/bin/ocamlc.opt -config > /tmp/dune_b55e68_output
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamllex -q -o src/lexer.ml src/lexer.mll)
-$ (cd _build/.sandbox/59f55c032959a9e8208048283391363f/default && /home/kuba/.opam/4.12.0/bin/menhir src/parser.mly --base src/parser --infer-write-query src/parser__mock.ml.mock)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -bin-annot -I src/.fun.objs/byte -no-alias-deps -opaque -o src/.fun.objs/byte/fun.cmo -c -impl src/fun.ml-gen)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/parser__mock.ml.mock) > _build/default/src/.fun.objs/parser__mock.impl.d
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/ast.ml) > _build/default/src/.fun.objs/fun__Ast.impl.d
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/lexer.ml) > _build/default/src/.fun.objs/fun__Lexer.impl.d
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/main.ml) > _build/default/src/.fun.objs/fun__Main.impl.d
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -I src/.fun.objs/byte -I src/.fun.objs/native -intf-suffix .ml-gen -no-alias-deps -opaque -o src/.fun.objs/native/fun.cmx -c -impl src/fun.ml-gen)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.fun.objs/byte -no-alias-deps -opaque -open Fun -o src/.fun.objs/byte/fun__Ast.cmo -c -impl src/ast.ml)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.fun.objs/byte -I src/.fun.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Fun -o src/.fun.objs/native/fun__Ast.cmx -c -impl src/ast.ml)
-$ (cd _build/.sandbox/9ad455731f8eab7bd66777065bdba78d/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.fun.objs/byte -open Fun -short-paths -i -impl src/parser__mock.ml.mock) > _build/.sandbox/9ad455731f8eab7bd66777065bdba78d/default/src/parser__mock.mli.inferred
-$ (cd _build/.sandbox/a5ef8d6ecc59dbf141d0e27b92ef069e/default && /home/kuba/.opam/4.12.0/bin/menhir src/parser.mly --base src/parser --infer-read-reply src/parser__mock.mli.inferred)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -intf src/parser.mli) > _build/default/src/.fun.objs/fun__Parser.intf.d
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/parser.ml) > _build/default/src/.fun.objs/fun__Parser.impl.d
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.fun.objs/byte -no-alias-deps -opaque -open Fun -o src/.fun.objs/byte/fun__Parser.cmi -c -intf src/parser.mli)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.fun.objs/byte -no-alias-deps -opaque -open Fun -o src/.fun.objs/byte/fun__Lexer.cmo -c -impl src/lexer.ml)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.fun.objs/byte -intf-suffix .ml -no-alias-deps -opaque -open Fun -o src/.fun.objs/byte/fun__Parser.cmo -c -impl src/parser.ml)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.fun.objs/byte -I src/.fun.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Fun -o src/.fun.objs/native/fun__Lexer.cmx -c -impl src/lexer.ml)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.fun.objs/byte -no-alias-deps -opaque -open Fun -o src/.fun.objs/byte/fun__Main.cmo -c -impl src/main.ml)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.fun.objs/byte -I src/.fun.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Fun -o src/.fun.objs/native/fun__Parser.cmx -c -impl src/parser.ml)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/fun.cma src/.fun.objs/byte/fun.cmo src/.fun.objs/byte/fun__Ast.cmo src/.fun.objs/byte/fun__Parser.cmo src/.fun.objs/byte/fun__Lexer.cmo src/.fun.objs/byte/fun__Main.cmo)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.fun.objs/byte -I src/.fun.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Fun -o src/.fun.objs/native/fun__Main.cmx -c -impl src/main.ml)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/fun.cmxa src/.fun.objs/native/fun.cmx src/.fun.objs/native/fun__Ast.cmx src/.fun.objs/native/fun__Parser.cmx src/.fun.objs/native/fun__Lexer.cmx src/.fun.objs/native/fun__Main.cmx)
-$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I src -o src/fun.cmxs src/fun.cmxa)
+$ /home/kuba/.opam/4.12.0/bin/ocamlc.opt -config > /tmp/dune_50aefc_output

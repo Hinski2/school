@@ -6,6 +6,7 @@ type token =
   | TIMES
   | THEN
   | RPAREN
+  | REC
   | PLUS
   | OR
   | NEQ

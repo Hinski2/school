@@ -28,6 +28,7 @@ open Ast
 %token ARR
 %token FUN
 %token EOF
+%token REC
 
 %start <Ast.expr> prog
 
@@ -47,6 +48,7 @@ mixfix:
   | LET; x = IDENT; EQ; e1 = mixfix; IN; e2 = mixfix { Let(x, e1, e2) }
   | FUN; x = IDENT; ARR e = mixfix { Fun(x, e) }
   | e = expr { e }
+  // | LET; REC; x = IDENT; args = many IDENT; EQ; e = mixfix; IN; e1 = mixfix { LetRec(x, args, e, e1) }
   ;
 
 expr:
