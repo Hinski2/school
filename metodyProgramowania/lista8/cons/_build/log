@@ -1,0 +1,48 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /home/kuba/.cache/dune/db
+# Workspace root:
+# /mnt/c/Users/jakub/programowanie/school/metodyProgramowania/lista8/cons
+# Auto-detected concurrency: 16
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; installed_env =
+#      map
+#        { "INSIDE_DUNE" :
+#            "/mnt/c/Users/jakub/programowanie/school/metodyProgramowania/lista8/cons/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; instrument_with = []
+#  }
+$ /home/kuba/.opam/4.12.0/bin/ocamlc.opt -config > /tmp/dune_d695c8_output
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamllex -q -o src/lexer.ml src/lexer.mll)
+$ (cd _build/.sandbox/59f55c032959a9e8208048283391363f/default && /home/kuba/.opam/4.12.0/bin/menhir src/parser.mly --base src/parser --infer-write-query src/parser__mock.ml.mock)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -bin-annot -I src/.cons.objs/byte -no-alias-deps -opaque -o src/.cons.objs/byte/cons.cmo -c -impl src/cons.ml-gen)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/parser__mock.ml.mock) > _build/default/src/.cons.objs/parser__mock.impl.d
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/ast.ml) > _build/default/src/.cons.objs/cons__Ast.impl.d
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/lexer.ml) > _build/default/src/.cons.objs/cons__Lexer.impl.d
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -I src/.cons.objs/byte -I src/.cons.objs/native -intf-suffix .ml-gen -no-alias-deps -opaque -o src/.cons.objs/native/cons.cmx -c -impl src/cons.ml-gen)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/main.ml) > _build/default/src/.cons.objs/cons__Main.impl.d
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.cons.objs/byte -no-alias-deps -opaque -open Cons -o src/.cons.objs/byte/cons__Ast.cmo -c -impl src/ast.ml)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.cons.objs/byte -I src/.cons.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Cons -o src/.cons.objs/native/cons__Ast.cmx -c -impl src/ast.ml)
+$ (cd _build/.sandbox/cf26e6a987d382e763603591d76e1257/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.cons.objs/byte -open Cons -short-paths -i -impl src/parser__mock.ml.mock) > _build/.sandbox/cf26e6a987d382e763603591d76e1257/default/src/parser__mock.mli.inferred
+$ (cd _build/.sandbox/a5ef8d6ecc59dbf141d0e27b92ef069e/default && /home/kuba/.opam/4.12.0/bin/menhir src/parser.mly --base src/parser --infer-read-reply src/parser__mock.mli.inferred)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -intf src/parser.mli) > _build/default/src/.cons.objs/cons__Parser.intf.d
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamldep.opt -modules -impl src/parser.ml) > _build/default/src/.cons.objs/cons__Parser.impl.d
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.cons.objs/byte -no-alias-deps -opaque -open Cons -o src/.cons.objs/byte/cons__Parser.cmi -c -intf src/parser.mli)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.cons.objs/byte -no-alias-deps -opaque -open Cons -o src/.cons.objs/byte/cons__Lexer.cmo -c -impl src/lexer.ml)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.cons.objs/byte -intf-suffix .ml -no-alias-deps -opaque -open Cons -o src/.cons.objs/byte/cons__Parser.cmo -c -impl src/parser.ml)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.cons.objs/byte -I src/.cons.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Cons -o src/.cons.objs/native/cons__Lexer.cmx -c -impl src/lexer.ml)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.cons.objs/byte -no-alias-deps -opaque -open Cons -o src/.cons.objs/byte/cons__Main.cmo -c -impl src/main.ml)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.cons.objs/byte -I src/.cons.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Cons -o src/.cons.objs/native/cons__Parser.cmx -c -impl src/parser.ml)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/cons.cma src/.cons.objs/byte/cons.cmo src/.cons.objs/byte/cons__Ast.cmo src/.cons.objs/byte/cons__Parser.cmo src/.cons.objs/byte/cons__Lexer.cmo src/.cons.objs/byte/cons__Main.cmo)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.cons.objs/byte -I src/.cons.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Cons -o src/.cons.objs/native/cons__Main.cmx -c -impl src/main.ml)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/cons.cmxa src/.cons.objs/native/cons.cmx src/.cons.objs/native/cons__Ast.cmx src/.cons.objs/native/cons__Parser.cmx src/.cons.objs/native/cons__Lexer.cmx src/.cons.objs/native/cons__Main.cmx)
+$ (cd _build/default && /home/kuba/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I src -o src/cons.cmxs src/cons.cmxa)

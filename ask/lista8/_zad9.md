@@ -169,11 +169,7 @@ Częściowa konsolidacja (partial linking) za pomocą polecenia ld -r scala kilk
 
 </div>
 
-**Różnice w Generowaniu `merge-1.o` i `merge-2.o`:**
-- Różnice wynikają z odmiennej kolejności linkowania plików `bar.o` i `foo.o`.
-  - `merge-1.o` może być wynikiem linkowania najpierw `foo.o`, potem `bar.o`.
-  - `merge-2.o` może być wynikiem odwrotnej kolejności.
-- Kolejność linkowania wpływa na rozmiary i wyrównanie sekcji w wyniku, jak widać po wypełnieniach i ułożeniu symboli.
+
 
 **Porównanie Pozycji Symboli i Rozmiarów Sekcji:**
 - **Sekcja `.data`:**
@@ -188,22 +184,13 @@ Częściowa konsolidacja (partial linking) za pomocą polecenia ld -r scala kilk
   30 (short []) + 2 (padding) + 17 (char [])
 
 **Wpływ Kolejności Linkowania:**
-  - Kolejność linkowania plików źródłowych bezpośrednio wpływa na końcową organizację pamięci, co widać w rozmiarach sekcji i pozycjach symboli.
-  - Różnice wynikają z wewnętrznych relokacji i organizacji linker'a, które są adaptacyjne w zależności od kolejności plików.
+  Kolejność linkowania plików źródłowych bezpośrednio wpływa na końcową organizację pamięci, co widać w rozmiarach sekcji i pozycjach symboli.
+
 
 #### Padding i Wyrównanie przez Linker bez Znajomości Typów C
 
 Linker nie musi znać typów danych języka C, aby odpowiednio zarządzać paddingiem i wyrównaniem. Oto kluczowe źródła informacji, które umożliwiają odpowiednie zarządzanie:
 
-1. **Metadane z Plików Obiektowych:**
+**Metadane z Plików Obiektowych:**
    - Sekcje pliku obiektowego zawierają metadane (`sh_addralign`) określające wymagane wyrównanie.
    - Kompilator dostarcza te informacje w oparciu o typy danych i strukturę kodu.
-
-2. **Wymagania Architektury:**
-   - Procesory mają konkretne wymagania dotyczące wyrównania, które zapewniają optymalną wydajność dostępu do pamięci.
-   - Linker używa tych zasad do wstawiania paddingu i zapewnienia odpowiedniego wyrównania.
-
-3. **Procedury Linkera:**
-   - Linker wstawia padding, aby spełnić wymagania wyrównania między sekcjami.
-   - Używa informacji z nagłówków sekcji, aby umieścić sekcje w pamięci z zachowaniem prawidłowego wyrównania.
-

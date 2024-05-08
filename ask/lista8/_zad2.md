@@ -2,10 +2,10 @@
 
 ---
 
-#### co przechowuje .strtab:
+#### co przechowuje .shstrtab:
 Section Header String Table (.shstrtab): Zawiera nazwy sekcji używane w pliku ELF. Każdy nagłówek sekcji wskazuje na swoją nazwę poprzez indeks w tej tabeli. Narzędzia, które czytają i analizują pliki ELF, takie jak readelf czy objdump, korzystają z tej tabeli, aby wyświetlić nazwy sekcji podczas raportowania struktury pliku ELF.
 
-#### co przechowuje .shstrtab:
+#### co przechowuje .strtab:
 String Table (.strtab): Przechowuje ciągi znaków, przeważnie są to nazwy symboli używane w tabeli symboli. Narzędzia takie jak linkery i debuggery wykorzystują tę tabelę do odnalezienia nazw symboli, które są potrzebne do powiązań (relokacji) oraz do celów debugowania.
 
 Obie te sekcje ułatwiają zarządzanie i identyfikację różnych części pliku ELF, pozwalają na łatwe odniesienie się do nazw symboli i sekcji poprzez indeksy, co jest znacznie bardziej efektywne niż przechowywanie pełnych nazw w każdym miejscu, gdzie mogą być one potrzebne.

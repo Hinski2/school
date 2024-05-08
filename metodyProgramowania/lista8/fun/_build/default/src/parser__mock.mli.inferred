@@ -1,0 +1,34 @@
+type token =
+    TRUE
+  | TIMES
+  | THEN
+  | RPAREN
+  | PLUS
+  | OR
+  | NEQ
+  | MINUS
+  | LT
+  | LPAREN
+  | LET
+  | LEQ
+  | INT of int
+  | IN
+  | IF
+  | IDENT of string
+  | GT
+  | GEQ
+  | FUN
+  | FALSE
+  | EQ
+  | EOF
+  | ELSE
+  | DIV
+  | ARR
+  | AND
+val menhir_begin_marker : int
+val xv_prog : Ast.expr
+val xv_mixfix : Ast.expr
+val xv_expr : Ast.expr
+val xv_base : Ast.expr
+val xv_app : Ast.expr
+val menhir_end_marker : int
