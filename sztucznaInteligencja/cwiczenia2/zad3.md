@@ -2,7 +2,7 @@
 
 ### czym jest spojna heurystyka
 Spójna (consistent), s1, s2 to sąsiednie stany:
-h1(s) <= cost(s1,s2) + h(s2) 
+h(s1) <= cost(s1,s2) + h(s2) 
 
 #### czym jest optymistyczna heurystyka
 h(s) ≤ prawdziwy koszt dotarcia ze stanu s do stanu

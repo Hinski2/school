@@ -3,11 +3,19 @@
 ### a)  w każdej turze każdy z uczestników musi wykonać ruch w grafie
 
 * trzy pierwsze punkty z (b) tak samo
-![](10a.png)
 
-* potem liczymy odległość do ostatniego wierzchołka przyjmując że idziemy po wierzchołkach o tym samym kolorze odleglosć jest w formie (odl, odl cykliczna)
+* redukujemy graf SSS do grafu pokolorowanego na ten sam kolor i krawędzi które prowadzą do wierzchołków o tym samym odpowiednim kolorze
 
-* na sam koniec sprawdzy dla wierzchołków na których stoją osoby, czy dal każdej osoby można dobrać odpowiedno dla niej czas w którym ma dojść do miejsca końcowego
+* robimy ucs
+    * stan: położenie każdej z osób na grafie
+    * zbiró akcji: przemieszczenie sie każdej osoby pomiędzy wierzchołkami w tym samym momencie
+    * model przejścia: sprawdzam dla każdej osoby jakie może zrobić akcje (dla każdego przejścia może być ogromna ilość akcji)
+    ```
+    iloczyn (dla i 1 do k) (ilość akcji dla osoby i)
+    ```
+
+    * test końcowy: jeśli pewna ilość osób jest na końcu (choćby jedna), ale ilość != k
+    * funkcja kosztu: przebyta droga
 
 
 ### b) można robić stopy
