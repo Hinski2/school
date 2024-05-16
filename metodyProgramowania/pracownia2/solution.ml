@@ -145,12 +145,19 @@ let cse expr =
 	let to_replace = find_to_replace expr in
 	match to_replace with
 		| [] -> None (* nie ma co zamieniać*)
+		| x :: _ ->	     (* zmiana tylko jednej grupy podwyrażeń *)
+			Some (replace x expr 1)
+
+(* let cse expr = 
+	let to_replace = find_to_replace expr in
+	match to_replace with
+		| [] -> None (* nie ma co zamieniać*)
 		| _ ->	     (* iteruje się po tych wyrażeniach i je zmieniam *)
 			let rec itr acc expr =
 			match acc with
 			| [] -> Some expr
 			| e::es -> itr es (replace e expr (List.length acc))
 			in itr to_replace expr
-
+ *)
 
 	
