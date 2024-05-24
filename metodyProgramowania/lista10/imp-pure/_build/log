@@ -1,0 +1,50 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /home/kuba/.cache/dune/db
+# Workspace root:
+# /mnt/c/Users/jakub/programowanie/school/metodyProgramowania/lista10/imp-pure
+# Auto-detected concurrency: 16
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -config > /tmp/dune_9a5f35_output
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamllex -q -o src/lexer.ml src/lexer.mll)
+$ (cd _build/.sandbox/6c91a6adf1db9c11b7162cc19f37ed2e/default && /home/kuba/.opam/5.3.0+trunk/bin/menhir src/parser.mly --base src/parser --infer-write-query src/parser__mock.ml.mock)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamldep.opt -modules -impl src/imp.ml) > _build/default/src/.imp.eobjs/dune__exe__Imp.impl.d
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamldep.opt -modules -impl src/lexer.ml) > _build/default/src/.imp.eobjs/dune__exe__Lexer.impl.d
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamldep.opt -modules -impl src/parser__mock.ml.mock) > _build/default/src/.imp.eobjs/parser__mock.impl.d
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamldep.opt -modules -impl src/eval.ml) > _build/default/src/.imp.eobjs/dune__exe__Eval.impl.d
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamldep.opt -modules -impl src/ast.ml) > _build/default/src/.imp.eobjs/dune__exe__Ast.impl.d
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -bin-annot -I src/.imp.eobjs/byte -no-alias-deps -opaque -o src/.imp.eobjs/byte/dune__exe.cmo -c -impl src/.imp.eobjs/dune__exe.ml-gen)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.imp.eobjs/byte -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/byte/dune__exe__Ast.cmo -c -impl src/ast.ml)
+$ (cd _build/.sandbox/8addcb3749563f5f01d068393cf803b4/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.imp.eobjs/byte -open Dune__exe -short-paths -i -impl src/parser__mock.ml.mock) > _build/.sandbox/8addcb3749563f5f01d068393cf803b4/default/src/parser__mock.mli.inferred
+$ (cd _build/.sandbox/558cac86392eb474c24c3bf8ef80d4b3/default && /home/kuba/.opam/5.3.0+trunk/bin/menhir src/parser.mly --base src/parser --infer-read-reply src/parser__mock.mli.inferred)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamldep.opt -modules -intf src/parser.mli) > _build/default/src/.imp.eobjs/dune__exe__Parser.intf.d
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamldep.opt -modules -impl src/parser.ml) > _build/default/src/.imp.eobjs/dune__exe__Parser.impl.d
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamldep.opt -modules -intf src/imp.mli) > _build/default/src/.imp.eobjs/dune__exe__Imp.intf.d
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.imp.eobjs/byte -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/byte/dune__exe__Parser.cmi -c -intf src/parser.mli)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -I src/.imp.eobjs/byte -I src/.imp.eobjs/native -intf-suffix .ml-gen -no-alias-deps -opaque -o src/.imp.eobjs/native/dune__exe.cmx -c -impl src/.imp.eobjs/dune__exe.ml-gen)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.imp.eobjs/byte -I src/.imp.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/native/dune__exe__Ast.cmx -c -impl src/ast.ml)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.imp.eobjs/byte -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/byte/dune__exe__Eval.cmo -c -impl src/eval.ml)
+> File "src/eval.ml", lines 28-32, characters 2-57:
+> 28 | ..match e with
+> 29 |   | Int n -> n
+> 30 |   | Var x -> lookup_var heap x
+> 31 |   | Binop(op, e1, e2) ->
+> 32 |     eval_binop op (eval_aexp heap e1) (eval_aexp heap e2)
+> Error (warning 8 [partial-match]): this pattern-matching is not exhaustive.
+> Here is an example of a case that is not matched:
+> Incr _
+[2]
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.imp.eobjs/byte -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/byte/dune__exe__Imp.cmi -c -intf src/imp.mli)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.imp.eobjs/byte -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/byte/dune__exe__Lexer.cmo -c -impl src/lexer.ml)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.imp.eobjs/byte -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/byte/dune__exe__Parser.cmo -c -impl src/parser.ml)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.imp.eobjs/byte -I src/.imp.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/native/dune__exe__Lexer.cmx -c -impl src/lexer.ml)
+$ (cd _build/default && /home/kuba/.opam/5.3.0+trunk/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.imp.eobjs/byte -I src/.imp.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -open Dune__exe -o src/.imp.eobjs/native/dune__exe__Parser.cmx -c -impl src/parser.ml)

@@ -1,0 +1,43 @@
+type token =
+    WRITE
+  | WHILE
+  | VAR
+  | TRUE
+  | TIMES
+  | THEN
+  | SKIP
+  | RPAREN
+  | READ
+  | PLUS
+  | OR
+  | NOT
+  | NEQ
+  | MINUS
+  | LT
+  | LPAREN
+  | LEQ
+  | INT of int
+  | IF
+  | IDENT of string
+  | GT
+  | GEQ
+  | FALSE
+  | EQ
+  | EOF
+  | END
+  | ELSE
+  | DO
+  | DIV
+  | BEGIN
+  | ASSGN
+  | AND
+val menhir_begin_marker : int
+val xv_var_decl : string
+val xv_stmt : Ast.stmt
+val xv_prog : Ast.prog
+val xv_list_var_decl_ : string list
+val xv_list_stmt_ : Ast.stmt list
+val xv_cmpop : Ast.cmpop
+val xv_bexp : Ast.bexp
+val xv_aexp : Ast.aexp
+val menhir_end_marker : int

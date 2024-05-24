@@ -1,0 +1,30 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /home/kuba/.cache/dune/db
+# Workspace root:
+# /mnt/c/Users/jakub/programowanie/school/metodyProgramowania/lista11/exn_dov2
+# Auto-detected concurrency: 16
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /home/kuba/.opam/4.14.0/bin/ocamlc.opt -config > /tmp/dune_982f5e_output
+$ (cd _build/default && /home/kuba/.opam/4.14.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.exn.eobjs/byte -no-alias-deps -opaque -open Dune__exe -o src/.exn.eobjs/byte/dune__exe__Eval.cmo -c -impl src/eval.ml)
+> File "src/eval.ml", lines 119-125, characters 2-62:
+> 119 | ..match v with
+> 120 |   | VInt n      -> string_of_int n
+> 121 |   | VBool true  -> "true"
+> 122 |   | VBool false -> "false"
+> 123 |   | VClosure _  -> "<fun>"
+> 124 |   | VPair(v1, v2) ->
+> 125 |     "(" ^ string_of_value v1 ^ ", " ^ string_of_value v2 ^ ")"
+> Error (warning 8 [partial-match]): this pattern-matching is not exhaustive.
+> Here is an example of a case that is not matched:
+> VExn _
+[2]
