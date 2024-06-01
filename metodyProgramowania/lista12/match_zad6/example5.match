@@ -1,0 +1,7 @@
+let min = fun x -> fun y -> if x < y then x else y in
+let max = fun x -> fun y -> if x > y then x else y in
+
+fold_left 
+    (fun (a, b) x -> (min a x, max b x))
+    ((100, -100))
+    (Cons(5, Cons(3, Nil())))

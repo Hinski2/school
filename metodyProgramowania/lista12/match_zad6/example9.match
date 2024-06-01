@@ -1,0 +1,8 @@
+let first = fun x ->
+    match x with
+    | (a, _) -> a
+    end in
+
+match (13, 42) with
+| (x, _) as p -> p
+end

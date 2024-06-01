@@ -1,0 +1,6 @@
+let m = fix(fun m -> fun f -> fun xs ->
+match xs with
+| Nil() -> Nil()
+| Cons(h, t) -> Cons(f h, m f t)
+end) 
+in m (fun x -> x * x) (Cons(1, Cons(2, Cons(3, Nil()))))

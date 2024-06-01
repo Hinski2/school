@@ -1,0 +1,55 @@
+type token =
+    WITH
+  | UNDERSCORE
+  | TRY
+  | TRUE
+  | TIMES
+  | THEN
+  | SND
+  | RPAREN
+  | RAISE
+  | PLUS
+  | OR
+  | NEQ
+  | MINUS
+  | MATCH
+  | LT
+  | LPAREN
+  | LET
+  | LEQ
+  | INT of int
+  | IN
+  | IF
+  | IDENT of string
+  | GT
+  | GEQ
+  | FUN
+  | FST
+  | FALSE
+  | EQ
+  | EOF
+  | END
+  | ELSE
+  | DIV
+  | COMMA
+  | CNAME of string
+  | BAR
+  | ARR
+  | AND
+val make_funs : string list -> Ast.expr -> Ast.expr
+val menhir_begin_marker : int
+val xv_separated_nonempty_list_BAR_clause_ : Ast.clause list
+val xv_separated_list_BAR_clause_ : Ast.clause list
+val xv_prog : Ast.expr
+val xv_pattern_base : Ast.pattern
+val xv_pattern_app : Ast.pattern
+val xv_pattern : Ast.pattern
+val xv_option_BAR_ : unit option
+val xv_mixfix : Ast.expr
+val xv_loption_separated_nonempty_list_BAR_clause__ : Ast.clause list
+val xv_idents : string list
+val xv_expr : Ast.expr
+val xv_clause : Ast.clause
+val xv_base : Ast.expr
+val xv_app : Ast.expr
+val menhir_end_marker : int
