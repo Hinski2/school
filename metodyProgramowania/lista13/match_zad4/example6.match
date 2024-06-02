@@ -1,0 +1,4 @@
+let xd = fun x ->
+    match x with
+    | (a, _) -> a
+    end in xd (42, 13)

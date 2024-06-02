@@ -1,0 +1,6 @@
+let (x, y) = (5, 4) in
+match x with
+| 1 -> 1
+| 1 | 4 | 5 -> x + y
+| _ -> 3
+end

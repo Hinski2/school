@@ -1,0 +1,5 @@
+let (x, y) = (4, 5) in 
+match (x, y) with
+| (a, b) | (b, a) -> a / b
+| _ -> 42
+end
