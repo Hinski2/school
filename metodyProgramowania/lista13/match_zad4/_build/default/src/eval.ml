@@ -83,12 +83,11 @@ and check_pattern p =
       else id::ids
     | PWhen(pat, _) -> aux pat ids
     | PAlt(p1, p2) ->
-      let env1 = aux p1 ids and env2 = aux p2 ids in
-      if env1 = env2 
-      then ids 
+      let p1Ids = aux p1 ids and p2Ids = aux p2 ids in (* sprawdzanie czy maja takie same ids*)
+      if (List.sort compare p1Ids) = (List.sort compare p2Ids)
+      then p1Ids 
       else failwith("different vars") 
     in ignore(aux p [])
-
 
 and add_pattern env v p =
     check_pattern p; 

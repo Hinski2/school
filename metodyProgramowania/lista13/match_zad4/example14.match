@@ -1,5 +1,5 @@
-let (x, y) = (4, 5) in 
-match (x, y) with
-| (a, b) | (b, a) -> a / b
+let (x, y, z) = (4, 5, 6) in 
+match (x, y, z) with
+| (a, b, c) | (c, a, b) -> a / b + c
 | _ -> 42
 end
