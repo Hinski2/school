@@ -1,0 +1,7 @@
+lib: [
+  "_build/install/default/lib/simple/META"
+  "_build/install/default/lib/simple/dune-package"
+]
+bin: [
+  "_build/install/default/bin/simple"
+]

@@ -34,7 +34,7 @@ rule token =
   | "let" { LET }
   | "in" { IN }
   | "as" { AS }
-  | "when" { WHEN } (* dodanie when *)
+  | "when" { WHEN } 
   | "true" { TRUE }
   | "false" { FALSE }
   | "if" { IF }

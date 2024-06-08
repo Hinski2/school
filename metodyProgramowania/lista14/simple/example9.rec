@@ -1,0 +1,1 @@
+if fst (1 = 2 - 1, false) then 1 else 2

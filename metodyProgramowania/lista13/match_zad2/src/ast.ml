@@ -7,16 +7,13 @@ type cname = string
 
 type pattern =
   | PWildcard
-  | PUnit
   | PVar  of ident
   | PInt  of int
   | PBool of bool
-  | PPair of pattern * pattern
   | PCtor of cname * pattern list   (*zamiast pattern, pattern list*)
   | PAs   of pattern * ident
 
 type expr =
-  | Unit
   | Int of int
   | Bool of bool
   | Var of ident
@@ -25,7 +22,6 @@ type expr =
   | Let of pattern * expr * expr  
   | Fun of pattern * expr
   | App of expr * expr
-  | Pair of expr * expr
   | Fst  of expr
   | Snd  of expr
   | Ctor of cname * expr list

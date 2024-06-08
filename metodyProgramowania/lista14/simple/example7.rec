@@ -1,0 +1,2 @@
+let id = fun (x : int) -> x + 5 * 2 in
+id 5
