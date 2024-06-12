@@ -1,0 +1,13 @@
+function trace ( x )
+begin
+write x
+return x
+end
+function add (x , y )
+return x + y
+begin
+if add ( trace (1) , trace (2) ) = trace (3) or trace (4) + 1 = 5 then
+write 6
+else
+skip
+end

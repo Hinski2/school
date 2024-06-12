@@ -1,0 +1,18 @@
+var n
+var i
+var p
+
+begin
+  read n
+  i := 2
+  while n > 1 do
+  begin
+    if n / i * i = n then
+    begin
+      write i
+      n := n / i
+    end
+    else
+      i := i + 1
+  end
+end

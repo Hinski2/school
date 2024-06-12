@@ -1,1 +1,1 @@
-let x = (5 = 6 - 1 * 1) in x
+let x = (5 = 6 - 1 * 1) in x && true

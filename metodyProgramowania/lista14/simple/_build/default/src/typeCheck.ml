@@ -53,10 +53,11 @@ and infer_type_Binop env bop e1 e2 =
   match t1, t2 with 
   | TInt, TInt -> (match bop with
     | Add | Sub | Mult | Div -> TInt 
-    | Eq | Lt | Gt | Leq | Geq | Neq | And | Or -> TBool)
+    | Eq | Lt | Gt | Leq | Geq | Neq -> TBool
+    | _ -> failwith "type error") (* dla and i or *)
   | TBool, TBool -> (match bop with
-    | Eq | Lt | Gt | Leq | Geq | Neq | And | Or -> TBool
-    | _ -> failwith "type error")
+    | And | Or | Eq | Neq -> TBool
+    | _ -> failwith "type error") 
   | _, _ -> failwith "type error"
 
 and check_type env e tp =

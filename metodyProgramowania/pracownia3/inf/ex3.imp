@@ -1,0 +1,11 @@
+var x
+function foo (x , y )
+var z
+begin
+z := x * x
+return z + y
+end
+begin
+x := foo (13 ,42)
+write x
+end
