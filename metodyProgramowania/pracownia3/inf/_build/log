@@ -14,4 +14,4 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -config > /tmp/dune_0f9a91_output
+$ /home/kuba/.opam/5.3.0+trunk/bin/ocamlc.opt -config > /tmp/dune_0f5a69_output
