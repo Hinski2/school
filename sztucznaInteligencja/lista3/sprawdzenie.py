@@ -170,7 +170,6 @@ def find_ans(matrix, rows_poss, cols_poss, rows_done, cols_done, rows, cols):
                 update_done(enum, i, matrix, rows_done, cols_done) # sprawdza czy linia jest ukończona
         solved = check_solved(rows_done, cols_done)
 
-    # jeśli mam gotowy nonogram to go zwracam
     #sprawdzenie
     for j in range(len(rows_poss)):
         if len(rows_poss[j]) == 0 and not rows_done[j]:
@@ -180,6 +179,7 @@ def find_ans(matrix, rows_poss, cols_poss, rows_done, cols_done, rows, cols):
         if len(cols_poss[j]) == 0 and not cols_done[j]:
             return []
         
+    # jeśli mam gotowy nonogram to go zwracam
     if solved:
         if valid(matrix, rows, cols): return matrix
         else: return []
