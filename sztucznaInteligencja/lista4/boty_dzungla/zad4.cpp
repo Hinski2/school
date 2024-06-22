@@ -198,7 +198,7 @@ public:
             vector<vector<pon>> copy_of_board = board;
             vector<vector<pss>> copy_of_animal_poss = animal_poss;
 
-            int cnt = 15;
+            int cnt = 22;
             int no_pons_p1 = cnt_aval_pons(P1), no_pons_p2 = cnt_aval_pons(P2); // liczba pionków przed robieniem ruchów
             while(!game_over()) {
                 if(!cnt) break;
@@ -632,7 +632,7 @@ int main(){
         // bot3 - alfa - beta
         while(!s.game_over()){              
             if(move_type == P1)     //P1 - góra   
-                make_move_bot1(s);   
+                make_move_bot2(s);   
             else                    //P2 - dół
                 make_move_bot3(s); 
             
