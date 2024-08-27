@@ -304,3 +304,150 @@ $$
 # Rozdział 5
 
 ---
+
+\[
+\begin{array}{ccc}
+V & \xrightarrow{F} & W \\
+\updownarrow (\cdot)_{\mathcal{B}_V} & & \updownarrow (\cdot)_{\mathcal{B}_W} \\
+\mathbb{F}^n & \xrightarrow{M} & \mathbb{F}^m
+\end{array}
+\]
+
+Diagram przemienny wizualizuje relacje między przekształceniami liniowymi a ich reprezentacjami macierzowymi względem wybranych baz.
+
+1. **V i W** to przestrzenie liniowe, nad którymi działa przekształcenie liniowe \( F \).
+2. **\( B_V \) i \( B_W \)** to bazy tych przestrzeni, odpowiednio \( V \) i \( W \).
+3. **\( F \)** jest przekształceniem liniowym, które działa z przestrzeni \( V \) na \( W \).
+4. Macierz \( M \) to macierz przekształcenia liniowego \( F \) względem baz \( B_V \) i \( B_W \).
+
+Diagram przemienny oznacza, że niezależnie od tego, jaką drogę wybierzesz (czy najpierw zastosujesz przekształcenie \( F \), a potem wyrazisz wynik w bazie \( B_W \), czy najpierw wyrazisz wektor \( V \) w bazie \( B_V \), a następnie pomnożysz go przez macierz \( M \)), wynik będzie ten sam.
+
+Diagram mówi nam że są dwa sposoby na przejście z lewego górnego rodu go prawego dolengo rogu:
+$$
+M_{B_V B_W}(F)(\vec{v})_{B_V} = (F \vec{v}) _ {B_W}
+$$
+
+### Macierz przekształcenia w bazie
+**Macierz przekształcenia w bazie** to macierz, która reprezentuje przekształcenie liniowe \( F: V \rightarrow W \) w kontekście wybranych baz \( B_V \) w przestrzeni \( V \) oraz \( B_W \) w przestrzeni \( W \). 
+
+Jeśli \( B_V = \{ \mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n \} \) jest bazą przestrzeni \( V \), a \( B_W = \{ \mathbf{w}_1, \mathbf{w}_2, \dots, \mathbf{w}_m \} \) jest bazą przestrzeni \( W \), to macierz przekształcenia \( M_{B_V B_W}(F) \) jest zbudowana z wektorów współrzędnych \( F(\mathbf{v}_i) \) wyrażonych w bazie \( B_W \). 
+
+Każda kolumna tej macierzy odpowiada współrzędnym wektora \( F(\mathbf{v}_i) \) w bazie \( B_W \), a macierz ma wymiary \( m \times n \), gdzie \( m \) to liczba wektorów w bazie \( B_W \), a \( n \) to liczba wektorów w bazie \( B_V \).
+
+po ludzku: jest to macierz która przyjmuje wektor v w bazie $B_V$ i zamienia go na wektor w w bazie $B_W$
+
+### Macierz zmiany bazy
+mówi nam jak przejść w macierzy w bazie B na macierz w bazie B'
+$$
+M_{BB'}(\vec{v})_{B} = (\vec{v})_{B'}
+$$
+
+Niech $B_V, B'_V$ będą bazami V, Wtedy:
+$$
+M_{BB'}\cdot M_{B'B} = Id
+$$
+
+tzn są to macierze odwrotne
+
+--- 
+
+# Rozdział 6
+
+---
+
+### wyznacznik 
+wyznacznik to uogólnienie objętości (ale z znakiem) 
+wyznacznik zapisujemy przez: det(M)
+
+tutorial: https://youtu.be/wszYqnIIUr0?si=6gjb0FsZadnShJ3M
+
+własności:
+$$
+det(\vec{V_1}, \vec{V_2}, \dots, \vec{V_{i - 1}}, \vec{0}, \vec{V_{i + 1}}, \dots, \vec{V_n}) = 0 \\
+Jeśli  \ \ \vec{V_i} = \vec{V_j} \ \ to \ \ det(\vec{V_1}, \vec{V_2}, \dots, \vec{V_n}) = 0 \\
+zminana \ kolejności \ dwóch \ wektorów \ zmienia \ znak \ (objętosć \ ze \ znakiem )
+$$
+
+dla macierzy trójkątnej determinant to iloczyn elementów na przekątnej
+
+jeśli układ wektorów jest liniowo zależny to det jest równy zero:
+$$
+det(A) \neq 0 \iff rk(A) = n 
+$$
+
+### minor 
+Minorem macierzy M nazywamy każdą macierz uzyskaną poprzez usunięcie M pewnego zbioru wierszy i kolum. Zwyczjowo $A_{i, j}$ to macierz powstałą z A poprzez usunięcie i-tego wiersza oraz j-tej kolumny
+
+### dopełnienie algebraiczne
+Dopełnienie algebraiczne elementu $a_{i, j}$ to $(-1)^{i + j} det(A_{i, j})$
+
+### rozwinięcie laplace'a
+dla macierzy kwadratowej $A = (a_{i j})_{i, j = 1, \dots, n}$ mamy:
+$$
+det(A) = \sum_{i = 1}^n (-1)^{i + j} \cdot a_{i,j} \cdot det(A_{i, j})
+$$
+
+po ludzku to ta normalna metoda która żawsze używasz z wykreślaniem (tutorial od 1min)
+
+##### twierdzenie cauchy'ego
+$$
+det(AB) = det(A) \cdot det(B)
+$$
+
+##### ważne własności
+$$
+det(A) = det(A^T) \\
+det(A) = det(A^{-1}) \\
+det(A^n) = (det(A))^n \\
+det(\alpha \cdot A) = \alpha ^ n \cdot det(A)
+$$
+
+jak działa ta ostatnia własnośc:
+    $c * dim(A) = dim(B)$ gdzie B to taka sama macierz jak A, ale jej jeden wierz jest przenmnożony przez c
+
+### wyznacznik a macierz odwrotna
+Jeśli M jest odwracalna, to
+$$
+det(M^{-1}) = \frac{1}{det(M)}
+$$
+
+niech $F : V \rightarrow V$ będzie przekształceniem liniowym, zaś M, M' będą macierzami dla tego przekstałcenia wyrażonymi w różnych bazach. Wtedy: (wyznacznik macierzy nie zależy od bazy)
+$$
+dim(M) = dim(M')
+$$
+
+---
+
+# Rozdział 7
+
+---
+
+wzory cramera: jeśli A to macierz kwadratowa i odwracalna, to jedyne rozwiązanie jest postaci: (gdzie $A_{x_i}$ to macierz wpostała przez zastąpienie i-tej kolumny A przez $\vec{B}$, czyli wektory wynikowy)
+$$
+x_i = \frac{det(A_{x_i})}{det(A)}
+$$
+
+
+#### układ jednorodne
+układ postaci $\vec{B} = \vec{0}$ nazywany układem jednorodnym, taki układ ma na pewno jedno rozwiązanie
+
+$$
+A \vec{X} = \vec{0}
+$$
+
+#### układ niejednorody
+Układ równań liniowych nazywamy niejednorodnym, jeśli przynajmniej jedno z równań w tym układzie ma po prawej stronie równości wartość różną od zera. 
+
+$$
+A \vec{X} = \vec{B} \ ma \ rozwiązanie \iff \vec{B} \in Im(A)
+$$
+jeśli równanie $A \vec{X} = \vec{B}$ ma rozwiązanie to zbiór wszystkich jego rozwiązań jest warstwą względem ker A 
+
+po ludzku:
+* jeśli B znajduje sięw obrazie A, to istanieje taki wektor X, że AX = B . innymi słowy, istnieje rozwiązanie tego równania
+* Warstwa względem ker(A) oznacza, że każde rowziązanie X równania AX = B można przedstawić jako sumę pewnego konkretnego rozwiązania $X_0$ oraz dowolengo wektora z jądara ker(A). Formalnie: X = $X_0$ + K, gdzie K $\in$ ker(A). W praktyce jeśli mamy $X_0$ jedne konkretne rowsiązanie równania AX = B, to każde inne rozwiązanie X można uzyskać przez dodanie do $X_0$ dowolnego wektora K z ker(A)
+
+##### Tw Kronecker-Capelli
+układ  $A \vec{X} = \vec{B} \ ma \ rozwiązanie \iff rk(A | \vec{B}) = rk(A)$
+
+---
