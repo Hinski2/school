@@ -450,4 +450,298 @@ po ludzku:
 ##### Tw Kronecker-Capelli
 układ  $A \vec{X} = \vec{B} \ ma \ rozwiązanie \iff rk(A | \vec{B}) = rk(A)$
 
+
+dla: A - macierz, B - macierz wynikowa, U - $[A | B]$ macierz usupełniona, n - ilość zmiennych
+
+| $deg(A) = deg(U) = n$ | $deg(A)  < deg(U)$ | $deg(A) = deg(U) < n$ |
+| --- | --- | --- | 
+| układ oznaczony | układ sprzeczny | układ zależny |
+| 1 rozwiązanie | brak rozwiązań | nieskończenie wiele rowziązań zależne od $n - deg(A)$ paramatrów 
+
+**pro tip: najlepiej zaczynaj od liczenie deg(U), bo potem możesz sobie z niego odczytać łatwo też det(A)**
+
 ---
+
+# Rozdział 8
+
+--- 
+
+### Wartość własna , wektor własny
+
+$\lambda$ jest wartośćią własną macierzy M (dla wektora $\vec{V} \neq 0$) , gdy $M\vec{V} = \lambda \vec{V}$, wtedy $\vec{V}$ jest wektorem włąsnym tej macierzy 
+
+$\lambda$ jest wartośćią własną przekształcenia liniowego $F$, gdy $F(\vec{v}) = \lambda \vec{v}$, dla pewnego $\vec{v} \neq \vec{0}$, taki wektor jest wektorem własnym $F$
+
+$\lambda$ jest wartośćia własną przekształcenia $F$ wtedy i tylko wtedy gdy $\lambda$ jest wartością własną $M_{BB}(F)$, dla dowelnej bazy B 
+To stwierdzenie mówi nam, że wartości własne przekształcenia liniowego $F$  i wartości własne jego reprezentacji macierzowej $M_{BB}(F)$ są takie stame , nezależnie od wyboru bazy B 
+
+### macierze podobne
+
+macierze podobne : macierze kwadratowe $M, M'$ są podobne, jeśli istnieje macierz odwracalna $A$, taka że:
+$$
+M'=A^{-1}MA
+$$
+
+oznaczamy to jako $M \sim M'$
+
+Macierze podobne mają te same wartości własne 
+
+$\lambda$ jest wartością właśną macierzy $M \iff det(M - \lambda Id) = 0$
+
+### wielomina charakterystyczny
+wielomian charakterystyczny macierzy kwadratowej to: 
+$$
+\varphi_M(x) = det(A - x \,Id)
+$$
+
+Wielomian charakterystyczny macierzy $M$ (lub przekształcenia liniowego $F$) to wielomian, którego pierwiastkami są wartości własne tej macierzy (lub przekształcenia liniowego).
+
+wielomian charakterystyczny dla macierzy $n \times n$ jest wielomianem stopnia $n$. $\lambda$ jest wartością własnoą macirzy $M$ wtedy i tylko wtedy gdy jest pierwiastkiem $\varphi_M$
+
+Wielomian charakterystyczny przekształcenia liniowego jest dobrze zdefiniowany. Oznacza to że jego wartości nie zależą od wyboru bazy, co gwarantuje jego jednoznaczność i spójność w opisie przekształcenia 
+
+### krotność algebraiczna i geometryczna 
+
+jeśli $\lambda$ jest wartościawłasna dla $M$ to zbiór wektorów własnych (wraz z wektorem $\vec{0}$)  dla $M$ to $ker(M - \lambda \, Id)$
+
+**krotnosć algebraiczna** wartości własnej $\lambda$ mówi nam ile razy $\lambda$ pojawia się jako pierwiastek wielomianu charakterystycznego 
+
+**krotność geometryczna** wartości własnej $\lambda$ to liczba która określa wymiar przestrzeni wektorów własnych 
+$$
+krotność \ geometryczna \ (\lambda) = dim(ker(M - \lambda \, Id))
+$$
+
+po ludzku:
+* krtoność algebraiczna mówi nam, ile razy $\lambda$ pojawia się jako pierwiastek wielomianu charkterystycznego
+* krotność geometryczna mówi, ile jest niezależnych wektorów własncyh (wymiar przestrzeni wektorów własnych) odpowiadających wartości własnej $\lambda$
+
+Jeśli $A \sim B$ to krotność geometryczna $\lambda$ dla $A, B$ jest taka sama. Analogicznie krotność algebraiczna
+
+Krotność algebraiczna jest większa równa ktotnośgi geometrycznej 
+
+### macierze  diagonalizowalne
+Macier $M$ jest diagonizowalna $\iff$ jest podobna do macierzy przekątniowej
+Przekształcenie liniowe jest diagonalne, jeśli jego macierz (w jakiejś bazie) jest diagonizowalna
+
+Przypomnienie: macierz przekątniowa ma wsystkie swoje elementy niezerowe tylko na diagonali (przekątnej) 
+
+po ludzku: jeśli $M$ jest diagonizowalna to możemy znaleźć taką bazę w której macierz $M$ staje się macierzą przekątniową 
+
+
+Niech  $\lambda_1, \dots, \lambda_n$ będą różnymi wartościami własnymi macierzy $M$. Wtedy uma (mnogościowa) bas przestrzeni $V_{\lambda_1}, \dots, V_{\lambda_n}$ jest zbiorem liniowo niezależnym
+po ludzku: zbiór wektorów własnych macierzy $M$ jest liniowo niezależny 
+
+### macierz symetryczna
+Macierz jest symetryczna jeśli $ M = M^T $ 
+
+Macierz symetryczna z $ M _ {n \times n}(\Reals) $ ma n niezaleźnych wektorów własnych (nad ciałem $\Reals$)
+
+### macierz jordana 
+
+##### klatka jordana 
+$$
+\begin{bmatrix}
+\lambda & 1 & 0 & \dots & 0 \\
+0 & lambda & 1 & \dots & 0 \\
+\vdots & \ddots & \ddots & \ddots & \vdots \\
+0 & 0 & \dots & \lambda & 1 \\
+0 & 0 & \dots & 0 & \lambda
+\end{bmatrix}
+$$
+
+##### macierz jordana 
+gdzie $J_1, \dots, J_n$ są klatkami jordana 
+
+$$
+\begin{bmatrix}
+J_1 &  &  &  &  \\
+ & J_2 &  & \ &  \\
+ &  & \ddots & \ & \\
+ &  &  &  & J_n 
+\end{bmatrix}
+$$
+
+Klatka Jordana J rozmiaru $k \times k$ ma jedną wartość własną: $\lambda$, o krotności algebraiczej k oraz geometrzycznej 1
+
+##### Rozkład Jordana 
+każdą marzie $M$ o wartościach w $\Complex$ można przedstawić w postaci: (gdzie J jest macierzą Jordana a A jest macierzą odracalna)
+$$
+M = A^{-1} J A 
+$$
+
+---
+
+# Rozdział 9
+
+---
+
+### znormalizowana macierz sąsiedztwa
+dla grafu G o wierzchołakch $1, 2, \dots, n$ niech $d_{i, j}$ oznacza liczbę krawędzi z j do i, za $m_j$ liczbę krawędzi wychodzących z j, znormalizowana macierz są siedztwa M to macierz gdzie: 
+$$
+m_{i, j} = \frac{d_{i,j}}{m_j}
+$$
+
+zaóważmy, że liczby w kolumnie są nieujemne i jeśli istnieje choć jedna krawędz to sumuą siedo 1
+
+### macierz stochastyczna, wektor stochastyczny 
+Wektor jest stochstyczny, jeśli jego współrzędne są nieujemne i sumują się do 1.
+Macierz kdwadratowa M jest (kolumnowo) stochastyczna, jeśli każda jej kolumna jest wektorem stochstycznym 
+
+Iloczyn dwóch macierzy stochastycznych jest macierzą stochastyczną 
+
+Niech $M$ będzie znormalizowanacacierzą są siedztwa zaś $\vec{V}$ wektorem stochstycznym. Wtedy $M^k\vec{V}$ to rozkład prawdopodobieństa procesu losowego 
+
+Ranking dla macierzy stochastycznej M to wektor $\vec{R}$, taki, że, $M \vec{R} = \vec{R}$ oraz z(ma sumę współczędnych równą 1) $\sum_i r_i = 1$
+R jest to wektor własny dla wartości 1 
+
+Macierz stochastyczna ma wawrtość własną 1 
+
+### PagRank
+
+dla znormalizowanej macierzy sąsiedztwa M rozmiaru $n \times n $ oraz liczby $0 < m < 1$ definujemy jako:
+$$
+M' = (1 - m) \cdot M + m \cdot
+\begin{bmatrix}
+{1 \over n} & \dots & {1 \over n} \\
+{1 \over n} & \dots & {1 \over n} \\
+\vdots & \ddots & \vdots \\
+{1 \over n} & \dots & {1 \over n} 
+\end{bmatrix}
+$$
+
+Macierz $M'$ jest macierzą stochastyczną 
+
+Mówimy, że macierz $A$ jest dodatnia, co zapisujemy $A > 0$ jeśli wszystkie jeje elementy są dodatnie
+
+Jeśli $A > 0$ i jest kolumnowo stochastyczna oraz $A\vec{V} = \vec{V} \ to \ \vec{V} > 0 \ lub \ \vec{V} < 0$ czyli wszystkie elementy wektora $\vec{V}$ są dodatnie lub ujemje 
+
+Dla stochastycznej macierzy dodatniej $A$ mamy $dim(V_1) = 1$ 
+$V_1$ to przestrzeń wektorów własnych odpowiadających wartościa własnej 1
+
+### norma
+Norma $\ell_1$ $||\cdot||_1$ wektora $\vec{V} = [\vec{v}_1, \dots, \vec{v}_n]^T$ to 
+$$
+||\vec{V}\\_1|| = \sum_{i = 1}^n |v_i|
+$$
+
+Niech $A$ będzie macierzą stochastycną. Wtedy dla dowolnego wektora $\vec{V}$: 
+$$
+||A\vec{V}||_1 \leq ||\vec{V}||_1
+$$
+
+Niech $A \geq 0$ bedzie macierzą stochastyczną (niekoniecznie dodatnią) rozmiaru $n \times n$ a P macierzą stochastyczną $n \times n$ postaci: 
+
+$$
+P =\begin{bmatrix}
+{1 \over n} & \dots & {1 \over n} \\
+{1 \over n} & \dots & {1 \over n} \\
+\vdots & \ddots & \vdots \\
+{1 \over n} & \dots & {1 \over n} 
+\end{bmatrix} 
+$$
+
+Dla liczby rzeczywistej $ 0 <= m <= 1 \ niech M_m$ oznacza macierz:
+
+$$
+M_m = (1 - m)A + mP
+$$
+
+wtedy dla wektora $\vec{V} \in V_{=0}$ zachodzi:
+
+$$
+||M_m\vec{V}||_1 \leq (1 - m) ||\vec{V}||_1
+$$
+
+Przypomnienie $V_{=0}$ oznacza jądro 
+
+po ludzku: im większe m tym bardziej $M_m$ przypomina macierz P, co prowadiz do bardziej jednorodnego (stabilbeg) rozkładu, gdzie różbnice między poszczególnymi elementami wektora są mniej wazne 
+
+### Granica punktowa ciągu macierzy 
+ciąg macierzy $\{A_k \}_{k \geq 1} $ o ustalonym rozmiarze $n \times m$  ma granicę (punktowo) A, jeśli dla wszystkich par indeksów $ 1 \leq i \leq n $ oraz $1 \leq j \leq m$ spełniony jest warunek:
+$$
+\lim_{k \rightarrow \infty} (A_k)_{i,j} = A_{i,j}
+$$
+
+Jeśli $\lim_{k \rightarrow \infty} A_k = A$ to $\lim_{k \rightarrow \infty} A_k \vec{V}= A \vec{V}$
+
+Jeśli $A$ jest dodatnią macierzą stochastyczną, to:
+* krotnosć algebraiczna wartości własnej 1 wynosi 1
+* A nie ma wartości własnej o module większym niż 1
+* A nie ma wartości własnej o module 1 innej niż 1
+
+Niech $J_\lambda$ będzie klatką Jordana dla wartości własnej $\lambda \in \Complex$, gdzie $|\lambda | < 1$ Wtedy $\lim_{k \rightarrow \infty} J_\lambda^k$ jest macierzą zerową 
+
+### Grafy silnie spójne 
+Mówimy, że (skierowany) graf jest silnie spójny, jesli dla każdej pary wierzchołków $i, j$ istnieje ścieżka z i do j (oraz z j do i) 
+
+Dla znormalizowanej macierzy sąsiedztwa $M$ grafu silnie spójnego o n wierzchołkach macierz ${1 \over n} \sum_{i = 0}^{n - 1} M^i$ jest doatnią macierzą stochastyczną 
+
+Jeśli $\vec{V}$ jest wektorem własnym zrormalizowanej macierzy sąsiedztwa dla wartości 1, to jest nim też dal macierzy${1 \over n} \sum_{i = 0}^{n - 1} M^i$
+
+Jeśli garf jest spójny, to jego znormalizowana macirz sąsiedztwa ma $dim V_1 = 1$
+
+---
+
+# Rozdział 10
+
+---
+
+### standardowy iloczyn skalarny 
+
+Dla przestrzeni $\Reals^n$ oraz wielu $F^n$ (ale nie $\Complex^n$) definiujemy iloczyn skalrny jako 
+$$
+[\vec{v}_1, \dots, \vec{v}_n]^T \cdot [\vec{u}_1, \dots, \vec{u}_n]^T = \sum_{i=1}^n\vec{v}_i \vec{u}_i
+$$
+
+**długość**: (norma) wktora $\vec{V} $: $||\vec{V}|| = \sqrt{\vec{V} \cdot \vec{V}}$
+**odległość** między wektorami $\vec{U}, \vec{V}$ to $||\vec{U} - \vec{V}||$
+**kąt** między wektorami $\vec{V}, \vec{U}$ to $\alpha \in [0, \pi]$: $cos(\alpha) = \frac{\vec{V} \cdot \vec{U}}{||\vec{V}|| \cdot ||\vec{U}||}$
+**prostopadłość** dwa wektoray $\vec{V}, \vec{U}$ są prostopadłe, co oznaczamy $\vec{V} \perp \vec{U}$ jeśli $\vec{V} \cdot \vec{U} = 0$
+
+
+dla $\vec{U}, \vec{V} \in \Reals^n$ zachodzi nieówność:
+$$
+\vec{U} \cdot \vec{V} \leq ||\vec{U}|| \cdot ||\vec{V}||
+$$
+i równość zachodzi wtedy i tylko wtedy gdy $\vec{V}, \vec{U}$ są liniowo zależne
+
+### Dopełnienie ortogonalne 
+Niech \( U \subseteq \mathbb{F}^n \). Wtedy dopełnienie ortogonalne \( U \) to:
+
+\[
+U^\perp = \{\vec{V} \in \mathbb{F}^n : \forall \vec{W} \in U, \, \vec{V} \perp \vec{W}\}
+\]
+
+jest to zbiór wektorów wszystkich wektorów $\vec{V}$ z przestrzeni $\mathbb{F}^n$, które są prostopadłę do każdego wektora $\vec{W}$ należacego do $U$
+
+Jeśli $LIN(B) = \mathbb{W}$  to $\vec{V} \in \mathbb{W}^{\perp}$ wtedy i tylko wtedy, gdy $\vec{V}$  jest prostopadły do każdego wektora z B
+Innymi słowy, aby sprawdzić, czy wektor \( \mathbf{V} \) jest w dopełnieniu ortogonalnym \( W^\perp \), wystarczy sprawdzić, czy jest prostopadły do każdego wektora w zbiorze \( B \). Jeśli \( \mathbf{V} \) jest prostopadły do wszystkich wektorów w \( B \), to jest on również prostopadły do wszystkich liniowych kombinacji tych wektorów, czyli do całej przestrzeni \( W \).
+
+$LIN(\vec{V}_1, \dots, \vec{V}_n))^{\perp} = ker([\vec{V}_1 | \dots | \vec{V}_m]^T)$ ponadto gdy $\vec{V}_1, \dots, \vec{V}_m \in \mathbb{F}^n$ są liniowo niezaleźne to $dim LIN(\vec{V}_1, \dots, \vec{V}_m)^{\perp} = n - m$
+
+---
+
+# Rozdział 11
+
+---
+
+### ogólny iloczyn skalarny
+iloczny skalarny to funkcja $<\cdot, \cdot> : \mathbb{V}^2 \rightarrow \mathbb{F}$ (gdzie $\mathbb{V}$ jest przestrzenią liniową nad $\mathbb{F}$) spełniającą warunki:
+* liniowa po pierwszej współrzędnej
+* symetryczna lub antysymetryczna 
+* $<\vec{v}, \vec{v}> > 0 \ dla \ \vec{v} \neq \vec{0}$
+
+dwa wektory $\vec{u}, \vec{v}$ są prostopadłe, gdy $<\vec{u}, \vec{v}> = 0$, zapisujemy to jako: $\vec{u} \perp \vec{v}$
+
+**długość** (norma) dla $\vec{v}$ to $||\vec{v}|| = \sqrt{<\vec{v}, \vec{v}>}$
+**odległość** między $\vec{u}, \vec{v}$ to $||\vec{u} - \vec{v}||$
+**kąt** między wektorami $\vec{v}, \vec{u}$ to $\alpha \in [0, \pi]$: $cos(\alpha) = \frac{<\vec{v}, \vec{u}>}{||\vec{v}|| \cdot ||\vec{u}||}$
+
+### Baza ortonormalna 
+Układ wektorów $\vec{v}_1, \dots, \vec{v}_n$ jest układem **ortogonalnym**, jeśli dla $i \neq j$ mamy $<\vec{v}_i, \vec{v}_j> = 0$ 
+Jest układem **ogotnormalnym** jeśli dodatkowo $<\vec{v}_i, \vec{v}_i> = 1$
+Analogicznie definiujemy baze ortogonalną i ortonormalną 
+
+Niech $\mathbb{V}$ będzie skończenie wymiarówą przestrzenią Euklidesową (unitarną). Wtedy $\mathbb{V}$ ma bazę ortonormalną 
+
+//todo od 11.9
