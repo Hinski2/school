@@ -542,7 +542,7 @@ Macierz symetryczna z $ M _ {n \times n}(\Reals) $ ma n niezaleźnych wektorów 
 $$
 \begin{bmatrix}
 \lambda & 1 & 0 & \dots & 0 \\
-0 & lambda & 1 & \dots & 0 \\
+0 & \lambda & 1 & \dots & 0 \\
 \vdots & \ddots & \ddots & \ddots & \vdots \\
 0 & 0 & \dots & \lambda & 1 \\
 0 & 0 & \dots & 0 & \lambda
@@ -744,4 +744,162 @@ Analogicznie definiujemy baze ortogonalną i ortonormalną
 
 Niech $\mathbb{V}$ będzie skończenie wymiarówą przestrzenią Euklidesową (unitarną). Wtedy $\mathbb{V}$ ma bazę ortonormalną 
 
-//todo od 11.9
+Jeśli w skończenie wymiarowej przestrzeni Euklidesowej mamy zbiór ortogonalnych, liniowo niezależnych wektorów B, to: (dwie opcje)
+1. Jeśli $B$ już rozpiął całą przestrzeń $V$ (czyli $LIN(B) = V$) to $B$ jest bazą 
+2. Jeśli $B$ nie rozpiąó jeszcze całej przestrzeni $V$, to zawsze istnieje przynajmniej jeden wektor $\vec{b}_0 \ w  \ V$, który można dodać do $B$, aby rozszerzyć zbór, zachowując otogonalność i linioą niezależność
+
+Niech $V$ będzie przestrzenią Euklidesową, $B = \vec{v}_1, \dots, \vec{v}_n$ bazą ortonormalną a $\vec{v} \in V$ wtedy:
+$$
+[\vec{v}]_B = [<\vec{v}, \vec{v}_1> , \dots, <\vec{v}, \vec{v}_n>]^T
+$$
+
+po ludzku: jeśli chcemy zareprezentować wektor v w bazie ortonormalnej B to wystarczy zrobić to co powyżej 
+
+### dopełnienie ortogonalne 
+Niech $U \subseteq V$ będzie podzbiorem przestrzenie Eukidesowej. Wtedy dopełnienie ortogonalne $U$:
+$$
+U^{\perp} = \{ \vec{v}  \in V : \forall_{\vec{w} \in U} \vec{v} \perp \vec{w} \}
+$$
+czyli dopełnienie ortogonalne U to wszystkie takie wektory v, które są prostopadłe do każdego wektora z U 
+
+Jesli $Lin(V) = W \ to \ \vec{v} \ \in \ W^{\perp}$ wtedy i tylko wtedy, gdy $\vec{v}$ jest prostopadły do kazdego wektora z $B$
+
+Jeśli $\vec{b}_1, \dots, \vec{b}_n$  jest bazą ortogonalną przestrzenie Euklidesowaj lub unitarnej V, to 
+$$
+LIN(\vec{b}_1, \dots, \vec{b}_k)^{\perp} = LIN(\vec{b}_{k + 1}, \dots, \vec{b}_n)
+$$
+czyli jeśli mam baze i podziele ją na dwie części to przestrzenie rozpinane przez te podprzestrzenie są prostopadłe
+
+Niech $V$ będzie skończenie -wymiarową przestrzenią Eukidesową oraz niech $W \leq V$ wtedy:
+$$
+(W^\perp)^\perp \\
+W + W^\perp = V \\ 
+dla \ każdego \ wektora \ \vec{v} \in \vec{V} \ reprezentacja \ \vec{v} = \vec{w} + \vec{w}_\perp, \ gdzie \ \vec{w} \in W \ i \ \vec{w}_\perp \in W^\perp \ jest \ jedyna 
+$$
+
+### Rzuty i rzuty prostopadłe 
+Rzutem nazywamy przekształcenie liniowe $P : \mathbb{V} \rightarrow \mathbb{V}$ takie że $P^2 = P$. O rzucie $P$ mówimy, że jest rzutem na podprzestrzeń $Im \,P$
+
+Rzut jest rzutem prostopadłym jeśli dla każdego wetora $\vec{v}$ mamy $P(\vec{v}) \perp (\vec{v} - P(\vec{v}))$
+
+Niech $P_\mathbb{W}$ będzie rzutem prostopadłym na $\mathbb{W}$ . Wtedy $P(\vec{v}) \in \mathbb{W} \ i \ \vec{v} - P(\vec{v}) \in \mathbb{W}^\perp$, w szczególności:
+$$
+rzut \ na \ \mathbb{W} \ jest \ dobrze \ określony \ i \ jednoznacznie \ zdefiniowany \\ 
+dla \ \vec{v} \in \mathbb{W} \ mamy \ P_\mathbb{W}(\vec{v}) = \vec{v} \\ 
+dla \ \vec{v} \in \mathbb{W}^\perp \ mamy \ P_\mathbb{W}(\vec{v}) = \vec{0} \\ 
+$$
+
+
+### Algorytm Gramma-Schmidta
+
+znajdz sobie na yt tutorial
+
+Jeśli ukłąd na wejściu algorytmu Gramma-Schmidta był niezalezny, to uzyskane wektory są ukłądem ortonormalnym 
+Jeśli układ był zaelżny to w czasie algorytmu przekształcimy jeden z wektorów $\vec{v}_i$ na wektor zerowy 
+
+Jeśli baza $B$ powstaje z bazy $A$ przez ortonormalizację Grama-Schmidta, to $M_{BA} \ i \ M_{AB}$ są macierzami górnotrójkątnymi
+
+---
+
+# Rozdział 12
+
+---
+
+### Izometrie
+Przekształcenie liniowe $F : \mathbb{V} \rightarrow \mathbb{V}$ na przestrzenie liniowej $\mathbb{V}$ z iloczynem skalrnym $<\cdot, \cdot>$ nazywamy izometrią, jeśli zachowuje iloczyn skalarny dla każdych dwóch wektorów $\vec{u}, \vec{v} \in \mathbb{V}$:
+$$
+<F\vec{v}, F\vec{u}> = <\vec{v}, \vec{u}> 
+$$
+
+przekształcenie F jest izometrią wtedy i tylko wtedy gdy zachowuje długość dla każdego $\vec{v} \in \mathbb{V} \ mamy \ ||F(\vec{v}) || = || \vec{v}||$
+
+### Macierze ortogonalne 
+Macierz wadratową nazywamy ortogonalną, jeśli jej kolumny są parami ortogonalne oraz są długosci 1 (w standardowym iloczynie skalarnym) 
+
+$M$ jest ortogonalna wtedy i tylko wtedy gdy $M^{-1} = M^T$
+
+macierze ortogonalne są zaknięte na mnożenie, transponowanie i branie macierzy odwrotnej. czyli jeśli którąś z tych operacji na macierzach ortogonalnych to otrzymamy dalej macierz ortogonalną 
+
+Niech $V = \{\vec{b}_1, \dots, \vec{b}_n \}$ będzie bazą ortonormalną:
+$$
+F \ jest \ izometrią \ \iff M_{BB}(F) \ jest \  macierzą \ ortogonalną
+$$
+
+---
+
+# Rozdział 13
+
+--- 
+
+### macierz iloczynu skalarnego / macierz Grama
+Dla bazy $aB = \vec{v}_1, \dots, \vec{v}_n$ oraz iloczynu skalrnego $<\cdot,\cdot>$ określamy macierz tego ilocznu w bazie B jako: 
+$$
+M^B = (<\vec{v}_i, \vec{v}_j>)_{i,j = 1, \dots, n}
+$$
+
+Niech B: baza przestrzenie z iloczynem skalarnym $<\cdot, \cdot>$ wtedy:
+$$
+<\vec{u}, \vec{v}> = [\vec{u}]_B^T \, M^B \, [\vec{v}_B]
+$$
+
+### funkcjonał dwuliniowy, forma dwulinowa 
+Niech $\mathbb{V}$ będzie przestrzenia linioą nad ciałem $\mathbb{F}$. Funkcja $F : \mathbb{V} \times \mathbb{V} \rightarrow \mathbb{F}$ jest funkcjonałem dwuliniowym (formą dwuliniową), jeśli jest liniowa po każdej współrzędnej, czyli: 
+$$
+F(\alpha \vec{u}, \vec{v}) = \alpha F(\vec{u}, \vec{v}) \\
+F(\vec{u}, \alpha \vec{v}) = \alpha F(\vec{u}, \vec{v}) \\
+F(\vec{a} + \vec{c}, \vec{b}) = F(\vec{a}, \vec{b}) + F(\vec{c}, \vec{b}) \\
+F(\vec{a}, \vec{b} + \vec{c}) = F(\vec{a}, \vec{b}) + F(\vec{a}, \vec{c}) 
+$$
+
+Niech $F$ będzie funkcjonałem dwuliniowym a $B = \vec{v}_1, \dots, \vec{v}_n$ bazą przestrzenie $\mathbb{v}$ wtedy $F$ jest jednoznacznie zadany przez macież 
+
+$$
+M^B(F) = (F(\vec{v}_i, \vec{v}_j))_{i,j = 1, \dots, n}
+$$
+Co więcej:
+$$
+[F(\vec{u}, \vec{v})] = [\vec{u}]_B^T \, M^B(F) \, [\vec{v}]_B
+$$
+
+Jeśli $F$ jest funkcjonałem dwuliniowym, zaś $A,B$ są dwiema bazami, to: (gdzie $M_{BA}$ to macierz zmiany bazy z B do A)
+$$
+M^B(F) = M_{BA}^TM^A(F)M_{BA}
+$$
+
+Dla bazy ortonormalej $B$ dla iloczynu skalarnego $<\cdot, \cdot>$ mamy $M^B = Id$
+oznacza to że iloczyn skalarny dwuch wektorów w bazie ortonormalnej liczy się jak standardowy iloczyn skalarny 
+
+### macierz dodatnio określona
+Macierz M wymiaru $ n \times n$ jest dodatnio określona, jeśli funkcja $<\cdot, \cdot> : (\R^n)^2 \rightarrow \R$ określona jako:
+$$
+(\vec{u}, \vec{v}) \rightarrow \vec{u}^TM\vec{v}
+$$
+jest iloczynem skalarnym na $\R^n$, tak w zasadzie to chodzi o to, żeby zachodzilo: $<\vec{v}, \vec{v}> \ > 0$
+
+Macierz M jest dodatnio określona wtedy i tylko wtedy gdy: 
+1. jest symetryczna oraz
+2. dla każdego wekora $\vec{v} \neq 0 \ zachodzi \ \vec{v}^TM\vec{v} > 0$
+
+$M \ jest \ dodatnio \ określona \iff M = A^TA$ dla pewnej odwracalnej macierzy $A$
+
+### Rozkład Cholsky'ego
+Dla macirzy dodatnio określonej $M$ istnieje tylko jedna macierz $A$ górnotrójkątna, takie że  $M = A^TA$
+
+znajdz na YT jak to liczyć 
+
+Macierz M jest dodatnio określona wtedy i tylko wtedy, gdy istnieje baza $\vec{B}_1, \dots, \vec{B}_n$ taka że:
+$$
+dla \ i \neq j \ mamy \ \vec{B}_i^TM\vec{B}_j = 0 \\
+dla \ każdego \ i \ mamy \ \vec{B}_i^TM\vec{B}_i = 1
+$$
+po ludzku: istnieje baza ortonormalna dla iloczynu skalarnego zadanego przez M 
+
+### kryterium Sylvestera
+$ Symetryczna \ macierz \ M \ jest \ dodatnio \ określona \iff dla \ każdego \ k = 1, 2, \dots, n \ macierz \ M_k \ spełnia \ det(M_k) > 0$
+
+znajdz sobie na yt jak liczyć 
+
+Symetryczna macierz liczb rzeczywistych $M$ jest dodatnio określona wtedy i tylko wtedy , gdy ma same dodatnio wartości własne 
+
+
+
