@@ -458,7 +458,7 @@ dla: A - macierz, B - macierz wynikowa, U - $[A | B]$ macierz usupełniona, n - 
 | układ oznaczony | układ sprzeczny | układ zależny |
 | 1 rozwiązanie | brak rozwiązań | nieskończenie wiele rowziązań zależne od $n - deg(A)$ paramatrów 
 
-**pro tip: najlepiej zaczynaj od liczenie deg(U), bo potem możesz sobie z niego odczytać łatwo też det(A)**
+**pro tip: najlepiej zaczynaj od liczenie deg(U), bo potem możesz sobie z niego odczytać łatwo też deg(A)**
 
 ---
 

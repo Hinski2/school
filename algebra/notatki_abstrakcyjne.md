@@ -561,7 +561,7 @@ $$
 $$
 
 ### dzieleni, podzielność i new wielomianów 
-Niech $\mathbb{F}$ będzie ciałem a $\mathbb{F}[x]$ pierścieniem wielomianów o współczynnikach z $\mathbb{F}$. Dla wielomianów $f, g$ z tego pierścienia o stopniach $deg(f) = m$ oraz $deg(g) = n \neq -\infty$ istnieje dokładnie jedna para wielomianów $q,r$ taka że $f = gq + r$, gdzie $deg(r) < deg(g) 
+Niech $\mathbb{F}$ będzie ciałem a $\mathbb{F}[x]$ pierścieniem wielomianów o współczynnikach z $\mathbb{F}$. Dla wielomianów $f, g$ z tego pierścienia o stopniach $deg(f) = m$ oraz $deg(g) = n \neq -\infty$ istnieje dokładnie jedna para wielomianów $q,r$ taka że $f = gq + r$, gdzie $deg(r) < deg(g)$ 
 
 Wielomian $f$ jest podzielny przez wielomain $g$ jeśli reszta z dzielenia $f$ przez $g$ wykosi 0: zapisujemy $f | g$
 
