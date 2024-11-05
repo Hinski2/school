@@ -1,4 +1,4 @@
-function createGenerator(max=10) {
+function createGenerator(max=12) {
     return function(){ // jak mamy createGenerator(), a nie createGenerator to zwracamy obiekt iteratora a nie funkcje, a my chcemy tak jak wcześniej funkcje
         var _state = 0;
         return {
@@ -13,7 +13,7 @@ function createGenerator(max=10) {
 }
 // createGenerator() zwraca funkcje która po wywołaniu createGenerator()() dostarcza iterator 
 var foo1 = {
-    [Symbol.iterator]: createGenerator(1) 
+    [Symbol.iterator]: createGenerator()
 }
 var foo2 = {
     [Symbol.iterator]: createGenerator()

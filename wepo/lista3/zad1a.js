@@ -32,7 +32,7 @@ function memorize(fn){
     }
 }
 
-var fibo_mem = memorize(fibo);
+var fibo_mem = memorize(fibo); // przypisanie funkcji do zmiennej 
 
 for (let i = 1; i <= 43; i++) {
     console.time(`fibo_iter(${i}), time`);
@@ -43,9 +43,9 @@ for (let i = 1; i <= 43; i++) {
     let y = fibo_rec(i);
     console.timeEnd(`fibo_rec(${i}), time`);
 
-    console.time(`fibo_mem(${i}), time`);
+    console.time(`fibo_rec(${i}), time`);
     let z = fibo_mem(i);
-    console.timeEnd(`fibo_mem(${i}), time`);
+    console.timeEnd(`fibo_rec(${i}), time`);
 
     console.log(`fibo_iter: ${x}, fibo_rec: ${y}, fibo_mem: ${z}`);
     console.log();

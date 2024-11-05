@@ -48,7 +48,7 @@ async function main(){ // trzeba zrobićasynchronicznego maina by móc używać 
         [Symbol.iterator]: fib_gen
     }
 
-    for(var  f of foo2){
+    for(var f of foo2){
         console.log(f)
         await sleep(200)
     }
