@@ -91,7 +91,7 @@ $\left| \frac{f(x) - f(x + h)}{h} \right|$ $\approx$ pochodna $f'(x)$
 **def: względna zmiana wyniku**
 
 $$
-\left |\frac{f(x) -(x + h)}{f(x)} \right| \approx \left |\frac{f(x) - f(x + h)}{h} \right| \cdot \left |\frac{h}{f(x)} \right| = \left |\frac{x f'(x)}{f(x)} \right | \cdot \left|\frac{h}{x} \right|
+\left |\frac{f(x) -f(x + h)}{f(x)} \right| \approx \left |\frac{f(x) - f(x + h)}{h} \right| \cdot \left |\frac{h}{f(x)} \right| = \left |\frac{x f'(x)}{f(x)} \right | \cdot \left|\frac{h}{x} \right|
 $$
 
 **względna zmiana danych** (dla tego zadania) - 
@@ -133,7 +133,7 @@ wniosi:
 **def: algorytmu numerycznego poprawnego** - algorytm nazywamy numerycznie poprawnym jeśli wynik jego działania w arytmetyce zmiennopozycyjnej (fl) *może zostać* zinterpretowany jako mało zabużony wynik dokładny dla mało zaburzonych danych 
 
 #### Przykład
-Chcey obliczyć wartość funkcji dwóch zmiennych $A(a, b)$. Niech $Alg_A(a, b)$ oznacza algorytm obliczania wartości $A(a, b)$. $f(Alg_A(a, b)) = A(a(1 + \alpha),\ b(1 + \beta))(1 + \gamma)$ oznacza że dosstaje prawie dokladny wynik dla mało zaburzonych danych, $|\alpha|, |\gamma|, |\beta| \leq K * 2 ^{-t}$ 
+Chcey obliczyć wartość funkcji dwóch zmiennych $A(a, b)$. Niech $Alg_A(a, b)$ oznacza algorytm obliczania wartości $A(a, b)$. $f(Alg_A(a, b)) = A*(a(1 + \alpha),\ b(1 + \beta))(1 + \gamma)$ oznacza że dosstaje prawie dokladny wynik dla mało zaburzonych danych, $|\alpha|, |\gamma|, |\beta| \leq K * 2 ^{-t}$ 
 
 **Pro tip:** na egzaminie zgaduj że wynik jest numerycznie poprawny
 
