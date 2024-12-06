@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                      // or your preferred target
+    "module": "commonjs",                    // Node.js uses CommonJS
+    "sourceMap": true,                       // Enable source maps
+    "strict": true,                          // Enable strict type-checking
+    "esModuleInterop": true,                 // For module compatibility
+    "skipLibCheck": true                     // Skip type checking of declaration files
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}

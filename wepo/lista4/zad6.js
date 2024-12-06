@@ -17,7 +17,7 @@ function Tree(val, left, right){
 Tree.prototype[Symbol.iterator] = function*(){
     let queue = [this];
     while(queue.length){
-        // let begin = queue.splice(0, 1)[0] opcja z splice 
+        // let begin = queue.splice(0, 1)[0] // opcja z splice 
         let begin = queue.shift()
 
         if(begin.left) queue.push(begin.left)

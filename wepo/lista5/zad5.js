@@ -1,12 +1,11 @@
 const https = require('https');
-const { mainModule } = require('process');
 
 function get_site_content(url){
     return new Promise((resolve, reject) => {
         https.get(url, (resp) => {
             let data = '';
 
-            resp.on('data', (chunk) => {
+            resp.on('data', (chunk) => { // zdarzenie data
                 data += chunk;
             })
 
