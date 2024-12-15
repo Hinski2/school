@@ -1,0 +1,18 @@
+body {
+    color: white;
+    background-color: #2a2438;
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;
+}
+
+.t1{
+    text-align: left;
+}
+
+.res{
+    background-color: #352f44;
+    padding: 30px;
+    border-radius: 15px;
+}

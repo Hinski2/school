@@ -1,0 +1,20 @@
+body {
+    color: white;
+    background-color: #2a2438;
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;
+}
+
+.form-container {
+    background-color: #352f44;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.tasks-container {
+    display: flex;
+    gap: 20px; 
+    align-items: center; 
+}

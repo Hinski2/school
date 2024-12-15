@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+    <div class="form-container">
+        <form action="/user/res" method="POST">
+            <h2>Deklaracja</h2>
+            <div class="inputs">
+                <input type="text" name="firstName" placeholder="Imię" required>
+                <input type="text" name="lastName" placeholder="Nazwisko" required>
+                <input type="text" name="subject" placeholder="Przedmiot" required>
+            <div class="tasks-container">
+                <h3> wykonane zadania</h3>
+                <table>
+                    <tr>
+                        <% for(let i = 1; i <= 10; i++){ %>
+                            <th> <%= i %> </th>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <% for(let i = 1; i <= 10; i++) { %>
+                            <td>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="tasks" value="<%= i %>">
+                                </label>
+                            </td>
+                        <% } %>
+                    </tr>
+                </table>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

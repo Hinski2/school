@@ -1,0 +1,14 @@
+body{
+    background-color: #2a2438;
+    color: #dbd8e3;
+    margin: auto;
+    text-align: center;
+}
+
+button {
+    background-color: #352f44;
+    color: #dbd8e3;
+    font-size: 35px; 
+    box-shadow: none;
+    text-shadow: none;
+}

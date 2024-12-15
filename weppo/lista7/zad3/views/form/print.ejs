@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/print.css">
+</head>
+<body>
+    <div class="res">
+        <h1> Rezultat </h1>
+        <table>
+        <tr>
+            <td class="t1"> Imię: </td>
+            <td> <%= firstName %> </td>
+        </tr>
+        <tr>
+            <td class="t1"> Nazwisko: </td>
+            <td> <%= lastName %> </td>
+        </tr>
+        <tr>
+            <td class="t1"> Przedmiot: </td>
+            <td> <%= subject %> </td>
+        </tr>
+            <td class="t1"> wykonane zadania: </td>
+            <td>
+                <% tasks.forEach(task => { %>
+                    <%= task %>
+                <% }) %>
+            </td>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+https://portswigger.net/burp/documentation/desktop/getting-started - dobry tutorial 
