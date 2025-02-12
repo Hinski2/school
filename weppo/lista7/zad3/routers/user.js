@@ -2,12 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/new', (req, res) =>{
-    res.render('./../views/form/new.ejs', {
-        forstName: '',
-        lastName: '',
-        subject: '',
-        tasks: []
-    });
+    res.render('./../views/form/new.ejs');
 })
 
 router.post('/res', (req, res) => {

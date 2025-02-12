@@ -9,11 +9,6 @@ app.use(express.urlencoded({extended: true}))               // enables to read f
 
 app.set('view engine', 'ejs') 
 
-app.get('/', (req, res) =>{
-    console.log('here')
-    res.send('hi')
-})
-
 const userRouter = require('./routers/user')
 app.use('/user', userRouter)
 

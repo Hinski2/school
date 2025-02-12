@@ -24,11 +24,11 @@ export type Person = User | Admin;
 //     return 'role' in p;
 // }
 
-export function isUser(p: Person){
+function isUser(p: Person){
     return p.type === 'User';
 }
 
-export function isAdmin(p: Person){
+function isAdmin(p: Person){
     return p.type === 'Admin';
 }
 
