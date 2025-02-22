@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "chrono": "cpp",
+        "iosfwd": "cpp",
+        "cmath": "cpp"
+    }
+}
