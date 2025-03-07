@@ -33,7 +33,7 @@ int compute_longest_path(node *v){
 
     int l = compute_longest_path(v -> l);
     int r = compute_longest_path(v -> r);
-    maxi = max(maxi, l + r + 1);
+    maxi = max(maxi, l + r);
 
     return max(l, r) + 1;
 }
