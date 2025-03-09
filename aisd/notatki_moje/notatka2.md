@@ -18,7 +18,6 @@ kopce opłąca się implementować w tablicy gdzie:
 
 ``` c++
 struct min_heap{
-struct min_heap{
     vector<int> h = {-1}; // by root był pod 1
 
     //* przesówanie wierzchołków

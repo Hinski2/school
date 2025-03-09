@@ -28,7 +28,7 @@ liczenie maksynalnej odległości między wierzchołkami drzewa. najdłuższa ś
 int maxi = 0;
 int compute_longest_path(node *v){
     if(v == nullptr){
-        return 0;
+        return 1;
     }
 
     int l = compute_longest_path(v -> l);
