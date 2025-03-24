@@ -1,76 +1,60 @@
 /*
-    autor: Jakub Iliński 346796
+    Jakub Iliński
+    rozwiązanie: optymalne z użyciem max-heap
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
+#define fi first
+#define se second
 #define endl '\n'
 
-// const 
-constexpr int mak = 10'005;
+struct heap{
+    vector<pair<int, int>> vals;
 
-// data
-int n, vis[mak], dist;
-bool ok[mak];
-vector<pair<int, int>> G[mak]; // a -> {b, id}
-
-// program
-inline static void get_input(){
-    cin >> n;
-    for(int i = 0, a, id, b; i < n; i++){
-        cin >> a >> id >> b;
-        G[a].push_back({b, id});
-    }
-}
-
-static bool dfs(int v){
-    if(vis[v]){
-        if(v == 0){
-            ok[v] = 1;
-            return 1;
-        }
-
-        return 0;
-    }
-    
-    vis[v] = 1;
-    for(auto &u: G[v]){
-        dist++;
-        ok[v] = dfs(u.first);
-        if(ok[v]) return 1;
-        dist--;
+    heap(int n){
+        vals.resize(n + 1);
+        for(int i = 1; i <= n; i++)
+            vals[i] = {n + 1 - i, n + 1 - i};
     }
 
-    return 0;
-}
-
-static void retrive_path(int v){
-    if(vis[v] == 2){ // it must be 0 (end of the cycle)
-        return;
-    }
-
-    vis[v] = 2;
-    for(auto &u: G[v]){
-        if(u.first == 0 or (ok[u.first] and vis[u.first] != 2)){
-            cout << v << ' ' << u.second << ' ' << u.first << endl;
-            retrive_path(u.first);
+    void shift_down(int idx){
+        int l = idx * 2, r = idx * 2 + 1;
+        while((l < vals.size() and 1ll * vals[idx].fi * vals[idx].se < 1ll * vals[l].fi * vals[l].se) or 
+              (r < vals.size() and 1ll * vals[idx].fi * vals[idx].se < 1ll * vals[r].fi * vals[r].se)){
+            
+            int s;
+            if(r >= vals.size()) s = l;
+            else s = 1ll * vals[l].fi * vals[l].se > 1ll * vals[r].fi * vals[r].se ? l : r;
+            
+            swap(vals[idx], vals[s]);
+            idx = s;
+            l = s * 2;
+            r = s * 2 + 1;
         }
     }
-}
+
+    void print_top_k_vals(int k){
+        long long last_printed_val = 1ll * vals[1].fi * vals[1].se + 1;
+        for(int no_printed_vals = 0; no_printed_vals < k; no_printed_vals++){
+            while(1ll * vals[1].fi * vals[1].se >= last_printed_val){
+                vals[1].se--;
+                shift_down(1);
+            }
+
+            last_printed_val = 1ll * vals[1].fi * vals[1].se;
+            cout << last_printed_val << endl;
+        }
+    }
+};
 
 int main(){
+    // get input
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    get_input();
+    int n, k; cin >> n >> k;
 
-    // make ans
-    dfs(0);
-
-    // print ans
-    if(!ok[0]){
-        cout << "BRAK" << endl; 
-    } else {
-        cout << dist << endl;
-        retrive_path(0);
-    }
+    // compute ans
+    heap h(n);
+    h.print_top_k_vals(k);
 }
