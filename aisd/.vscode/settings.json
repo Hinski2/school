@@ -29,6 +29,10 @@
         "tuple": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "barrier": "cpp"
+        "barrier": "cpp",
+        "deque": "cpp",
+        "vector": "cpp",
+        "__split_buffer": "cpp",
+        "list": "cpp"
     }
 }
