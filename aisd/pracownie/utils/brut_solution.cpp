@@ -1,79 +1,111 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+#define UwU cin.tie(0); cout.tie(0); ios::sync_with_stdio(0);
 
-#define int long long
-constexpr int MAX_BAN = 105;
+struct Point {
+    ll x, y;
+    friend Point operator-(const Point& a, const Point& b) {
+        return Point{a.x - b.x, a.y - b.y};
+    }
 
-int n, p, m;
-struct struct_pattern{
-    bool arr[3][3];
+    friend ostream& operator<<(ostream& out, const Point& a) {
+        out << a.x << ' ' << a.y;
+        return out;
+    }
 
-    friend istream& operator>>(istream& in, struct_pattern &p){
-        char c;
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                in >> c;
-                p.arr[i][j] = c == '.' ? 0 : 1;
+    friend bool operator<(const Point& a, const Point& b) {
+        return a.x < b.x || (a.x == b.x && a.y < b.y);
+    }
+
+    friend bool operator,(const Point& a, const Point& b) {
+        return a.y < b.y;
+    }
+};
+
+typedef pair<Point, Point> two;
+
+ll norm(const Point& a) {
+    return a.x * a.x + a.y * a.y;
+}
+
+ll dist2(const Point& a, const Point& b) {
+    return norm(a - b);
+}
+
+two brute(vector<Point>& px, int l, int r, ll& best) {
+    best = LLONG_MAX;
+    two res;
+    for (int i = l; i <= r; ++i) {
+        for (int j = i + 1; j <= r; ++j) {
+            ll d = dist2(px[i], px[j]);
+            if (d < best) {
+                best = d;
+                res = {px[i], px[j]};
             }
         }
-
-        return in;
     }
-} pattern[MAX_BAN];
+    return res;
+}
 
-struct struct_board{
-    bool arr[5][5];
+two get(vector<Point>& px, vector<Point>& py, int l, int r, ll& best) {
+    if (r - l <= 3) return brute(px, l, r, best);
 
-    void update(int mask){
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < n; j++){
-                arr[i][j] = mask % 2;
-                mask /= 2;
+    int mid = (l + r) / 2;
+    Point m = px[mid];
+
+    vector<Point> pl, pr;
+    for (auto point : py) {
+        if (point < m) pl.push_back(point);
+        else pr.push_back(point);
+    }
+
+    ll dl, dr;
+    two left = get(px, pl, l, mid, dl);
+    two right = get(px, pr, mid + 1, r, dr);
+
+    best = dl;
+    two res = left;
+    if (dr < dl) {
+        best = dr;
+        res = right;
+    }
+
+    vector<Point> strip;
+    for (auto point : py) {
+        if ((point.x - m.x) * (point.x - m.x) < best)
+            strip.push_back(point);
+    }
+
+    for (int i = 0; i < (int)strip.size(); ++i) {
+        for (int j = i + 1; j < (int)strip.size() && (strip[j].y - strip[i].y) * (strip[j].y - strip[i].y) < best; ++j) {
+            ll d = dist2(strip[i], strip[j]);
+            if (d < best) {
+                best = d;
+                res = {strip[i], strip[j]};
             }
         }
     }
+    return res;
+}
 
-    bool overlap(int x, int y, const struct_pattern &pat){
-        x -= 2, y -= 2;
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                if(arr[i + x][j + y] != pat.arr[i][j]) return 0;
-            }
-        }
-
-        return 1;
+int main() {
+    UwU;
+    int n; cin >> n;
+    vector<Point> points(n);
+    for (int i = 0; i < n; i++) {
+        cin >> points[i].x >> points[i].y;
     }
 
-    bool contains_pattern(const struct_pattern &pat){
-        for(int i = 2; i < 5; i++){
-            for(int j = 2; j < n; j++){
-                if(overlap(i, j, pat)) return 1;
-            }
-        }
+    vector<Point> px = points, py = points;
+    sort(px.begin(), px.end());
+    sort(py.begin(), py.end(), [](const Point& a, const Point& b) {
+        return a.y < b.y;
+    });
 
-        return 0;
-    }
-} board;
+    ll best;
+    auto [a, b] = get(px, py, 0, n - 1, best);
+    cout << a << "\n" << b;
 
-
-signed main(){
-    // get input
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    cin >> n >> p >> m;
-    for(int i = 0; i < p; i++)
-        cin >> pattern[i];
-
-    // computer ans
-    int ans = 0;
-    for(int mask = 0; mask < (1 << (n * 5)); mask++){
-        board.update(mask);
-        bool ok = true;
-        for(int i = 0; i < p and ok; i++)
-            if(board.contains_pattern(pattern[i])) ok = false;
-
-        if(ok) ans = (ans + 1) % m;
-    }
-
-    // print ans
-    cout << ans << endl;
+    return 0;
 }
