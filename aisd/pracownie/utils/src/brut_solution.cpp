@@ -1,62 +1,82 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define endl '\n'
-
-class Turbo_smart_struct {
-private:
-    vector<int> vals;
-
-    void shift_left(int pos){
-        for(int i = pos; i + 1 < vals.size(); i++)
-            vals[i] = vals[i + 1];
-        vals.pop_back();
+template<typename T> ostream& operator<<(ostream& os, const vector<T>& v){
+    for(const auto &u: v){
+        os << u << ' ';
     }
+    return os;
+}
 
-    void shift_right(int pos){
-        vals.push_back(0);
-        for(int i = vals.size() - 1; i > pos; i--)
-            vals[i] = vals[i - 1];
+template<typename T> istream& operator>>(istream& is, vector<T>& v){
+    for(auto& u : v){
+        is >> u;
     }
+    return is;
+}
 
-public:
-    void insert(int pos, int val){
-        if(pos == vals.size()) vals.push_back(val);
-        else {
-            shift_right(pos);
-            vals[pos] = val;
+template<typename T> long long sum(const vector<T> &v){
+    long long s = 0;
+    for(auto u: v) s += u;
+    return s;
+}
+
+template<typename T> T max(const vector<T> &v){
+    T maxi = v[0];
+    for(auto u: v) maxi = max(maxi, u);
+    return maxi;
+}
+
+template<typename T> T min(const vector<T> &v){
+    T mini = v[0];
+    for(auto u: v) mini = min(mini, u);
+    return mini;
+}
+
+template<typename T> unsigned arg_max(const vector<T> &v){
+    T maxi = v[0];
+    unsigned pos = 0;
+    for(unsigned i = 1; i <= v.size(); i++)
+        if(v[i] > maxi){
+            maxi = v[i];
+            pos = i;
         }
-    }
+    return pos;
+}
 
-    void del(int pos){
-        vals[pos] = 0;
-        shift_left(pos);
-    }
+template<typename T> unsigned arg_min(const vector<T> &v){
+    T mini = v[0];
+    unsigned pos = 0;
+    for(unsigned i = 1; i <= v.size(); i++)
+        if(v[i] < mini){
+            mini = v[i];
+            pos = i;
+        }
+    return pos;
+}
 
-    int64_t sum(int p1, int p2){
-        int64_t suma = 0;
-        for(int i = p1; i <= p2; i++)
-            suma += vals[i];
-        return suma;
-    }
-};
+#define fi first
+#define se second
+#define pb push_back
+#define all(a) a.begin(), a.end()
+#define endl '\n'
+#define alf 'z' + 1
+#define yn (solve() ? "YES" : "NO")
+
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+
+const int mod = 1e9 + 7;
+const int inf = 1e9 + 7;
+const int mak = 2e5 + 7;
 
 int main(){
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int q; cin >> q;
-    Turbo_smart_struct tss;
-
-    while(q--){
-        char c; cin >> c;
-        if(c == 'I'){
-            int pos, x; cin >> pos >> x;
-            tss.insert(pos, x);
-        } else if(c == 'S') {
-            int p1, p2; cin >> p1 >> p2;
-            cout << tss.sum(--p1, --p2) << endl;
-        } else {
-            int pos; cin >> pos;
-            tss.del(--pos);
-        }
-    }
+    int n; cin >> n;
+    vector<int> v(n); cin >> v;
+    sort(all(v));
+    cout << v << endl;
 }
+
+

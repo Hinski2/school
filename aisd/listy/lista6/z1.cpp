@@ -147,7 +147,7 @@ void quick_sort(vector<int> &v) {
             int r = min(i + len - 1, v.size() - 1);
 
             // find pivot in v[i: i + len)
-            int mean = get_mean(v, i, r);
+            int mean = get_mean(v, i, r - 1);
             
 
             // split into three cathegories
