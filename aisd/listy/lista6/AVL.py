@@ -7,7 +7,7 @@ class Node:
         self.r = r
         
         self.h: int = 1;
-        self.update_h
+        self.update_h()
         
         
     def update_h(self) -> None:
@@ -52,6 +52,7 @@ class Node:
     
     @staticmethod
     def _rebalance(node: 'Node') -> 'Node':
+        node.update_h()
         bf = node.get_bf()
         
         if bf > 1:
@@ -64,6 +65,7 @@ class Node:
                 node.r = Node.rotate_right(node.r)
             return Node.rotate_left(node)
 
+        node.update_h()
         return node
 
     @staticmethod
