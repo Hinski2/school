@@ -12,7 +12,7 @@ mamy:
 * 8 rejestrów x87 dla liczb zmiennopozycyjnych, 80 bity
 * 16 rejestrów AVX (SIMD: ymm), 265 bity
 
-![img](/stack_frame.png)
+![img](img/stack_frame.png)
 
 * koniec stosu musi być wyrównany do 16, czyli `(%rsp + 8)` jest wielokrotnością 16
 
@@ -30,7 +30,7 @@ mamy:
 
 ### co musi znajdować sie na stosie w momencie wywołania procedury \<\<_start>>
 
-![img](/initial_process_stack.png)
+![img](img/initial_process_stack.png)
 na stosie musi się znajdować:
 * argc (liczba argumentóœ )
 * argv (wskaźniki do argumentów)
@@ -57,7 +57,7 @@ typedef struct {
 } auxv_t;
 ```
 
-![img](/aux_vec_types.png)
+![img](img/aux_vec_types.png)
 
 ---
 

@@ -13,8 +13,8 @@ W x86-64 adresy wirtualne maja 48 bitów, a adresy fizyczne 52 bity.
 każdy proces ma swój własny page table.
 page tabli wygląda jak drzewo, niepełne. mamy lvl i rozrastają się one ale jeśli tablica (która jest tutaj node) jest pusta to wtedy nie jest tworzona 
 
-![image](/procesor_package.png)
-![image](/page_table_entry.png)
+![image](img/procesor_package.png)
+![image](img/page_table_entry.png)
 ---
 
 ### Jak wygląda mechanizm tłumaczenia adresów bazujacy na wielepoziomowej tablicy stron procesorow z rodziny x86-64.
