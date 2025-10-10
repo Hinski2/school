@@ -101,4 +101,4 @@ exit_group(1)                           = ?
 +++ exited with 1 +++
 ```
 
-dostaniemy `read error: Is a directory` na stderr
+dostaniemy `read error: Is a directory` na stderrklawiatury

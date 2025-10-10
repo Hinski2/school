@@ -1,0 +1,20 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-g",
+      "-std=c99",
+      "-DF_CPU=16000000",
+      "-Wall",
+      "-O3",
+      "-mmcu=atmega328p",
+      "-c",
+      "-o",
+      "blink.o",
+      "blink.c"
+    ],
+    "directory": "/home/hinski2/Programowanie/school/systemyWbudowane/lista0",
+    "file": "/home/hinski2/Programowanie/school/systemyWbudowane/lista0/blink.c",
+    "output": "/home/hinski2/Programowanie/school/systemyWbudowane/lista0/blink.o"
+  }
+]

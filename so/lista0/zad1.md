@@ -11,7 +11,9 @@
     - fault - błąd możliwy do naprawienia
     - trap - zgłaszany po poprawnym wykonaniu instrukcji
     - abort - błąd krtyczny niemozliwy do naprawy
-    Synchroniczny.
+    
+    jest on synchroniczny.
+
     * dzielenie przez zero
     * page fault (pruba dostępu do nieobecnego / zabronionego pliku)
     * próba wykonania niepoprawnie zakodowanej instrkucji
