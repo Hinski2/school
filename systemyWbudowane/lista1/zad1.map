@@ -547,10 +547,10 @@ END GROUP
  .debug_abbrev  0x00000000      0x5a2 /usr/lib/gcc/avr/15.1.0/../../../../avr/lib/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2      0x346 zad1.o
 
-.debug_line     0x00000000      0x864
+.debug_line     0x00000000      0x862
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000       0x1d /usr/lib/gcc/avr/15.1.0/../../../../avr/lib/avr5/crtatmega328p.o
- .debug_line    0x0000001d      0x847 zad1.o
+ .debug_line    0x0000001d      0x845 zad1.o
 
 .debug_frame    0x00000000       0x8c
  *(.debug_frame)

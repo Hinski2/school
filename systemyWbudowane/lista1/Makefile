@@ -1,5 +1,5 @@
 
-PRG            = zad1
+PRG            = zad4
 OBJ            = ${PRG}.o
 PROGRAMMER     = arduino
 PORT           = /dev/ttyUSB0
@@ -19,7 +19,8 @@ CC             = avr-gcc
 # Override is only needed by avr-lib build system.
 
 override CFLAGS        = -g -std=c99 -DF_CPU=$(HZ) -Wall $(OPTIMIZE) -mmcu=$(MCU_TARGET) $(DEFS)
-override LDFLAGS       = -Wl,-Map,$(PRG).map
+# override LDFLAGS       = -Wl,-Map,$(PRG).map
+override LDFLAGS = -Wl,-u,vfprintf -lprintf_flt -Wl,-u,vfscanf -lscanf_flt -lm
 
 OBJCOPY        = avr-objcopy
 OBJDUMP        = avr-objdump

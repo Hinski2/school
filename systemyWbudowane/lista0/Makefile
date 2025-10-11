@@ -1,5 +1,5 @@
 
-PRG            = helloworld
+PRG            = blink2
 OBJ            = ${PRG}.o
 PROGRAMMER     = arduino
 PORT           = /dev/ttyUSB0

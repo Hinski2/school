@@ -1,11 +1,13 @@
+//notatka: ctrl + a, k by zabić monitor
+
 #include <avr/io.h>
 #include <stdint.h>
 #include <util/delay.h>
 #include <stdio.h>
 
-#define LED PB5
-#define LED_DDR DDRB
-#define LED_PORT PORTB
+#define LED PB2
+#define LED_DDR DDRD
+#define LED_PORT PORTD
 #define BAUD 9600                          
 #define UBRR_VALUE ((F_CPU)/16/(BAUD)-1)
                                            
@@ -70,7 +72,7 @@ const char morse_code[][6] = {
 };
 
 const int16_t DASH_DOT_DELAY = 100;
-const int16_t CHAR_DELAY = 400;
+const int16_t CHAR_DELAY = 300;
 const int16_t WORDS_DELAY = 700;
 const int16_t LONG_BLINK = 700;
 const int16_t SHORT_BLINK = 200;
