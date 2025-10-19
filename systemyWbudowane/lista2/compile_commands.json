@@ -1,0 +1,20 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-g",
+      "-std=c99",
+      "-DF_CPU=16000000",
+      "-Wall",
+      "-O3",
+      "-mmcu=atmega328p",
+      "-c",
+      "-o",
+      "siren.o",
+      "siren.c"
+    ],
+    "directory": "/home/hinski2/Programowanie/school/systemyWbudowane/lista2",
+    "file": "/home/hinski2/Programowanie/school/systemyWbudowane/lista2/siren.c",
+    "output": "/home/hinski2/Programowanie/school/systemyWbudowane/lista2/siren.o"
+  }
+]
