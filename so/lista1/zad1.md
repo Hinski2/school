@@ -19,7 +19,9 @@
 * N - low priority
 * s - session leader (leader grupy procesów)
 * \+ - foreground proces (proces znajduje się na pierwszym planei)
+
 `WCHAN` (waiting channel) - nazwa funkcji jadra na która czeka proces
+
 ---
 
 ### kto jest rodzicem init:
