@@ -77,10 +77,10 @@ zapytania z tych grup traktuje inaczej, dla grupy:
 * 3: generuje odpowiedzi z których wybieram tą, kóra posiada jak najmniej dziwnych znaków (polskie znaki są dobre, wszystko inne złe)
 ## wyniki:
 ### no shot:
-![](/img/no_shot.png)
+![](./img/no_shot.png)
 
 ### one shot:
-![](/img/one_shotv2.png)
+![](./img/one_shotv2.png)
 
 ### few shot:
-![](/img/few_shot.png)
+![](./img/few_shot.png)
