@@ -4,8 +4,7 @@ import torch
 from torch.nn import functional as F
 
 # PAPUGA = 'flax-community/papuGaPT2'
-# PAPUGA = 'radlab/polish-gpt2-large-v2A
-PAPUGA = 'sdadas/polish-roberta-large-v2'
+PAPUGA = 'sdadas/polish-gpt2-medium'
 DEVICE = "cuda"
 
 tokenizer = AutoTokenizer.from_pretrained(PAPUGA)
@@ -16,23 +15,27 @@ model.device
 class Chat:
     def __init__(self) -> None:
         self.chat_history: List[Tuple[str, str]] = []
-        self.persona: str = "Sprzedawca w sklepie wspinaczkowym odpowiada na pytania klienta i mu pomaga"
+        self.persona: str = "Sprzedawca w sklepie wspinaczkowym odpowiada na pytania klienta i mu pomaga. Odpowiada krótko i konkretnie po polsku. Jeśli brakuje danych, zadaje jedno pytanie doprecyzowujace"
         
     def build_prompt(self) -> str:
         history = self.chat_history[-8:]
-        conversation = [f"System mówi: {self.persona}"]
+        
+        conversation: List[str] = []
+        conversation.append(f"{self.persona}")
+        
         for role, text in history:
             conversation.append(f"{role}: {text}")
         conversation.append(f"Sprzedawca odpowiada:")
         return "\n".join(conversation)
         
-    def generate_candidates(self, prompt: str, num: int = 100, max_new_tokens: int = 40) -> List[str]:
-        # print(f"\n{prompt}\n")
+    def generate_candidates(self, prompt: str, num: int = 50, max_new_tokens: int = 40) -> List[str]:
+        # print(f"\n{prompt}\n") # for debuging
         input_ids = tokenizer(prompt, return_tensors="pt").to(DEVICE)
         
         out = model.generate(
             **input_ids,
             no_repeat_ngram_size=3,
+            temperature=0.8,
             max_new_tokens=max_new_tokens,
             do_sample=True,
             num_return_sequences=num,
@@ -66,17 +69,17 @@ class Chat:
         def heuristic(candidate: str) -> int:
             score = 0
             for char in candidate.lower():
-                if  ord('a') <= ord(char) <= ord('z') or \
-                    ord('0') <= ord(char) <= ord('9') or \
-                    char in [' ', ',', '.', '!', '?', 'ń', 'ż', 'ć', 'ź', 'ś', 'ó']:
-                    score += 5
+                if  ord('a') <= ord(char) <= ord('z') or ord('0') <= ord(char) <= ord('9'):
+                    score += 3
+                elif char in [' ', ',', '.', '!', '?', 'ń', 'ż', 'ć', 'ź', 'ś', 'ó']:
+                    score += 1
                 else:
-                    score -= 500
+                    score -= 300
             
-            for s in ['klient', 'sprzedawca', 'sprzedawcy', 'sprzedawcowi', 'sprzedający', 'klienta']:
-                if s in candidate.lower(): score -= 1000
+            for s in ['klient', 'sprzedawca', 'sprzedawcy', 'sprzedawcowi', 'sprzedający', 'klienta', 'rozmówca']:
+                if s in candidate.lower(): score -= 10000
                 
-            user_input = ' '.join([text.lower() for (role, text) in self.chat_history[0::2]])
+            user_input = ' '.join([text.lower() for (_, text) in self.chat_history[0::2]])
             for word in candidate.split():
                 if word.lower() in user_input: score += 100
                     
@@ -88,7 +91,7 @@ class Chat:
             return logp_label
         
         def sentence_prob(text):
-            input_ids = tokenizer(f"Sprzedawca odpowiada klientowi: {text}", return_tensors='pt')['input_ids'].to(DEVICE)
+            input_ids = tokenizer(f"Sprzedawca w sklepie odpowiada na zapytanie klienta: {text}", return_tensors='pt')['input_ids'].to(DEVICE)
             
             with torch.no_grad():
                 output = model(input_ids=input_ids)
@@ -96,7 +99,7 @@ class Chat:
                 
             return float(log_probs[:, -1])
         
-        k_best = list(sorted(candidates, key=heuristic, reverse=True)[:10])
+        k_best = list(sorted(candidates, key=heuristic, reverse=True)[:5])
         return max(k_best, key=sentence_prob)
 
     def run(self) -> None:
