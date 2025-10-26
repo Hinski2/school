@@ -12,7 +12,7 @@
 #define BTN_PORT PORTB
 #define BTN_DDR DDRB
 
-// btn_rst d13
+// btn_rst d10
 #define BTN_RST PB2
 
 // btn_prev d11
