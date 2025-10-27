@@ -11,5 +11,5 @@ int main() {
 
     cout << lucas(lucas, 0) << endl;
     cout << lucas(lucas, 1) << endl;
-    cout << lucas(lucas, 2) << endl;
+    cout << lucas(lucas, 40) << endl;
 }

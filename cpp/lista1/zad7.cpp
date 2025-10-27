@@ -25,6 +25,7 @@ int main() {
         {"Iliński", "Jakub", 20},
         {"Stodułka", "Łukasz", 21},
         {"Pawliczek", "Dawid", 21},
+        {"Pawliczek", "Dawid", 20},
     };
 
     sort(osoby.begin(), osoby.end());

@@ -5,7 +5,7 @@ struct LineWriter {
     ofstream file;
 
     LineWriter(const string& path)
-        : file(path) {
+        : file(path, ios::app) {
         if(!file.is_open())
             throw runtime_error("Error: can't open file " + path);
     }

@@ -16,7 +16,6 @@ public:
 
     ~Lama() {
             cout << "delete:";
-            // cout << *this << endl;
             cout << endl;
     }
 
@@ -79,11 +78,14 @@ int main() {
 
     heard.buy(lena);
     heard.buy(leo);
+    cout << "po pierwszym zakupie" << endl;
     cout << heard << endl;
 
+    cout << "tworzenie mowej lamy" << endl;
     heard.breed(lena, leo, make_shared<Lama>("matylda", Sex::female, vector<weak_ptr<Lama>>()));
     cout << heard << endl;
 
     heard.sell("matylda");
+    cout << "po sprzedaży" << endl;
     cout << heard << endl;
 }
