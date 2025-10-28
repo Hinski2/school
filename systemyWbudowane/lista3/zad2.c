@@ -1,7 +1,6 @@
 #include <avr/io.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <inttypes.h>
 #include <util/delay.h>
 
 #define BAUD 9600                          // baudrate

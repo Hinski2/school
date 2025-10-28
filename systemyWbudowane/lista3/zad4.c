@@ -58,7 +58,7 @@ uint16_t read_adc() {
 #define R_FIXED 4400.0f
 #define B 4000.0f 
 #define T_0 298.15f
-#define R_0 4700.f
+#define R_0 4560.f
 
 float convert_to_c(float R_TERM) {
     float k = (B * T_0) / (B + T_0 * logf(R_TERM / R_0));
