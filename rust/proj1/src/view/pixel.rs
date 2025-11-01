@@ -3,22 +3,25 @@ use crate::utils::linspace::Linspace;
 use crate::utils::complex::Complex;
 use super::color::Color;
 
-const MAX_ITR: usize = 1000;
-
 #[derive(Debug, Clone)]
 pub struct Pixel {
     pos: Complex,
     color: Color,
-    escape_time: usize,
+    //escape_time: usize,
 }
 
 impl Pixel {
-    pub fn new(x_pos: f64, y_pos: f64) -> Pixel {
+    pub fn new(x_pos: f64, y_pos: f64, max_itr: usize) -> Pixel {
         let pos = Complex {re: x_pos, im: y_pos};
-        let escape_time = pos.escape_itr(200);
-        let color = Color::calculate_color(escape_time, MAX_ITR);        
+        let escape_time = pos.escape_itr(max_itr);
+        let color = Color::calculate_color(escape_time, max_itr);        
 
-        Pixel {pos, color, escape_time}
+        Pixel {pos, color}
+    }
+
+    pub fn from(x_pos: f64, y_pos: f64, color: Color) -> Pixel {
+        let pos = Complex {re: x_pos, im: y_pos};
+        Pixel {pos, color}
     }
 
     pub fn set_rgb(&mut self, r: u8, g: u8, b: u8) {

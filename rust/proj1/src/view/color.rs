@@ -1,5 +1,4 @@
 use std::fmt;
-use std::cmp::{min, max};
 
 #[derive(Debug, Clone)]
 pub struct Color {
@@ -11,19 +10,30 @@ pub struct Color {
 
 const COLOR_1: Color = Color {r: 102, g: 0, b: 204};
 const COLOR_2: Color = Color {r: 102, g: 255, b: 255};
+const COLOR_3: Color = Color {r: 255, g: 102, b: 255};
+const COLOR_4: Color = Color {r: 102, g: 0, b: 102};
+const COLOR_5: Color = Color {r: 51, g: 51, b: 153};
+const COLOR_6: Color = Color {r: 0, g: 0, b: 102};
 
 impl Color {
     pub fn calculate_color(escape_time: usize, max_itr: usize) -> Color {
+        let t = escape_time as f64 / max_itr as f64;
+        
+        if t < 0.33 {
+            Color::lerp(COLOR_1, COLOR_2, t)
+        } else if t < 0.66 {
+            Color::lerp(COLOR_3, COLOR_4, t)
+        } else {
+            Color::lerp(COLOR_5, COLOR_6, t)
+        }
+    }
 
-        let (min_r, max_r) = ( min(COLOR_1.r, COLOR_2.r) as f64, max(COLOR_1.r, COLOR_2.r) as f64);
-        let (min_g, max_g) = ( min(COLOR_1.g, COLOR_2.g) as f64, max(COLOR_1.g, COLOR_2.g) as f64);
-        let (min_b, max_b) = ( min(COLOR_1.b, COLOR_2.b) as f64, max(COLOR_1.b, COLOR_2.b) as f64);
+    fn lerp(a: Color, b: Color, t: f64) -> Color {
+        let r = a.r as f64 + t * (b.r as f64 - a.r as f64);
+        let g = a.g as f64 + t * (b.g as f64 - a.g as f64);
+        let b = a.b as f64 + t * (b.b as f64 - a.b as f64);
 
-        let r = (min_r + (max_r - min_r) / max_itr as f64 * escape_time as f64) as u8;
-        let g = (min_g + (max_g - min_g) / max_itr as f64 * escape_time as f64) as u8;
-        let b = (min_b + (max_b - min_b) / max_itr as f64 * escape_time as f64) as u8;
-
-        Color {r, g, b}
+        Color {r: r as u8, g: g as u8, b: b as u8}
     }
 }
 

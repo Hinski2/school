@@ -5,7 +5,11 @@ use proj1::utils::env::Config;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let config = Config::new()?;
-    let img = Image::new(config.x, config.y); 
+    let mut img = Image::new(config.x, config.y, config.max_itr); 
+
+    if config.r > 1 {
+        img.smooth(config.r, config.passes);
+    }
 
     img.write_to_file(&config.img_path)?;
     println!("Your fractal is ready and saved in {} dir. You can open it with viu", &config.img_path);
