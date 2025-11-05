@@ -1,10 +1,6 @@
 # zad3
 
 ---
-* `sygnały zafządzania zadaniami` - 
-* `sygnały edycji wiersza` -
-
----
 
 ![](img/img3.png)
 

@@ -1,0 +1,10 @@
+Script started on 2025-11-05 12:55:29+01:00 [COMMAND="dash" TERM="foot" TTY="/dev/pts/0" COLUMNS="152" LINES="60"]
+$ ls
+cnt  img  script.log  so21_lista_4  timing  typescript	zad2.md  zad3.md  zad4.md  zad5.md
+$ pwd
+/home/hinski2/Programowanie/school/so/lista4
+$ echo hi
+hi
+$ exit 42
+
+Script done on 2025-11-05 12:55:38+01:00 [COMMAND_EXIT_CODE="42"]
