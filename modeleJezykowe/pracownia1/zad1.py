@@ -26,7 +26,7 @@ class Chat:
         for role, text in history:
             conversation.append(f"{role}: {text}")
         conversation.append(f"Sprzedawca odpowiada:")
-        return "\n".join(conversation)
+        return " \n ".join(conversation)
         
     def generate_candidates(self, prompt: str, num: int = 50, max_new_tokens: int = 40) -> List[str]:
         # print(f"\n{prompt}\n") # for debuging
