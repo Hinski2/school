@@ -4,7 +4,7 @@ import torch
 from torch.nn import functional as F
 
 # PAPUGA = 'flax-community/papuGaPT2'
-PAPUGA = 'sdadas/polish-gpt2-medium'
+PAPUGA = 'sdadas/polish-gpt2-large'
 DEVICE = "cuda"
 
 tokenizer = AutoTokenizer.from_pretrained(PAPUGA)
@@ -24,11 +24,11 @@ class Chat:
         conversation.append(f"{self.persona}")
         
         for role, text in history:
-            conversation.append(f"{role}: {text}")
-        conversation.append(f"Sprzedawca odpowiada:")
+            conversation.append(f"{role} : {text}")
+        conversation.append(f"Sprzedawca odpowiada : ")
         return " \n ".join(conversation)
         
-    def generate_candidates(self, prompt: str, num: int = 50, max_new_tokens: int = 40) -> List[str]:
+    def generate_candidates(self, prompt: str, num: int = 10, max_new_tokens: int = 40) -> List[str]:
         # print(f"\n{prompt}\n") # for debuging
         input_ids = tokenizer(prompt, return_tensors="pt").to(DEVICE)
         
