@@ -64,7 +64,7 @@ ISR(ADC_vect) {
 
 void eco_test() {
     float sum = 0, sum2 = 0;
-    uint16_t n = 1000;
+    uint16_t n = 100;
 
     for(uint16_t i = 0; i < n; i++) {
         ADCSRA |= _BV(ADSC);
@@ -83,7 +83,7 @@ void eco_test() {
 
 void dem_test() {
     float sum = 0, sum2 = 0;
-    uint16_t n = 1000;
+    uint16_t n = 100;
 
     for(uint16_t i = 0; i < n; i++) {
         ADCSRA |= _BV(ADSC);
