@@ -1,0 +1,12 @@
+[package]
+name = "proj2"
+version = "0.1.0"
+edition = "2024"
+
+[workspace]
+members = [
+    "lexer", "stdlib", "turtlelib",
+]
+
+[dependencies]
+lexer = { path = "lexer" }
