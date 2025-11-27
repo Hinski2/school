@@ -1,0 +1,5 @@
+-- acid:
+-- atomicity
+-- consistency
+-- isolation
+-- durability
