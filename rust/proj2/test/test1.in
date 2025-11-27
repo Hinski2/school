@@ -1,0 +1,6 @@
+TO square :length
+  REPEAT 4 [ fd :length rt 90 ]
+END
+
+clearscreen
+REPEAT 36 [ randomcolor square random 200 rt 10 ]

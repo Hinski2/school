@@ -5,8 +5,11 @@ edition = "2024"
 
 [workspace]
 members = [
-    "lexer", "stdlib", "turtlelib",
+    "lexer", "parser", "stdlib", "turtlelib"
 ]
 
 [dependencies]
 lexer = { path = "lexer" }
+parser = { path = "parser" }
+stdlib = { path = "stdlib" }
+turtlelib = { path = "turtlelib" }
