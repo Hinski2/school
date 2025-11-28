@@ -1,0 +1,10 @@
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\bin\Debug\netcoreapp2.0\MongoDBClient.deps.json
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\bin\Debug\netcoreapp2.0\MongoDBClient.runtimeconfig.json
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\bin\Debug\netcoreapp2.0\MongoDBClient.runtimeconfig.dev.json
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\bin\Debug\netcoreapp2.0\MongoDBClient.dll
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\bin\Debug\netcoreapp2.0\MongoDBClient.pdb
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\obj\Debug\netcoreapp2.0\MongoDBClient.csprojAssemblyReference.cache
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\obj\Debug\netcoreapp2.0\MongoDBClient.AssemblyInfoInputs.cache
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\obj\Debug\netcoreapp2.0\MongoDBClient.AssemblyInfo.cs
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\obj\Debug\netcoreapp2.0\MongoDBClient.dll
+c:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-21-mongodb\clientapp\MongoDB\MongoDBClient\obj\Debug\netcoreapp2.0\MongoDBClient.pdb
