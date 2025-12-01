@@ -11,7 +11,7 @@ impl Pen {
     pub fn new() -> Pen {
         Pen {
             up: false, 
-            color: Color::Black,
+            color: Color::BLACK,
             size: 20,
         }
     }

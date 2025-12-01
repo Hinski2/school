@@ -44,3 +44,15 @@ pub fn tokenize_file(file_path: String) -> Result<LinkedList<Token>, Box<dyn std
     tokens.push_back(Token::EOF);
     return Ok(tokens);
 }
+
+pub fn tokenize_code(code: String) -> Result<LinkedList<Token>, Box<dyn std::error::Error>> {
+    let mut tokens = LinkedList::new();
+    let token_dictionary = TokenDictionary::new();
+
+    for line in code.lines() {
+        tokens.append(&mut lexer(line.to_string(), &token_dictionary)?);
+    }
+
+    tokens.push_back(Token::EOF);
+    return Ok(tokens);
+}

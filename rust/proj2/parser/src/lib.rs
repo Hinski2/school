@@ -81,7 +81,7 @@ mod tests {
             Token::RSQUAREDBRACKET,
         ]);
 
-        let block = parse_block(&mut tokens).unwrap();
+        let block = parse_block(&mut tokens, &mut 0).unwrap();
         let expected_stmts = LinkedList::from([
             Stmt::PROCEDURECALL { id: "id".to_string(), args: LinkedList::new() }
         ]);

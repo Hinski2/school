@@ -4,8 +4,22 @@
         | <varref>
         | <expr> <op> <expr>
 
+    <item> := 
+        | <expr> 
+        | <varname>
+        | <color>
+        | <list>
+    
+    <list> ::= [ <item>* ]
+
+    <arg> := 
+        | <expr> 
+        | <varname>
+        | <list>
+        | <procedureid>
+
     <procedure-def> ::= to <procedureid>  <varname>* <stmt>* end
-    <procedure-call> ::= <procedureid> <expr>*
+    <procedure-call> ::= <procedureid> <arg>*
 
     <stmt> ::= 
         | <procedure-def>
@@ -20,6 +34,7 @@
 */
 
 use std::collections::LinkedList;
+use turtlelib::color::Color;
 
 // expr
 #[derive(Debug, PartialEq)]
@@ -64,6 +79,30 @@ pub enum Expr {
     }
 }
 
+// arg 
+#[derive(Debug, PartialEq)]
+pub enum Arg {
+    EXPR(Expr),
+    VARNAME(String),
+    LIST(List),
+    PROCEDUREID(String),
+}
+
+// list
+#[derive(Debug, PartialEq)]
+pub struct List {
+    pub items: LinkedList<Item>,
+}
+
+// item 
+#[derive(Debug, PartialEq)]
+pub enum Item {
+    EXPR(Expr),
+    VARNAME(String),
+    COLOR(Color),
+    LIST(List),
+}
+
 // stmt
 #[derive(Debug, PartialEq)]
 pub enum Stmt {
@@ -74,7 +113,7 @@ pub enum Stmt {
     },
     PROCEDURECALL {
         id: String,
-        args: LinkedList<Expr>,
+        args: LinkedList<Arg>,
     },
     IFSTMT {
         cond: Expr,

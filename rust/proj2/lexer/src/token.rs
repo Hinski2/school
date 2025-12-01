@@ -1,4 +1,5 @@
 use std::{collections::HashMap};
+use turtlelib::color::Color;
 
 #[derive(Clone, PartialEq, Debug)]
 pub enum Token {
@@ -55,9 +56,12 @@ pub enum Token {
     IF,         // IF
     IFELSE,     // IFELSE
     WAIT,       // WAIT
+
+    // colors
+    COLOR(Color),
 }
 
-const MAX_TOKEN_LEN: usize = 7;
+const MAX_TOKEN_LEN: usize = 8;
 pub struct TokenDictionary {
     dict: [HashMap<&'static str, Token>; MAX_TOKEN_LEN],
 }
@@ -81,9 +85,9 @@ impl TokenDictionary {
                 ("<", Token::LTP),
             ]),
             HashMap::from([ // 2
-                ("TO", Token::BEGIN),
                 ("IF", Token::IF),
                 ("OR", Token::OR),
+                ("TO", Token::BEGIN),
                 ("<>", Token::NEQP),
                 (">=", Token::GEQP),
                 ("<=", Token::LEQP),
@@ -92,16 +96,35 @@ impl TokenDictionary {
                 ("AND", Token::AND),
                 ("NOT", Token::NOT),
                 ("END", Token::END),
+                ("RED", Token::COLOR(Color::RED)),
+                ("TAN", Token::COLOR(Color::TAN)),
             ]),
             HashMap::from([ // 4
                 ("MAKE", Token::MAKE),
                 ("WAIT", Token::WAIT),
+                ("BLUE", Token::COLOR(Color::BLUE)),
+                ("CYAN", Token::COLOR(Color::CYAN)),
+                ("AQUA", Token::COLOR(Color::AQUA)),
+                ("GREY", Token::COLOR(Color::GREY)),
             ]),
-            HashMap::new(), // 5
-            HashMap::from([
+            HashMap::from([ // 5
+                ("BLACK", Token::COLOR(Color::BLACK)),
+                ("GREEN", Token::COLOR(Color::BLACK)),
+                ("WHITE", Token::COLOR(Color::WHITE)),
+                ("BROWN", Token::COLOR(Color::BROWN)),
+            ]),
+            HashMap::from([ // 6
                 ("REPEAT", Token::REPEAT),
                 ("IFELSE", Token::IFELSE),
+                ("YELLOW", Token::COLOR(Color::YELLOW)),
+                ("FOREST", Token::COLOR(Color::FOREST)),
+                ("SALMON", Token::COLOR(Color::SALMON)),
+                ("PURPLE", Token::COLOR(Color::PURPLE)),
+                ("ORANGE", Token::COLOR(Color::ORANGE)),
             ]),
+            HashMap::from([ // 7
+                ("MAGENTA", Token::COLOR(Color::MAGENTA)),
+            ])
         ];
 
         return TokenDictionary { dict }
@@ -121,6 +144,12 @@ impl TokenDictionary {
             if let Some(t) = self.dict[i].get(key.as_str()) {
                 return Some((t.clone(), i));
             }
+
+            // try upercased version (maybe not)
+            // let key: String = s[..i].iter().collect::<String>().to_uppercase();
+            // if let Some(t) = self.dict[i].get(key.as_str()) {
+            //     return Some((t.clone(), i));
+            // }
         }
 
         None
