@@ -1,0 +1,38 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-g",
+      "-std=c99",
+      "-DF_CPU=16000000",
+      "-Wall",
+      "-O3",
+      "-mmcu=atmega328p",
+      "-c",
+      "-o",
+      "eeprom_i2c.o",
+      "eeprom_i2c.c"
+    ],
+    "directory": "/home/hinski2/Programowanie/school/systemyWbudowane/lista7",
+    "file": "/home/hinski2/Programowanie/school/systemyWbudowane/lista7/eeprom_i2c.c",
+    "output": "/home/hinski2/Programowanie/school/systemyWbudowane/lista7/eeprom_i2c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-g",
+      "-std=c99",
+      "-DF_CPU=16000000",
+      "-Wall",
+      "-O3",
+      "-mmcu=atmega328p",
+      "-c",
+      "-o",
+      "i2c.o",
+      "i2c.c"
+    ],
+    "directory": "/home/hinski2/Programowanie/school/systemyWbudowane/lista7",
+    "file": "/home/hinski2/Programowanie/school/systemyWbudowane/lista7/i2c.c",
+    "output": "/home/hinski2/Programowanie/school/systemyWbudowane/lista7/i2c.o"
+  }
+]

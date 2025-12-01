@@ -878,7 +878,8 @@ int main() {
         for(uint16_t i = 0; i < dzwiek_raw_len; i++) {
             uint8_t data = pgm_read_byte(&dzwiek_raw[i]);
             dac_write(data);
-            _delay_us(125);
+            _delay_us(125); // 8kHz
         }
+        _delay_ms(750);
     }
 }
