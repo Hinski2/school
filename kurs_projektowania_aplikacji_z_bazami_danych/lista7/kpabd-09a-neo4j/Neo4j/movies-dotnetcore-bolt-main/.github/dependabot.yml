@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  assignees:
+  - RichardIrons-neo4j
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: daily
+  assignees:
+  - RichardIrons-neo4j

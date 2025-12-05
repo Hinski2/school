@@ -1,0 +1,12 @@
+docker pull cassandra:latest
+
+docker network create cassandra
+
+docker run --rm -d --name cassandra --hostname cassandra --network cassandra cassandra
+
+docker run --rm --network cassandra -v "c:/Users/Pawel/Documents/KPABD/przyklady/kpabd-09b-cassandra/data.cql:/scripts/data.cql" -e CQLSH_HOST=cassandra -e CQLSH_PORT=9042 -e CQLVERSION="3.4.7" nuvo/docker-cqlsh
+
+docker run --rm -it --network cassandra nuvo/docker-cqlsh cqlsh cassandra 9042 --cqlversion="3.4.7"
+
+SELECT * FROM store.shopping_cart;
+INSERT INTO store.shopping_cart (userid, item_count) VALUES ('4567', 20);
