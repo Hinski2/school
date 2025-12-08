@@ -1,4 +1,4 @@
-use parser::grammar::{Item, BinOp, Expr, Stmt, UnOp};
+use parser::grammar::{BinOp, Expr, Item, ProcedureCall, Program, Returnable, Stmt, UnOp};
 use crate::env::{EnvEntry, Value, Lang, Function};
 
 use super::env::Env;
@@ -16,24 +16,27 @@ pub struct Interpreter {
 }
 
 impl Interpreter {
-    pub fn new() -> Interpreter {
-        // add stdlib
+    pub fn new(program: Program) -> Interpreter {
+        let env = Env::new();
+        let global_env = Env::new();
 
+        // add stdlib
         // add turtlelib
-        todo!();
+
+        Interpreter { env, global_env, code: program.body }
     }
 
-    pub fn interpret_program(&mut self) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn interpret_program(&mut self) -> Result<Value, Box<dyn std::error::Error>> {
         while let Some(stmt) = self.code.pop_front() {
             let result = self.interpret_stmt(stmt)?;
 
             match result {
                 Flow::Next => continue,
-                Flow::Return(_) => return Ok(()),
+                Flow::Return(v) => return Ok(v),
             }
         }
 
-        Ok(())
+        Ok(Value::VOID)
     }
 
     fn evaluate_expr(&self, expr: Expr) -> Result<Value, Box<dyn std::error::Error>> {
@@ -118,21 +121,22 @@ impl Interpreter {
     }
 
     fn add_block(&mut self, mut stmts: LinkedList<Stmt>) {
-        while let Some(stmt) = stmts.pop_back() {
-            self.code.push_front(stmt); 
-        } 
+        stmts.append(&mut self.code);
+        self.code = stmts;
     }
 
     fn interpret_block(&mut self) -> Result<Flow, Box<dyn std::error::Error>> {
         while let Some(stmt) = self.code.pop_front() {
             match stmt {
                 Stmt::STOP => return Ok(Flow::Return(Value::VOID)),
-                Stmt::OUTPUT(e) => {
-                    let val = self.evaluate_expr(e)?;
-                    return Ok(Flow::Return(val));
+                Stmt::OUTPUT(r) => {
+                    return Ok(self.interpret_returnable(r)?);
                 },
                 _ => {
-                    self.interpret_stmt(stmt)?;
+                    match self.interpret_stmt(stmt)? {
+                        Flow::Next => (), 
+                        Flow::Return(v) => return Ok(Flow::Return(v)),
+                    }
                 },
             }
         }
@@ -140,9 +144,26 @@ impl Interpreter {
         Ok(Flow::Next)
     }
 
-    fn interpret_logo_args(&mut self, items: LinkedList<Item>) -> Result<LinkedList<EnvEntry>, Box<dyn std::error::Error>> {
-        // convert items -> EnvEntry
-        todo!()
+
+
+    fn convert_item_env_entry(&self, item: Item) -> Result<EnvEntry, Box<dyn std::error::Error>> {
+        match item {
+            Item::EXPR(e) => Ok(EnvEntry::VALUE(self.evaluate_expr(e)?)),
+            Item::COLOR(c) => Ok(EnvEntry::VALUE(Value::COLOR(c))),
+            Item::LIST(l) => {      // note for fure me: We decided that we don't support having functions inside list
+                let vals: LinkedList<Value> = l.items.into_iter()
+                    .map(|item| self.convert_item_val(item))
+                    .collect::<Result<LinkedList<Value>, _>>()?;
+
+                Ok(EnvEntry::VALUE(Value::LIST(vals)))
+            },
+            Item::VARNAME(name) => {
+                match self.env.lookup(&name) {
+                    Some(ee) => Ok(ee),
+                    None => Ok(EnvEntry::VALUE(Value::STRING(name))),
+                }
+            },
+        }
     }
 
     fn convert_item_val(&self, item: Item) -> Result<Value, Box<dyn std::error::Error>> {
@@ -157,9 +178,22 @@ impl Interpreter {
                 Ok(Value::LIST(vals))
             },
             Item::VARNAME(name) => {
-               todo!() 
+                match self.env.lookup(&name) {
+                    Some(EnvEntry::FUNCTION(f)) => Err(format!("interpreter error: you can't pass function {:#?} to the rust inplemented function", f).into()),
+                    Some(EnvEntry::VALUE(v)) => Ok(v),
+                    None => Ok(Value::STRING(name)),
+                }
             },
         }
+    }
+
+    fn interpret_logo_args(&mut self, items: LinkedList<Item>) -> Result<LinkedList<EnvEntry>, Box<dyn std::error::Error>> {
+        // convert items -> EnvEntry
+        let vals: LinkedList<EnvEntry> = items.into_iter()
+            .map(|item| self.convert_item_env_entry(item))
+            .collect::<Result<LinkedList<EnvEntry>, _>>()?;
+
+        Ok(vals)
     }
 
     fn interpret_rust_args(&mut self, items: LinkedList<Item>) -> Result<Vec<Value>, Box<dyn std::error::Error>> {
@@ -171,11 +205,71 @@ impl Interpreter {
         Ok(vals)
     }
 
+    fn interpret_returnable(&mut self, r: Returnable) -> Result<Flow, Box<dyn std::error::Error>> {
+        Ok(match r {
+            Returnable::ITEM(Item::EXPR(e)) => Flow::Return(self.evaluate_expr(e)?),
+            Returnable::ITEM(Item::VARNAME(name)) => {
+                match self.env.lookup(&name) {
+                    Some(EnvEntry::FUNCTION(f)) => return Err(format!("interpreter error: returning funciton ptr {:#?} is not supported (yet)", f).into()),
+                    _ => Flow::Return(Value::STRING(name.clone())),
+                }
+            },
+            Returnable::ITEM(Item::COLOR(c)) => Flow::Return(Value::COLOR(c)),
+            Returnable::ITEM(il) => Flow::Return(self.convert_item_val(il)?),
+            Returnable::PROCEDURECALL(pc) => self.interpret_procedure_call(pc)?,
+        })
+    }
+
+    fn interpret_procedure_call(&mut self, pc: ProcedureCall) -> Result<Flow, Box<dyn std::error::Error>> {
+        let ProcedureCall{id, args} = pc;
+
+        let entry = self.env.lookup(&id)
+            .ok_or_else(|| -> Box<dyn std::error::Error> { 
+                format!("interpreter error: function with name {} doesnt exist", id).into() 
+            })?;
+
+        match entry {
+            EnvEntry::VALUE(_) => Err(format!("interpreter error: expected function call, received value").into()),
+            EnvEntry::FUNCTION(Function { lang: Lang::LOGO(content), arg_no, arg_names }) => {
+                if args.len() != arg_no {
+                    return Err(format!("interpreter error: expected {} args, received {}", arg_no, args.len()).into());
+                }
+
+                // interpret args in old env
+                let env_entries = self.interpret_logo_args(args)?;
+
+                // remember old env and replace it
+                let old_env= mem::replace(&mut self.env, Env::from(&self.global_env));
+                let old_code = mem::replace(&mut self.code, content);
+                
+                // add arguments to the new env
+                self.env.add_function_args(&env_entries, &arg_names)?;
+
+                let result_val = match self.interpret_block()? {
+                    Flow::Next => Flow::Return(Value::VOID),
+                    Flow::Return(v) => Flow::Return(v),
+                };
+
+                // restore old env
+                (self.env, self.code) = (old_env, old_code);
+                Ok(result_val)
+            },
+            EnvEntry::FUNCTION(Function { lang: Lang::RUST(fun), arg_no, arg_names: _ }) => {
+                if args.len() != arg_no {
+                    return Err(format!("interpreter error: expected {} args, received {}", arg_no, args.len()).into());
+                }
+
+                let values = self.interpret_rust_args(args)?;
+                let result_value = fun(&mut self.env, &values)?;
+                Ok(Flow::Return(result_value))
+            },
+        }
+    }
+
     fn interpret_stmt(&mut self, stmt: Stmt) -> Result<Flow, Box<dyn std::error::Error>> {
         match stmt {
-            Stmt::OUTPUT(e) => {
-                let val = self.evaluate_expr(e)?;
-                Ok(Flow::Return(val))
+            Stmt::OUTPUT(r) => {
+                Ok( self.interpret_returnable(r)? )
             }, 
             Stmt::STOP => {
                 Ok(Flow::Return(Value::VOID))
@@ -189,43 +283,8 @@ impl Interpreter {
 
                 Ok(Flow::Next)
             },
-            Stmt::PROCEDURECALL { id, args } => {
-                let entry = self.env.lookup(&id)
-                    .ok_or_else(|| -> Box<dyn std::error::Error> { 
-                        format!("interpreter error: function with name {} doesnt exist", id).into() 
-                    })?;
-
-                match entry {
-                    EnvEntry::VALUE(_) => Err(format!("interpreter error: expected function call, received value").into()),
-                    EnvEntry::FUNCTION(Function { lang: Lang::LOGO(content), arg_no, arg_names }) => {
-                        if args.len() != arg_no {
-                            return Err(format!("interpreter error: expected {} args, received {}", arg_no, args.len()).into());
-                        }
-
-                        // remember old env and replace it
-                        let old_env= mem::replace(&mut self.env, Env::from(&self.global_env));
-                        let old_code = mem::replace(&mut self.code, content);
-                        
-                        // add arguments to the env
-                        let env_entries = self.interpret_logo_args(args)?;
-                        self.env.add_function_args(&env_entries, &arg_names)?;
-
-                        let result_val = self.interpret_block()?;
-
-                        // restore old env
-                        (self.env, self.code) = (old_env, old_code);
-                        Ok(result_val)
-                    },
-                    EnvEntry::FUNCTION(Function { lang: Lang::RUST(fun), arg_no, arg_names: _ }) => {
-                        if args.len() != arg_no {
-                            return Err(format!("interpreter error: expected {} args, received {}", arg_no, args.len()).into());
-                        }
-
-                        let values = self.interpret_rust_args(args)?;
-                        let result_value = fun(&mut self.env, &values)?;
-                        Ok(Flow::Return(result_value))
-                    },
-                }
+            Stmt::PROCEDURECALL(pc) => {
+                Ok(self.interpret_procedure_call(pc)?)
             }, 
             Stmt::IFSTMT { cond, body } => {
                 let val: Value = self.evaluate_expr(cond)?;
@@ -281,14 +340,26 @@ impl Interpreter {
                         Flow::Return(v) => {
                             self.env.set_repcount(None);
                             self.code = old_code;
+
                             return Ok(Flow::Return(v));
                         }
                     }
                 }
 
+                self.env.set_repcount(None);
                 self.code = old_code;
+
                 Ok(Flow::Next)
             },
+            Stmt::MAKE { name, val } => {
+                let entry = match self.interpret_returnable(val)? {
+                    Flow::Next => return Err(format!("interpreter error: you try to assign not value to variable with name {}", name).into()),
+                    Flow::Return(v) => v,
+                };
+
+                self.env.add(name, EnvEntry::VALUE(entry))?; 
+                Ok( Flow::Next )
+            }
         }
     }
 }

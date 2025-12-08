@@ -11,7 +11,7 @@ members = [ "interpreter",
 [dependencies]
 lexer = { path = "lexer" }
 parser = { path = "parser" }
-# interpreter = {path = "interpreter" }
+interpreter = {path = "interpreter" }
 
 stdlib = { path = "stdlib" }
 turtlelib = { path = "turtlelib" }

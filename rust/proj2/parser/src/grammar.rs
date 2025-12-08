@@ -10,6 +10,10 @@
         | <varname>
         | <color>
         | <list>
+
+    <returnable> :=
+        | <item> 
+        | <procedure-call>
     
     <list> ::= [ <item>* ]
 
@@ -22,6 +26,9 @@
         | if <expr> <block>
         | ifelse <expr> <block> <block>
         | repeat <expr> <block>
+        | output <returnable>
+        | stop
+        | make <varname> <returnable>
 
     <block> := [ <stmt>* ]
     
@@ -75,6 +82,18 @@ pub enum Expr {
     }
 }
 
+#[derive(Debug, PartialEq, Clone)]
+pub enum Returnable {
+    ITEM(Item),
+    PROCEDURECALL(ProcedureCall),
+}
+
+#[derive(Debug, PartialEq, Clone)]
+pub struct ProcedureCall {
+    pub id: String,
+    pub args: LinkedList<Item>,
+}
+
 // list
 #[derive(Debug, PartialEq, Clone)]
 pub struct List {
@@ -98,10 +117,7 @@ pub enum Stmt {
         args: LinkedList<String>,
         content: LinkedList<Stmt>,
     },
-    PROCEDURECALL {
-        id: String,
-        args: LinkedList<Item>,
-    },
+    PROCEDURECALL(ProcedureCall),
     IFSTMT {
         cond: Expr,
         body: Block,
@@ -115,8 +131,12 @@ pub enum Stmt {
         repeat_no: Expr, 
         body: Block,
     },
-    OUTPUT(Expr),
+    OUTPUT(Returnable),
     STOP,
+    MAKE {
+        name: String, 
+        val: Returnable,
+    }
 }
 
 #[derive(Debug)]

@@ -5,7 +5,7 @@ pub mod pc_parser;
 #[cfg(test)]
 mod tests {
     use lexer::token::Token;
-    use crate::grammar::{BinOp, Block, Expr, Stmt};
+    use crate::grammar::{BinOp, Block, Expr, ProcedureCall, Stmt};
     use crate::rd_parser::{parse_block};
     use crate::pc_parser::{parse_expr};
     use std::collections::LinkedList;
@@ -83,7 +83,7 @@ mod tests {
 
         let block = parse_block(&mut tokens, &mut 0).unwrap();
         let expected_stmts = LinkedList::from([
-            Stmt::PROCEDURECALL { id: "id".to_string(), args: LinkedList::new() }
+            Stmt::PROCEDURECALL( ProcedureCall { id: "id".to_string(), args: LinkedList::new() })
         ]);
 
         assert_eq!(

@@ -1,1 +1,20 @@
-foo "bar 5
+TO add :x :y
+    IFELSE 1 [
+        OUTPUT 1
+    ] [
+        OUTPUT 2
+    ]
+
+    OUTPUT :x + :y
+END
+
+TO rep :rno
+    REPEAT 10 [
+        OUTPUT REPCOUNT
+    ]
+
+    OUTPUT 42 
+END
+
+MAKE "x 10
+OUTPUT rep 100

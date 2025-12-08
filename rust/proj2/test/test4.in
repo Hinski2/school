@@ -1,0 +1,10 @@
+TO foo
+    REPEAT 5 [
+        IF REPCOUNT = 2 [
+            OUTPUT REPCOUNT
+        ]
+    ]
+END
+
+OUTPUT foo
+

@@ -1,4 +1,4 @@
-use std::{collections::{HashMap, LinkedList}, io::LineWriter};
+use std::{collections::{HashMap, LinkedList}};
 use parser::grammar::{Stmt};
 use turtlelib::color::Color;
 
@@ -7,24 +7,25 @@ pub enum Value {
     VOID, 
     INT(i64),
     FLOAT(f64),
+    STRING(String),
     COLOR(Color), 
     LIST(LinkedList<Value>),
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub enum Lang {
     RUST(fn(&mut Env, &[Value]) -> Result<Value, Box<dyn std::error::Error>>), 
     LOGO(LinkedList<Stmt>),
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Function {
     pub lang: Lang,
     pub arg_no: usize,
     pub arg_names: LinkedList<String>,
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub enum EnvEntry {
     FUNCTION(Function),
     VALUE(Value),
