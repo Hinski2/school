@@ -69,7 +69,7 @@ mod tests {
             .into_iter()
             .collect();
         
-        assert_eq!(tokens, vec![Token::PROCEDUREID("XD42".to_string()), Token::COMMENT("some comment".to_string()), Token::EOL],);
+        assert_eq!(tokens, vec![Token::PROCEDURECALL("XD42".to_string()), Token::COMMENT("some comment".to_string()), Token::EOL],);
     }
 
     #[test]

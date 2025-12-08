@@ -89,7 +89,7 @@ mod tests {
     fn test5() {
         let code = "
             TO fern :size :sign
-                if :size < 1 [ stop ]
+                IF :size < 1 [ stop ]
                 fd :size
                 rt 70 * :sign fern :size * 0.5 :sign * -1 lt 70 * :sign
                 fd :size

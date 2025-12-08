@@ -116,6 +116,7 @@ pub fn parse_atom(token: Token) -> Result<Expr, Box<dyn std::error::Error>> {
         Token::INT(x) => Ok(Expr::INT(x)),
         Token::FLOAT(x) => Ok(Expr::FLOAT(x)),
         Token::VARREF(x) => Ok(Expr::VARREF(x)),
+        Token::REPCOUNT => Ok(Expr::REPCOUNT),
         _ => Err(format!("parser error: innapropriate token: {:#?}, expected atomic token", token).into()),
     }
 }
@@ -123,7 +124,7 @@ pub fn parse_atom(token: Token) -> Result<Expr, Box<dyn std::error::Error>> {
 pub fn parse_primary(tokens: &mut LinkedList<Token>) -> Result<Expr, Box<dyn std::error::Error>> {
     let token = tokens.pop_front().ok_or("parser error: insufficient ammount of tokens")?;
     match token {
-        Token::INT(_) | Token::FLOAT(_) | Token::VARREF(_) => parse_atom(token),
+        Token::INT(_) | Token::FLOAT(_) | Token::VARREF(_) | Token::REPCOUNT => parse_atom(token),
         Token::NOT => {
             let e = parse_primary(tokens)?;
             Ok(Expr::UNARY {

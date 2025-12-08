@@ -12,12 +12,13 @@ pub fn lexer(line: String, token_dictionary: &TokenDictionary) -> Result<LinkedL
             continue;
         }
 
-        if let Some((t, l)) = token_dictionary.try_match_keyword(&chars[i..]) {
+        if let Some((t, l)) = token_dictionary.try_match_value(&chars[i..]) {
             tokens.push_back(t);
             i += l;
-        } else if let Some((t, l)) = token_dictionary.try_match_value(&chars[i..]) {
+        } else if let Some((t, l)) = token_dictionary.try_match_keyword(&chars[i..]) {
             tokens.push_back(t);
             i += l;
+
         } else if let Some((t, l)) = token_dictionary.try_match_ident(&chars[i..]) {
             tokens.push_back(t);
             i += l;

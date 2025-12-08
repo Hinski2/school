@@ -30,7 +30,7 @@ pub enum Token {
     // procedures
     BEGIN,                  // TO
     END,                    // END
-    PROCEDUREID(String),    // [A-Za-z][A-Za-z0-9]*
+    PROCEDURECALL(String),    // [A-Za-z][A-Za-z0-9]*
 
     // arithmetic
     ADD,    // +
@@ -53,15 +53,17 @@ pub enum Token {
 
     // control structures 
     REPEAT,     // REPEAT
+    REPCOUNT,   // REPCOUNT
     IF,         // IF
     IFELSE,     // IFELSE
-    WAIT,       // WAIT
+    STOP,       // STOP
+    OUTPUT,     // OUTPUT
 
     // colors
     COLOR(Color),
 }
 
-const MAX_TOKEN_LEN: usize = 8;
+const MAX_TOKEN_LEN: usize = 9;
 pub struct TokenDictionary {
     dict: [HashMap<&'static str, Token>; MAX_TOKEN_LEN],
 }
@@ -101,7 +103,7 @@ impl TokenDictionary {
             ]),
             HashMap::from([ // 4
                 ("MAKE", Token::MAKE),
-                ("WAIT", Token::WAIT),
+                ("STOP", Token::STOP),
                 ("BLUE", Token::COLOR(Color::BLUE)),
                 ("CYAN", Token::COLOR(Color::CYAN)),
                 ("AQUA", Token::COLOR(Color::AQUA)),
@@ -114,6 +116,7 @@ impl TokenDictionary {
                 ("BROWN", Token::COLOR(Color::BROWN)),
             ]),
             HashMap::from([ // 6
+                ("OUTPUT", Token::OUTPUT),
                 ("REPEAT", Token::REPEAT),
                 ("IFELSE", Token::IFELSE),
                 ("YELLOW", Token::COLOR(Color::YELLOW)),
@@ -124,6 +127,9 @@ impl TokenDictionary {
             ]),
             HashMap::from([ // 7
                 ("MAGENTA", Token::COLOR(Color::MAGENTA)),
+            ]),
+            HashMap::from([ // 8
+                ("REPCOUNT", Token::REPCOUNT),
             ])
         ];
 
@@ -160,40 +166,47 @@ impl TokenDictionary {
             return None;
         }
 
-        let minus: i64 = if s[0] == '-' {-1} else {1};
-        let mut i = if minus == -1 {1} else {0};
+        let is_negative = s[0] == '-';
+        let mut i = if is_negative { 1 } else { 0 };
 
         while i < s.len() && s[i].is_numeric() {
             i += 1;
         } 
 
-        if (minus == -1 && i == 1) || (minus == 1 && i == 0) {
+        if (is_negative && i == 1) || (!is_negative && i == 0) {
             return None;
         }
 
         if i < s.len() && s[i] == '.' {
             i += 1;
         } else {
-            let numb: i64 = s[0..i]
+            let mut numb: i64 = s[is_negative as usize..i]
                 .iter()
                 .collect::<String>()
                 .parse()
                 .unwrap();
 
-            return Some((Token::INT(minus * numb), i))
+            if is_negative {
+                numb = -numb;
+            }
+            return Some((Token::INT(numb), i))
         }
 
         while i < s.len() && s[i].is_numeric() {
             i += 1;
         }
 
-        let numb: f64 = s[0..i]
+        let mut numb: f64 = s[is_negative as usize..i]
             .iter()
             .collect::<String>()
             .parse()
             .unwrap();
 
-        Some((Token::FLOAT(minus as f64 * numb), i))
+        if is_negative {
+            numb = - numb;
+        }
+
+        Some((Token::FLOAT(numb), i))
     }
 
     pub fn try_match_ident(&self, s: &[char]) -> Option<(Token, usize)> {
@@ -220,7 +233,7 @@ impl TokenDictionary {
         match s[0] {
             '"' => Some((Token::VARNAME(s[1..i].iter().collect()), i)),
             ':' => Some((Token::VARREF(s[1..i].iter().collect()), i)),
-            _ => Some((Token::PROCEDUREID(s[0..i].iter().collect()), i))
+            _ => Some((Token::PROCEDURECALL(s[0..i].iter().collect()), i))
         }
     }
 }

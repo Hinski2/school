@@ -2,6 +2,7 @@
     <expr> ::= 
         | numb
         | <varref>
+        | <repcount>
         | <expr> <op> <expr>
 
     <item> := 
@@ -12,14 +13,8 @@
     
     <list> ::= [ <item>* ]
 
-    <arg> := 
-        | <expr> 
-        | <varname>
-        | <list>
-        | <procedureid>
-
-    <procedure-def> ::= to <procedureid>  <varname>* <stmt>* end
-    <procedure-call> ::= <procedureid> <arg>*
+    <procedure-def> ::= to <PROCEDURECALL>  <varref>* <stmt>* end
+    <procedure-call> ::= <PROCEDURECALL> <item>*
 
     <stmt> ::= 
         | <procedure-def>
@@ -33,11 +28,11 @@
     <program> ::= <stmt>*
 */
 
-use std::collections::LinkedList;
+use std::{collections::LinkedList};
 use turtlelib::color::Color;
 
 // expr
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum BinOp {
     ADD,    // + 
     SUB,    // -
@@ -56,16 +51,17 @@ pub enum BinOp {
     OR,     // OR
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum UnOp {
     NOT,    // NOT
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Expr {
     INT(i64),
     FLOAT(f64),
     VARREF(String),
+    REPCOUNT,
 
     BINARY {
         e1: Box<Expr>,
@@ -79,23 +75,14 @@ pub enum Expr {
     }
 }
 
-// arg 
-#[derive(Debug, PartialEq)]
-pub enum Arg {
-    EXPR(Expr),
-    VARNAME(String),
-    LIST(List),
-    PROCEDUREID(String),
-}
-
 // list
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct List {
     pub items: LinkedList<Item>,
 }
 
 // item 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Item {
     EXPR(Expr),
     VARNAME(String),
@@ -104,7 +91,7 @@ pub enum Item {
 }
 
 // stmt
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Stmt {
     PROCEDUREDEF {
         id: String,
@@ -113,7 +100,7 @@ pub enum Stmt {
     },
     PROCEDURECALL {
         id: String,
-        args: LinkedList<Arg>,
+        args: LinkedList<Item>,
     },
     IFSTMT {
         cond: Expr,
@@ -128,6 +115,8 @@ pub enum Stmt {
         repeat_no: Expr, 
         body: Block,
     },
+    OUTPUT(Expr),
+    STOP,
 }
 
 #[derive(Debug)]
@@ -137,7 +126,7 @@ pub struct RepeatStmt {
 }
 
 // block
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct Block {
     pub stmts: LinkedList<Stmt>,
 }

@@ -6,7 +6,7 @@ pub mod pc_parser;
 mod tests {
     use lexer::token::Token;
     use crate::grammar::{BinOp, Block, Expr, Stmt};
-    use crate::rd_parser::{parse_block, parse_stmt, parse_program};
+    use crate::rd_parser::{parse_block};
     use crate::pc_parser::{parse_expr};
     use std::collections::LinkedList;
 
@@ -77,7 +77,7 @@ mod tests {
     fn parse_block_with_single_stmt() {
         let mut tokens = LinkedList::from([
             Token::LSQUAREDBRACKET,
-            Token::PROCEDUREID("id".to_string()),
+            Token::PROCEDURECALL("id".to_string()),
             Token::RSQUAREDBRACKET,
         ]);
 

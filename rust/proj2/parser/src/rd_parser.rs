@@ -1,7 +1,17 @@
 use lexer::token::Token;
 use std::{collections::LinkedList};
 use crate::{pc_parser::parse_expr};
-use super::grammar::{Stmt, Block, Program, List, Arg, Item};
+use super::grammar::{Stmt, Block, Program, List, Item};
+
+macro_rules! EXPR_START {
+    () => {
+        Some(Token::INT(_)) | 
+        Some(Token::FLOAT(_)) | 
+        Some(Token::LROUNDBRACKET) | 
+        Some(Token::VARREF(_)) | 
+        Some(Token::REPCOUNT)
+    };
+}
 
 pub fn parse_program(tokens: &mut LinkedList<Token>) -> Result<Program, Box<dyn std::error::Error>> {
     let mut line_no: usize = 1;
@@ -31,7 +41,7 @@ pub fn parse_list(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
 
     loop {
         match tokens.front() {
-            Some(Token::INT(_)) | Some(Token::FLOAT(_)) | Some(Token::LROUNDBRACKET) | Some(Token::VARREF(_)) => {
+            EXPR_START!() => {
                 items.push_back(Item::EXPR(parse_expr(tokens)?));
             },
             Some(Token::VARNAME(name)) => {
@@ -54,23 +64,21 @@ pub fn parse_list(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
     Ok(List { items })
 }
 
-pub fn parse_arg(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result<Arg, Box<dyn std::error::Error>> {
+pub fn parse_item(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result<Item, Box<dyn std::error::Error>> {
     match tokens.front() {
-        Some(Token::INT(_)) | Some(Token::FLOAT(_)) | Some(Token::LROUNDBRACKET) | Some(Token::VARREF(_)) => {
-            Ok( Arg::EXPR(parse_expr(tokens)?))
+        EXPR_START!() => {
+            Ok( Item::EXPR(parse_expr(tokens)?))
         },
         Some(Token::VARNAME(name)) => {
             let name = name.to_string();
             tokens.pop_front();
-            Ok( Arg::VARNAME(name) )
+            Ok( Item::VARNAME(name) )
         },
-        Some(Token::PROCEDUREID(name)) => {
-            let name = name.to_string();
-            tokens.pop_front();
-            Ok( Arg::PROCEDUREID(name) )
-        } 
         Some(Token::LSQUAREDBRACKET) => {
-            Ok( Arg::LIST(parse_list(tokens, line_no)?))
+            Ok( Item::LIST(parse_list(tokens, line_no)?))
+        },
+        Some(Token::COLOR(c)) => {
+            Ok( Item::COLOR(*c) )
         }
         Some(t) => Err(format!("parser error in line {}: expected argument, recieived: {:#?}", line_no, t).into()),
         None => Err(format!("parser error in line {}: insufficient ammount of tokens, expected argumetn", line_no).into()),
@@ -89,7 +97,7 @@ pub fn parse_stmt(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
         }
         
         let id = match tokens.pop_front() {
-            Some(Token::PROCEDUREID(id)) => id, 
+            Some(Token::PROCEDURECALL(id)) => id, 
             Some(t) => return Err(format!("parser error in line {} : expected procedure id, received: {:#?}", line_no, t).into()),
             None => return Err(format!("parse error in line {} : insufficient ammount of tokens, expected procedure id", line_no).into()),
         };
@@ -130,20 +138,16 @@ pub fn parse_stmt(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
 
     fn parse_procedure_call(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result<Stmt, Box<dyn std::error::Error>> {
         let id = match tokens.pop_front() {
-            Some(Token::PROCEDUREID(id)) => id, 
+            Some(Token::PROCEDURECALL(id)) => id, 
             Some(t) => return Err(format!("parser error in line {}: expected procedure id, received: {:#?}", line_no, t).into()),
             None => return Err(format!("parse error in line {}: insufficient ammount of tokens, expected procedure id", line_no).into()),
         };
 
-        let mut args: LinkedList<Arg> = LinkedList::new();
+        let mut args: LinkedList<Item> = LinkedList::new();
         loop {
             match tokens.front() {
-                Some(Token::EOL) => {
-                    *line_no += 1;
-                    break;
-                },
-                Some(Token::RSQUAREDBRACKET) => break,
-                Some(_) => args.push_back(parse_arg(tokens, line_no)?),
+                EXPR_START!() | Some(Token::VARNAME(_)) | Some(Token::LSQUAREDBRACKET) | Some(Token::COLOR(_)) => args.push_back(parse_item(tokens, line_no)?),
+                Some(_) => break,
                 None => return Err(format!("parser error in line {}: insufficient ammoutn of tokens, expected functions argumet", line_no).into()),
             }
         }
@@ -155,7 +159,7 @@ pub fn parse_stmt(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
         // consume if token
         tokens.pop_front();
         let cond = match tokens.front() {
-            Some(Token::INT(_)) | Some(Token::FLOAT(_)) | Some(Token::VARREF(_)) => parse_expr(tokens)?,
+            EXPR_START!() => parse_expr(tokens)?,
             Some(t) => return Err(format!("parser error in line {} : expected expr token, received {:#?}", line_no, t).into()),
             None => return Err(format!("parser error in line {} : insufficient ammount of tokens, expected expr token", line_no).into()),
         };
@@ -168,7 +172,7 @@ pub fn parse_stmt(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
         // consume ifelse token
         tokens.pop_front();
         let cond = match tokens.front() {
-            Some(Token::INT(_)) | Some(Token::FLOAT(_)) | Some(Token::VARREF(_)) => parse_expr(tokens)?,
+            EXPR_START!() => parse_expr(tokens)?,
             Some(t) => return Err(format!("parser error in line {} : expected expr token, received {:#?}", line_no, t).into()),
             None => return Err(format!("parser error in line {} : insufficient ammount of tokens, expected expr token", line_no).into()),
         };
@@ -183,7 +187,7 @@ pub fn parse_stmt(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
         // consume repeat token
         tokens.pop_front();
         let repeat_no = match tokens.front() {
-            Some(Token::INT(_)) | Some(Token::FLOAT(_)) | Some(Token::VARREF(_)) => parse_expr(tokens)?,
+            EXPR_START!() => parse_expr(tokens)?,
             Some(t) => return Err(format!("parser error in line {} : expected expr token, received {:#?}", line_no, t).into()),
             None => return Err(format!("parser error in line {} : insufficient ammount of tokens, expected expr token", line_no).into()),
         };
@@ -192,6 +196,23 @@ pub fn parse_stmt(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
         return Ok(Stmt::REPEATSTMT{ repeat_no, body })
     }
 
+    fn parse_output_stmt(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result<Stmt, Box<dyn  std::error::Error>> {
+        // consume output token
+        tokens.pop_front();
+        let e = match tokens.front() {
+            EXPR_START!() => parse_expr(tokens)?,
+            Some(t) => return Err(format!("parser error in line {} : expected expr token, received {:#?}", line_no, t).into()),
+            None => return Err(format!("parser error in line {} : insufficient ammount of tokens, expected expr token", line_no).into()),
+        };
+
+        Ok(Stmt::OUTPUT(e))
+    }
+
+    fn parse_stop_stmt(tokens: &mut LinkedList<Token>) -> Result<Stmt, Box<dyn  std::error::Error>> {
+        // consume stop token
+        tokens.pop_front();
+        return Ok(Stmt::STOP);
+    }
 
     while tokens.front() == Some(&Token::EOL) {
         tokens.pop_front();
@@ -200,10 +221,12 @@ pub fn parse_stmt(tokens: &mut LinkedList<Token>, line_no: &mut usize) -> Result
 
     match tokens.front() {
         Some(Token::BEGIN) => Ok(parse_procedure_def(tokens, line_no)?),
-        Some(Token::PROCEDUREID(_)) => Ok(parse_procedure_call(tokens, line_no)?),
+        Some(Token::PROCEDURECALL(_)) => Ok(parse_procedure_call(tokens, line_no)?),
         Some(Token::IF) => Ok(parse_procedure_if_stmt(tokens, line_no)?),
         Some(Token::IFELSE) => Ok(parse_procedure_ifelse_stmt(tokens, line_no)?),
         Some(Token::REPEAT) => Ok(parse_procedure_repeat_stmt(tokens, line_no)?),
+        Some(Token::OUTPUT) => Ok(parse_output_stmt(tokens, line_no)?),
+        Some(Token::STOP) => Ok(parse_stop_stmt(tokens)?),
         Some(t) => Err(format!("parser error in line {} : expected Stmt begin token, received {:#?}", line_no, t).into()),
         None => Err(format!("parse error in line {} : insufficient ammount of tokens, expecteds Stmt begin token", line_no).into()),
     }

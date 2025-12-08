@@ -4,12 +4,14 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace]
-members = [
+members = [ "interpreter",
     "lexer", "parser", "stdlib", "turtlelib"
 ]
 
 [dependencies]
 lexer = { path = "lexer" }
 parser = { path = "parser" }
+# interpreter = {path = "interpreter" }
+
 stdlib = { path = "stdlib" }
 turtlelib = { path = "turtlelib" }
