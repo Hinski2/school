@@ -4,7 +4,7 @@ use interpreter::interpreter::Interpreter;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     print!("\nTOKENS:\n");
-    let mut tokens = tokenize_file("test/test4.in".to_string())?;
+    let mut tokens = tokenize_file("test/test5.in".to_string())?;
     dbg!(&tokens);
 
 

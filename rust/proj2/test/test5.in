@@ -1,0 +1,9 @@
+TO foo :f :x :y 
+    OUTPUT f :x :y 
+END 
+
+TO add :a :b 
+    OUTPUT :a + :b
+END 
+
+OUTPUT foo "add 1 1
