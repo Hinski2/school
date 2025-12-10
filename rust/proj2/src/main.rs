@@ -1,10 +1,22 @@
 use lexer::lexer::tokenize_file;
 use parser::rd_parser::parse_program;
 use interpreter::interpreter::Interpreter;
+use std::env::args;
+
+fn parse_args() -> Result<String, Box<dyn std::error::Error>> {
+    let env: Vec<String> = args().collect();
+    if env.len() < 2 {
+        Err("parser error: you didnt passed file to interpret".into())
+    } else {
+        Ok(env[1].clone())
+    }
+}
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let file = parse_args()?;
+
     print!("\nTOKENS:\n");
-    let mut tokens = tokenize_file("test/test5.in".to_string())?;
+    let mut tokens = tokenize_file(file)?;
     dbg!(&tokens);
 
 

@@ -1,0 +1,5 @@
+TO add :x :y
+    OUTPUT :x + :y
+END
+
+MAKE "x "add 
