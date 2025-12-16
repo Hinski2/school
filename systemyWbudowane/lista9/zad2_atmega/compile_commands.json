@@ -1,0 +1,20 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-g",
+      "-std=c99",
+      "-DF_CPU=16000000",
+      "-Wall",
+      "-O3",
+      "-mmcu=atmega328p",
+      "-c",
+      "-o",
+      "zad2_atmega.o",
+      "zad2_atmega.c"
+    ],
+    "directory": "/home/hinski2/Programowanie/school/systemyWbudowane/lista8/zad2_atmega",
+    "file": "/home/hinski2/Programowanie/school/systemyWbudowane/lista8/zad2_atmega/zad2_atmega.c",
+    "output": "/home/hinski2/Programowanie/school/systemyWbudowane/lista8/zad2_atmega/zad2_atmega.o"
+  }
+]

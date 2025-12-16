@@ -1,6 +1,6 @@
 
-PRG            = zad2
-OBJ            = ${PRG}.o i2c.o
+PRG            = zad2_atmega
+OBJ            = ${PRG}.o
 PROGRAMMER     = arduino
 PORT           = /dev/ttyUSB0
 MCU_TARGET     = atmega328p 

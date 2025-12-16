@@ -1,6 +1,5 @@
 #include <avr/io.h>
 #include <avr/sfr_defs.h>
-#include <signal.h>
 #include <stdint.h>
 #include <util/delay.h>
 
@@ -29,7 +28,7 @@ static uint8_t min(uint8_t a, uint8_t b) {
 }
 
 static uint8_t handle_button() {
-    // 0 = pressed
+    // pos = 0 -> btn pressed
     static uint8_t last_pos = 1, acc_signals = 0;
 
     uint8_t pos = BTN_PINR & _BV(BTN);
