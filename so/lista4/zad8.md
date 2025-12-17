@@ -153,4 +153,8 @@ Change: 2025-11-05 13:37:28.866765238 +0100
 * blocks - liczba 512 bajtowych bloków rzeczywiście zaalokowanych nadyzku
 
 1112 / 8 = 128 czyli liczba naszych non-zero blocks
-około 556 Kib
+około 556 Kib realnego rozmiaru
+
+realny rozmiar jest mniejszy niż size bo plik ma dziury. 
+dlaczego blocks > liczba użytych blokóœ z mkholes, bo my używamy bloków 4096 bajtów a system plików 512 bajtowych 
+

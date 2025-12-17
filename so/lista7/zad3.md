@@ -40,3 +40,4 @@ pamięć zablokowana - pamięć ram która ma zablokowaną opcje bycia wymienion
 ### skrtyp do wyznaczania sumy VMSIze i VmRSS wszystkich procesów
 
 ### czemu ta druga wartosć nie pokrywa się z rozmiarem używanej pamięci raportowanym przez polecenei vmstat -s
+Linux traktuje pamięć używana do cache'owania (bufforowanie, cache plików) jako wolną jako wolną w procesie, ale używana w statystykach systemowych 

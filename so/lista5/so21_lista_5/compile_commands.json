@@ -1,0 +1,20 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-Iinclude",
+      "-DLINUX",
+      "-Og",
+      "-Wall",
+      "-Wstrict-prototypes",
+      "-c",
+      "-o",
+      "prime.o",
+      "prime.c"
+    ],
+    "directory": "/home/hinski2/Programowanie/school/so/lista5/so21_lista_5",
+    "file": "/home/hinski2/Programowanie/school/so/lista5/so21_lista_5/prime.c",
+    "output": "/home/hinski2/Programowanie/school/so/lista5/so21_lista_5/prime.o"
+  }
+]

@@ -1,49 +1,19 @@
-# zad 2 
+# zad2
 
---- 
+## różnica między fragmentacją wew. i zewn.
+- Fragmentacja wewnętrzna: Występuje, gdy alokator przydziela procesowi blok pamięci większy niż ten, o który proces prosił. Różnica między rozmiarem przydzielonym a rzeczywiście używanym marnuje się wewnątrz zaalokowanego bloku. Wynika to często z wyrównywania rozmiarów bloków (np. do potęgi dwójki) lub minimalnego rozmiaru jednostki alokacji.
+- Fragmentacja zewnętrzna: Występuje, gdy całkowita ilość wolnej pamięci w systemie jest wystarczająca do spełnienia żądania alokacji, ale pamięć ta nie jest ciągła (jest podzielona na wiele małych "dziur" między zajętymi blokami). W rezultacie alokator nie może znaleźć jednego spójnego fragmentu o wymaganym rozmiarze.
 
-`control flow` - 
+## dlaczego malloc nie może stosować kompaktowania?
+- Kompaktowanie (czyli przesuwanie zajętych bloków pamięci tak, aby wszystkie wolne fragmenty utworzyły jeden duży obszar) jest niemożliwe w standardowych implementacjach malloc w językach takich jak C czy C++, ponieważ:
+  - Bezpośrednie wskaźniki: Programy w C/C++ operują na bezpośrednich adresach pamięci (wskaźnikach). Biblioteka malloc zwraca wskaźnik do konkretnego adresu w pamięci wirtualnej.
+  - Brak wiedzy o wskaźnikach: Alokator pamięci nie wie, w ilu miejscach programu i w jakich strukturach danych użytkownik przechowywał kopię tego wskaźnika.
+  - Unieważnienie danych: Gdyby alokator przesunął dane w inne miejsce (skompaktował pamięć), wszystkie wskaźniki posiadane przez program nadal wskazywałyby na stary adres (teraz zawierający inne dane lub będący częścią innego bloku), co doprowadziłoby do błędów.
 
----
-
-### różnice miedzy protokołami warstwy transportowej: datagarmowy upd vs połączoniowy tcp 
-
-| | udp | tcp |
-| --- | --- | --- | 
-| typ | bezpołączenowy | połączeniowy - zanim wyślemy dane musimy nawiązać połączenie | 
-| niezawodność | brak | wysoka - potwierdzanie odbioru i retransmisje
-| kolejnosć | niegwarantowana | gwarantowana
-| duplikaty | możliwe | wykrywane i usuwane autoamtycznie 
-| struktura | datagram który zachowuje gramice jeśli wyślemy 100 bajtów to przyjdzie 100 bajtów  | strumień bajtów bez granic
-| kontorla przepływu | brak (można zalać dobiorce) | jest z uzyciem `advertise window`
-| złożoność | prosty, lekki | skomplikowany 
-
-
-### komunikacja półdupleksowa vs dupleksowa
-
-`półdupleksowa` - komunikacja w odbydwu kierunkach, ale naprzemiennie - jedna strona w jednym momencie
-`dupleksowa` - transmisja w obu kierunkach jednocześnie
-
-### jak tcp radzi sobei z zagubieniem segmentu lub przyjściem w innej kolejności niż zostaały wysłane
-
-zła kolejność: 
-tcp wykorzytuje numery skewencyjne  by uporządkować dane
-1. buforowanie: aplikacja nie przekazuje od razu pakietu nr2 jeśli ten z nr1 nie dotarł jeszcze
-2. porządkowanie
-3. dostarczanie
-
-zgubienie pakietu: 
-tcp ma mechanizm potwierdzania i retransmisji, jeśli nadawca po wysłąniu pakietu nie otrzyma potwierdzenia retransmiture pakiet
-
-### skąd TCP wiek kiedy połączenie zostało zerwane
-sposoby na zakończenie transmisji: 
-* normalne / oficjalne zakończenie tramsmisji
-* błąd lub restart drugiej strony.
-jeśli przez awarie lub restart dtuga sttrona straciłą pamięc o połączeniu odeśli segment z flagą restart, która jest dla nas infromacją o tym żebyśmy zerwali połączenie bo wystąpoł błąd 
-* awaria typu przecięcie kabla:
-    * jeśli wywyłaby pakiety i odbiorca nie bedize nab odpowiedał to sami zakończymy połaczenie
-    * jeśli nie wysyłamy rzeadnych pakietuw to sie nie dowiemy że połączenie zostało zerwane i możemy tak czekać w nieskończonosć 
-
-### jaki problem rozwiązuje sterowanie przepływem implementowane przez tcp 
-rozwiązuje problem przepełnienia bufora odbiorczego u odbiorcy
-tcp zapobiega temu, wywyłając informacje o advertised window - czyli mówi nadawcy ile bitów może jeszcze wysłać 
+## dwie główne przyczyny występowania fragmentacji zew.
+- Izolowane zwolnienia (Isolated Deaths)
+  - Definicja: Fragmentacja powstaje, gdy tworzone są wolne obszary, których sąsiedzi są nadal zajęci.
+  - Wyjaśnienie: Jest to funkcja tego, które obiekty zostały umieszczone obok siebie i kiedy "umierają" (są zwalniane). Jeśli obiekty sąsiadujące w pamięci nie są zwalniane w tym samym czasie, powstają luki (dziury), których nie da się scalić w większy blok. Gdyby alokator umieścił obok siebie obiekty, które giną w tym samym czasie, po ich zwolnieniu powstałby jeden duży, ciągły obszar wolnej pamięci.
+- Zmienność zachowania w czasie (Time-varying behavior)
+  - Definicja: Fragmentacja wynika ze zmian w sposobie, w jaki program korzysta z pamięci w trakcie swojego działania.
+  - Wyjaśnienie: Typowym przykładem jest sytuacja, w której program zwalnia małe bloki pamięci, a następnie żąda przydziału dużych bloków. Dotyczy to również fazowości działania programu – różne fazy mogą wymagać innej liczby obiektów o drastycznie różnych rozmiarach (np. "bursty patterns" – wzorce impulsowe). Jeśli alokator nie potrafi wykorzystać tych wzorców, dziury po małych obiektach będą bezużyteczne dla nowych, dużych żądań.
