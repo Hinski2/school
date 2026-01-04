@@ -19,3 +19,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^7.1.0"
 
+[tool.poetry.scripts]
+llm_zip = "llm_zip.cli:zip"
+llm_unzip = "llm_zip.cli:unzip"

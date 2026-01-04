@@ -1,6 +1,6 @@
 from datasets import IterableDataset, load_dataset
 
-class Loader:
+class DataLoader:
     def __init__(self, ds_name: str) -> None:
         """
             name:
