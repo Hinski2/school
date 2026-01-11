@@ -1,0 +1,1 @@
+w zadaniach wyszło dużo plików więc nie chce wszystkich dodawać, link do githuba na którym są wszystkie pliki: https://github.com/Hinski2/school/tree/main/cpp/lista5

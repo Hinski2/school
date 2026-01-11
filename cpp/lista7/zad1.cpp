@@ -26,6 +26,10 @@ complex<double> rev_gamma_f(uint32_t max_itr, complex<double> z) {
 }
 
 int main() {
+    auto a = gamma_f(50000, 0.5);
+    auto b = rev_gamma_f(50000, 0.5);
+    cout << a * b << endl;
+
     cout << gamma_f(50000, 0.5) << endl;        // \sqrt(\pi)
     cout << rev_gamma_f(50000, 0.5) << endl;    // \frac{1}{\sqrt(\pi)}
 }

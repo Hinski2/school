@@ -3,7 +3,8 @@
 using namespace std;
 
 int main() {
-    string s = "abcd";
+    string s = "test";
+    sort(s.begin(), s.end());
 
     do {
         cout << s << endl;
