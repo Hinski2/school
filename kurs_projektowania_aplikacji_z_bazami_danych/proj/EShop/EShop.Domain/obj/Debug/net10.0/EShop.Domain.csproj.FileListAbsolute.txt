@@ -1,0 +1,16 @@
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\bin\Debug\net10.0\EShop.Domain.deps.json
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\bin\Debug\net10.0\EShop.Domain.dll
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\bin\Debug\net10.0\EShop.Domain.pdb
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\bin\Debug\net10.0\EShop.Shared.dll
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\bin\Debug\net10.0\EShop.Shared.pdb
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Domain.csproj.AssemblyReference.cache
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Domain.AssemblyInfoInputs.cache
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Domain.AssemblyInfo.cs
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Domain.csproj.CoreCompileInputs.cache
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Domain.sourcelink.json
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Do.3250E316.Up2Date
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Domain.dll
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\refint\EShop.Domain.dll
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\EShop.Domain.pdb
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Domain\obj\Debug\net10.0\ref\EShop.Domain.dll

@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Dodaj nowy produkt";
+}
+@using EShop.Shared
+
+<h2>Dodaj nowy produkt</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+
+            <div class="form-group mb-3">
+                <label class="control-label">Nazwa</label>
+                <input name="name" class="form-control" required />
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Opis</label>
+                <input name="description" class="form-control" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Cena</label>
+                <input name="price" type="number" step="0.01" class="form-control" required />
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Jednostka</label>
+                <select name="unit" class="form-control" asp-items="Html.GetEnumSelectList<UnitType>()"></select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">URL Obrazka</label>
+                <input name="pictureUrl" class="form-control" />
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Utwórz" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+            </div>
+        </form>
+    </div>
+</div>

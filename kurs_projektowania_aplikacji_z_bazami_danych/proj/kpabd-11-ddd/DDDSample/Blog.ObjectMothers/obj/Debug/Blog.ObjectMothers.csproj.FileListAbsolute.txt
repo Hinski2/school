@@ -1,0 +1,16 @@
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.ObjectMothers\bin\Debug\Blog.ObjectMothers.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.ObjectMothers\bin\Debug\Blog.ObjectMothers.pdb
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.ObjectMothers\bin\Debug\Blog.Domain.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.ObjectMothers\bin\Debug\Blog.Domain.pdb
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.ObjectMothers\obj\Debug\Blog.ObjectMothers.csprojResolveAssemblyReference.cache
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.ObjectMothers\obj\Debug\Blog.ObjectMothers.csproj.CoreCompileInputs.cache
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.ObjectMothers\obj\Debug\Blog.ObjectMothers.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.ObjectMothers\obj\Debug\Blog.ObjectMothers.pdb
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.ObjectMothers\bin\Debug\Blog.ObjectMothers.dll
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.ObjectMothers\bin\Debug\Blog.ObjectMothers.pdb
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.ObjectMothers\bin\Debug\Blog.Domain.dll
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.ObjectMothers\bin\Debug\Blog.Domain.pdb
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.ObjectMothers\obj\Debug\Blog.ObjectMothers.csprojAssemblyReference.cache
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.ObjectMothers\obj\Debug\Blog.ObjectMothers.csproj.CopyComplete
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.ObjectMothers\obj\Debug\Blog.ObjectMothers.dll
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.ObjectMothers\obj\Debug\Blog.ObjectMothers.pdb

@@ -1,0 +1,25 @@
+@model EShop.Domain.Product
+
+<h2>Szczegóły Produktu</h2>
+
+<div>
+    <dl>
+        <dt>Nazwa:</dt>
+        <dd>@Model.Name</dd>
+
+        <dt>Opis:</dt>
+        <dd>@Model.Description</dd>
+
+        <dt>Cena:</dt>
+        <dd>@Model.Price.ToString()</dd>
+
+        <dt>Jednostka:</dt>
+        <dd>@Model.Unit</dd>
+        
+        <dt>Status:</dt>
+        <dd>@Model.Status</dd>
+    </dl>
+</div>
+
+<hr />
+<a asp-action="Index">Powrót do listy</a>

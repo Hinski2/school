@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\EShop.Application\EShop.Application.csproj" />
+    <ProjectReference Include="..\EShop.Infrastructure\EShop.Infrastructure.csproj" />
+    <ProjectReference Include="..\EShop.Domain\EShop.Domain.csproj" />
+    <ProjectReference Include="..\EShop.Shared\EShop.Shared.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

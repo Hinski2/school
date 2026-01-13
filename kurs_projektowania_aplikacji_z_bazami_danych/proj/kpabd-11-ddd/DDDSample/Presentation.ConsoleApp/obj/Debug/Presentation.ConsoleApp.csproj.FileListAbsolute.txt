@@ -1,0 +1,13 @@
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Presentation.ConsoleApp.exe.config
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Presentation.ConsoleApp.exe
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Presentation.ConsoleApp.pdb
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Blog.Application.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Blog.Domain.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Blog.Infrastructure.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Blog.Application.pdb
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Blog.Domain.pdb
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\bin\Debug\Blog.Infrastructure.pdb
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\obj\Debug\Presentation.ConsoleApp.csprojResolveAssemblyReference.cache
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\obj\Debug\Presentation.ConsoleApp.csproj.CoreCompileInputs.cache
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\obj\Debug\Presentation.ConsoleApp.exe
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Presentation.ConsoleApp\obj\Debug\Presentation.ConsoleApp.pdb

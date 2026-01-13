@@ -1,0 +1,12 @@
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\bin\Debug\net10.0\EShop.Shared.deps.json
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\bin\Debug\net10.0\EShop.Shared.dll
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\bin\Debug\net10.0\EShop.Shared.pdb
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\EShop.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\EShop.Shared.AssemblyInfoInputs.cache
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\EShop.Shared.AssemblyInfo.cs
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\EShop.Shared.csproj.CoreCompileInputs.cache
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\EShop.Shared.sourcelink.json
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\EShop.Shared.dll
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\refint\EShop.Shared.dll
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\EShop.Shared.pdb
+C:\Users\jakub\programowanie\school\kurs_projektowania_aplikacji_z_bazami_danych\proj\EShop\EShop.Shared\obj\Debug\net10.0\ref\EShop.Shared.dll

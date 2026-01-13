@@ -1,0 +1,32 @@
+@model IEnumerable<EShop.Domain.Product>
+
+<h2>Lista Produktów</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Dodaj nowy produkt</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Price.ToString()</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edytuj</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Usuń</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" method="post" class="btn btn-sm btn-danger">Szczegóły</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

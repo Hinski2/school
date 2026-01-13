@@ -1,0 +1,16 @@
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.Infrastructure\bin\Debug\Blog.Infrastructure.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.Infrastructure\bin\Debug\Blog.Infrastructure.pdb
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.Infrastructure\bin\Debug\Blog.Domain.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.Infrastructure\bin\Debug\Blog.Domain.pdb
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.Infrastructure\obj\Debug\Blog.Infrastructure.csprojResolveAssemblyReference.cache
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.Infrastructure\obj\Debug\Blog.Infrastructure.csproj.CoreCompileInputs.cache
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.Infrastructure\obj\Debug\Blog.Infrastructure.dll
+c:\Data\Dydaktyka\II\2017-2018\KursBD\przyklady\DDDSample\Blog.Infrastructure\obj\Debug\Blog.Infrastructure.pdb
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.Infrastructure\bin\Debug\Blog.Infrastructure.dll
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.Infrastructure\bin\Debug\Blog.Infrastructure.pdb
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.Infrastructure\bin\Debug\Blog.Domain.dll
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.Infrastructure\bin\Debug\Blog.Domain.pdb
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.Infrastructure\obj\Debug\Blog.Infrastructure.csprojAssemblyReference.cache
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.Infrastructure\obj\Debug\Blog.Infrastructure.csproj.CopyComplete
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.Infrastructure\obj\Debug\Blog.Infrastructure.dll
+C:\Data\Dydaktyka\II\2019-2020\KursBD\przyklady\db-11-ddd\DDDSample\Blog.Infrastructure\obj\Debug\Blog.Infrastructure.pdb

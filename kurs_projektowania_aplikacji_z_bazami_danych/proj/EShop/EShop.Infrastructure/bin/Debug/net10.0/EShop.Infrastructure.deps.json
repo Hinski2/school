@@ -1,0 +1,74 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "EShop.Infrastructure/1.0.0": {
+        "dependencies": {
+          "EShop.Application": "1.0.0",
+          "EShop.Domain": "1.0.0",
+          "EShop.Shared": "1.0.0"
+        },
+        "runtime": {
+          "EShop.Infrastructure.dll": {}
+        }
+      },
+      "EShop.Application/1.0.0": {
+        "dependencies": {
+          "EShop.Domain": "1.0.0",
+          "EShop.Shared": "1.0.0"
+        },
+        "runtime": {
+          "EShop.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "EShop.Domain/1.0.0": {
+        "dependencies": {
+          "EShop.Shared": "1.0.0"
+        },
+        "runtime": {
+          "EShop.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "EShop.Shared/1.0.0": {
+        "runtime": {
+          "EShop.Shared.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EShop.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EShop.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EShop.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EShop.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
