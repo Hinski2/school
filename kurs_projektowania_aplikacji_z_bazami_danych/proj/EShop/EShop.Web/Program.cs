@@ -1,11 +1,22 @@
-var builder = WebApplication.CreateBuilder(args);
+using EShop.Application;
+using EShop.Infrastructure;
+using EShop.Domain.interfaces;
+using NHibernate.Cfg;
+using NHibernate.Dialect;
+using NHibernate.Driver;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+var nhConfig = new NHibernate.Cfg.Configuration().Configure("hibernate.cfg.xml");
+var sessionFactory = nhConfig.BuildSessionFactory();
+
+// nhibernate configuration
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<EShop.Domain.interfaces.IProductRepository, EShop.Infrastructure.InMemoryProductRepository>();
-builder.Services.AddSingleton<EShop.Domain.interfaces.ICartRepository, EShop.Infrastructure.InMemoryCartRepository>();
-builder.Services.AddScoped<EShop.Application.ProductService>();
-builder.Services.AddScoped<EShop.Application.CartService>();
+builder.Services.AddAuthorization();
+builder.Services.AddScoped<IProductRepository, DbProductRepository>();
+builder.Services.AddScoped<ICartRepository, DbCartRepository>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<CartService>();
+builder.Services.AddScoped<NHibernate.ISession>(factory => sessionFactory.OpenSession());
 
 var app = builder.Build();
 

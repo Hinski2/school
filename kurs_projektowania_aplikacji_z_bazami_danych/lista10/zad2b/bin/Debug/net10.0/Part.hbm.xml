@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="zad2b" namespace="zad2b">
+
+	<class name="Part" table="Part">
+		<id name="Id">
+			<generator class="native"/>
+		</id>
+
+		<property name="OEM"/>
+		<property name="Manufacturer"/>
+		<property name="Number"/>
+		<property name="Description"/>
+
+		<joined-subclass name="Tire" table="Tire">
+			<key column="Id"/>
+			<property name="Speed"/>
+			<property name="Rating"/>
+
+			<joined-subclass name="NewTire" table="NewTire">
+				<key column="Id"/>
+				<property name="OnStock"/>
+			</joined-subclass>
+
+			<joined-subclass name="UsedTire" table="UsedTire">
+				<key column="Id"/>
+				<property name="ProductionYear"/>
+				<property name="ConsumptionLevel"/>
+
+				<joined-subclass name="RefurbishedTire" table="RefurbishedTire">
+					<key column="Id"/>
+					<property name="ConsumptionLevelAfterFixing"/>
+				</joined-subclass>
+				
+			</joined-subclass>
+			
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

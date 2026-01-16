@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "zs2TrfX5ZP8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jakub\\programowanie\\school\\kurs_projektowania_aplikacji_z_bazami_danych\\lista10\\zad2b\\zad2b.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jakub\\.nuget\\packages\\antlr3.runtime\\3.5.1\\antlr3.runtime.3.5.1.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\iesi.collections\\4.1.1\\iesi.collections.4.1.1.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.netcore.platforms\\1.0.1\\microsoft.netcore.platforms.1.0.1.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\netstandard.library\\1.6.0\\netstandard.library.1.6.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\nhibernate\\5.6.0\\nhibernate.5.6.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\remotion.linq\\2.2.0\\remotion.linq.2.2.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\remotion.linq.eagerfetching\\2.2.0\\remotion.linq.eagerfetching.2.2.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.data.sqlclient\\4.8.6\\system.data.sqlclient.4.8.6.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

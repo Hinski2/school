@@ -1,14 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\EShop.Web",
     "\\EShop.Web\\Controllers",
     "\\EShop.Web\\Models",
     "\\EShop.Web\\Views",
-    "\\EShop.Web\\Views\\Product",
-    "\\EShop.Web\\wwwroot\\css",
-    "\\EShop.Web\\wwwroot\\js"
+    "\\EShop.Web\\Views\\Product"
   ],
-  "SelectedNode": "\\EShop.Web\\Views\\Product\\Index.cshtml",
+  "SelectedNode": "\\EShop.slnx",
   "PreviewInSolutionExplorer": false
 }

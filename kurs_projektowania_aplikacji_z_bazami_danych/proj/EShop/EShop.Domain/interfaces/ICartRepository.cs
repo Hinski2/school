@@ -1,14 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using EShop.Domain;
 
 namespace EShop.Domain.interfaces
 {
-    public interface ICartRepository
-    {
-        Cart? GetById(Guid id);
-        void Save(Cart cart);
-        void Delete(Guid id);
-    }
+    public interface ICartRepository : IRepository<Cart> {}
 }

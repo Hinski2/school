@@ -2,6 +2,198 @@
   "version": 3,
   "targets": {
     "net10.0": {
+      "Antlr3.Runtime/3.5.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.1/Antlr3.Runtime.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.1/Antlr3.Runtime.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Iesi.Collections/4.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Iesi.Collections.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Iesi.Collections.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1"
+        }
+      },
+      "NHibernate/5.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Antlr3.Runtime": "[3.5.1, 4.0.0)",
+          "Iesi.Collections": "4.1.1",
+          "Remotion.Linq": "[2.2.0, 3.0.0)",
+          "Remotion.Linq.EagerFetching": "[2.2.0, 3.0.0)",
+          "System.Configuration.ConfigurationManager": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/NHibernate.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/NHibernate.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Remotion.Linq/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/Remotion.Linq.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.0/Remotion.Linq.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Remotion.Linq.EagerFetching/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Remotion.Linq": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/Remotion.Linq.EagerFetching.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.0/Remotion.Linq.EagerFetching.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "type": "package",
+        "dependencies": {
+          "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni": "4.4.0",
+          "runtime.win-x64.runtime.native.System.Data.SqlClient.sni": "4.4.0",
+          "runtime.win-x86.runtime.native.System.Data.SqlClient.sni": "4.4.0"
+        }
+      },
+      "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "type": "package",
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/sni.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          }
+        }
+      },
+      "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "type": "package",
+        "runtimeTargets": {
+          "runtimes/win-x64/native/sni.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
+      "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "type": "package",
+        "runtimeTargets": {
+          "runtimes/win-x86/native/sni.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "System.Configuration.ConfigurationManager/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "System.Data.SqlClient/4.9.0": {
+        "type": "package",
+        "dependencies": {
+          "runtime.native.System.Data.SqlClient.sni": "4.4.0"
+        },
+        "compile": {
+          "lib/net8.0/System.Data.SqlClient.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Data.SqlClient.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/net8.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/net8.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "EShop.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -35,7 +227,8 @@
         "dependencies": {
           "EShop.Application": "1.0.0",
           "EShop.Domain": "1.0.0",
-          "EShop.Shared": "1.0.0"
+          "EShop.Shared": "1.0.0",
+          "NHibernate": "5.6.0"
         },
         "compile": {
           "bin/placeholder/EShop.Infrastructure.dll": {}
@@ -57,6 +250,326 @@
     }
   },
   "libraries": {
+    "Antlr3.Runtime/3.5.1": {
+      "sha512": "ZwCEpLCLZXkjzf1lYEixp9hgVlYYk33ACHn6xjFyVhGRi2BpoYQez0qtatbetdylASWYTG+cGz0CGR4z66JM4w==",
+      "type": "package",
+      "path": "antlr3.runtime/3.5.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "antlr3.runtime.3.5.1.nupkg.sha512",
+        "antlr3.runtime.nuspec",
+        "lib/net20/Antlr3.Runtime.dll",
+        "lib/net20/Antlr3.Runtime.xml",
+        "lib/net40-client/Antlr3.Runtime.dll",
+        "lib/net40-client/Antlr3.Runtime.xml",
+        "lib/netstandard1.1/Antlr3.Runtime.dll",
+        "lib/netstandard1.1/Antlr3.Runtime.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr3.Runtime.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr3.Runtime.xml"
+      ]
+    },
+    "Iesi.Collections/4.1.1": {
+      "sha512": "VBrZi6gKjArcyOqrKoZODtd4V9rGqyxkUTwO9Hg/8+idhe/A391X9nRXuESewb7kfCNo5jRwFKLSjrY0j+0PkA==",
+      "type": "package",
+      "path": "iesi.collections/4.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "iesi.collections.4.1.1.nupkg.sha512",
+        "iesi.collections.nuspec",
+        "lib/net40/Iesi.Collections.dll",
+        "lib/net40/Iesi.Collections.xml",
+        "lib/net461/Iesi.Collections.dll",
+        "lib/net461/Iesi.Collections.xml",
+        "lib/net462/Iesi.Collections.dll",
+        "lib/net462/Iesi.Collections.xml",
+        "lib/net6.0/Iesi.Collections.dll",
+        "lib/net6.0/Iesi.Collections.xml",
+        "lib/net8.0/Iesi.Collections.dll",
+        "lib/net8.0/Iesi.Collections.xml",
+        "lib/netstandard1.0/Iesi.Collections.dll",
+        "lib/netstandard1.0/Iesi.Collections.xml",
+        "lib/netstandard1.3/Iesi.Collections.dll",
+        "lib/netstandard1.3/Iesi.Collections.xml",
+        "lib/netstandard2.0/Iesi.Collections.dll",
+        "lib/netstandard2.0/Iesi.Collections.xml"
+      ]
+    },
+    "Microsoft.NETCore.Platforms/1.0.1": {
+      "sha512": "2G6OjjJzwBfNOO8myRV/nFrbTw5iA+DEm0N+qUqhrOmaVtn4pC77h38I1jsXGw5VH55+dPfQsqHD0We9sCl9FQ==",
+      "type": "package",
+      "path": "microsoft.netcore.platforms/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.0/_._",
+        "microsoft.netcore.platforms.1.0.1.nupkg.sha512",
+        "microsoft.netcore.platforms.nuspec",
+        "runtime.json"
+      ]
+    },
+    "NETStandard.Library/1.6.0": {
+      "sha512": "ypsCvIdCZ4IoYASJHt6tF2fMo7N30NLgV1EbmC+snO490OMl9FvVxmumw14rhReWU3j3g7BYudG6YCrchwHJlA==",
+      "type": "package",
+      "path": "netstandard.library/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "netstandard.library.1.6.0.nupkg.sha512",
+        "netstandard.library.nuspec"
+      ]
+    },
+    "NHibernate/5.6.0": {
+      "sha512": "uDUFQQYSuLa2gdWrdHKJzvOqFkeVYMd3yWqGxtgyIG3cp+MxxQXNGe3iNYcy3f/U/yHjQpQUryMyvlBZVzz0FA==",
+      "type": "package",
+      "path": "nhibernate/5.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ConfigurationTemplates/FireBird.cfg.xml",
+        "ConfigurationTemplates/HANA.cfg.xml",
+        "ConfigurationTemplates/MSSQL.cfg.xml",
+        "ConfigurationTemplates/MySql.cfg.xml",
+        "ConfigurationTemplates/Oracle-Managed.cfg.xml",
+        "ConfigurationTemplates/Oracle.cfg.xml",
+        "ConfigurationTemplates/PostgreSQL.cfg.xml",
+        "ConfigurationTemplates/SQLite.cfg.xml",
+        "ConfigurationTemplates/SapSQLAnywhere.cfg.xml",
+        "ConfigurationTemplates/SqlServerCe.cfg.xml",
+        "ConfigurationTemplates/SybaseASE.cfg.xml",
+        "ConfigurationTemplates/SybaseSQLAnywhere.cfg.xml",
+        "NHibernate-NuGet.png",
+        "NHibernate.license.txt",
+        "NHibernate.readme.md",
+        "NHibernate.releasenotes.txt",
+        "lib/net461/NHibernate.dll",
+        "lib/net461/NHibernate.xml",
+        "lib/net48/NHibernate.dll",
+        "lib/net48/NHibernate.xml",
+        "lib/net6.0/NHibernate.dll",
+        "lib/net6.0/NHibernate.xml",
+        "lib/net8.0/NHibernate.dll",
+        "lib/net8.0/NHibernate.xml",
+        "lib/netcoreapp2.0/NHibernate.dll",
+        "lib/netcoreapp2.0/NHibernate.xml",
+        "lib/netstandard2.0/NHibernate.dll",
+        "lib/netstandard2.0/NHibernate.xml",
+        "lib/netstandard2.1/NHibernate.dll",
+        "lib/netstandard2.1/NHibernate.xml",
+        "nhibernate-configuration.xsd",
+        "nhibernate-mapping.xsd",
+        "nhibernate.5.6.0.nupkg.sha512",
+        "nhibernate.nuspec"
+      ]
+    },
+    "Remotion.Linq/2.2.0": {
+      "sha512": "fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
+      "type": "package",
+      "path": "remotion.linq/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/Remotion.Linq.XML",
+        "lib/net35/Remotion.Linq.dll",
+        "lib/net40/Remotion.Linq.XML",
+        "lib/net40/Remotion.Linq.dll",
+        "lib/net45/Remotion.Linq.XML",
+        "lib/net45/Remotion.Linq.dll",
+        "lib/netstandard1.0/Remotion.Linq.dll",
+        "lib/netstandard1.0/Remotion.Linq.xml",
+        "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.dll",
+        "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.xml",
+        "remotion.linq.2.2.0.nupkg.sha512",
+        "remotion.linq.nuspec"
+      ]
+    },
+    "Remotion.Linq.EagerFetching/2.2.0": {
+      "sha512": "d6bkH5kROJPFsdvDy4yQved9I4ickamytPByPyuQcH9dk1ef4jciajo50vTQhheyOHeWOgLh97UvkiHV8QSgeQ==",
+      "type": "package",
+      "path": "remotion.linq.eagerfetching/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/Remotion.Linq.EagerFetching.XML",
+        "lib/net35/Remotion.Linq.EagerFetching.dll",
+        "lib/net40/Remotion.Linq.EagerFetching.XML",
+        "lib/net40/Remotion.Linq.EagerFetching.dll",
+        "lib/net45/Remotion.Linq.EagerFetching.XML",
+        "lib/net45/Remotion.Linq.EagerFetching.dll",
+        "lib/netstandard1.0/Remotion.Linq.EagerFetching.dll",
+        "lib/netstandard1.0/Remotion.Linq.EagerFetching.xml",
+        "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.EagerFetching.dll",
+        "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.EagerFetching.xml",
+        "remotion.linq.eagerfetching.2.2.0.nupkg.sha512",
+        "remotion.linq.eagerfetching.nuspec"
+      ]
+    },
+    "runtime.native.System.Data.SqlClient.sni/4.4.0": {
+      "sha512": "A8v6PGmk+UGbfWo5Ixup0lPM4swuSwOiayJExZwKIOjTlFFQIsu3QnDXECosBEyrWSPryxBVrdqtJyhK3BaupQ==",
+      "type": "package",
+      "path": "runtime.native.system.data.sqlclient.sni/4.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+        "runtime.native.system.data.sqlclient.sni.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+      "sha512": "LbrynESTp3bm5O/+jGL8v0Qg5SJlTV08lpIpFesXjF6uGNMWqFnUQbYBJwZTeua6E/Y7FIM1C54Ey1btLWupdg==",
+      "type": "package",
+      "path": "runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+        "runtime.win-arm64.runtime.native.system.data.sqlclient.sni.nuspec",
+        "runtimes/win-arm64/native/sni.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+      "sha512": "38ugOfkYJqJoX9g6EYRlZB5U2ZJH51UP8ptxZgdpS07FgOEToV+lS11ouNK2PM12Pr6X/PpT5jK82G3DwH/SxQ==",
+      "type": "package",
+      "path": "runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+        "runtime.win-x64.runtime.native.system.data.sqlclient.sni.nuspec",
+        "runtimes/win-x64/native/sni.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+      "sha512": "YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
+      "type": "package",
+      "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+        "runtime.win-x86.runtime.native.system.data.sqlclient.sni.nuspec",
+        "runtimes/win-x86/native/sni.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Configuration.ConfigurationManager/8.0.0": {
+      "sha512": "JlYi9XVvIREURRUlGMr1F6vOFLk7YSY4p1vHo4kX3tQ0AGrjqlRWHDi66ImHhy6qwXBG3BJ6Y1QlYQ+Qz6Xgww==",
+      "type": "package",
+      "path": "system.configuration.configurationmanager/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Configuration.ConfigurationManager.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Configuration.ConfigurationManager.targets",
+        "lib/net462/System.Configuration.ConfigurationManager.dll",
+        "lib/net462/System.Configuration.ConfigurationManager.xml",
+        "lib/net6.0/System.Configuration.ConfigurationManager.dll",
+        "lib/net6.0/System.Configuration.ConfigurationManager.xml",
+        "lib/net7.0/System.Configuration.ConfigurationManager.dll",
+        "lib/net7.0/System.Configuration.ConfigurationManager.xml",
+        "lib/net8.0/System.Configuration.ConfigurationManager.dll",
+        "lib/net8.0/System.Configuration.ConfigurationManager.xml",
+        "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll",
+        "lib/netstandard2.0/System.Configuration.ConfigurationManager.xml",
+        "system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+        "system.configuration.configurationmanager.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Data.SqlClient/4.9.0": {
+      "sha512": "j4KJO+vC62NyUtNHz854njEqXbT8OmAa5jb1nrGfYWBOcggyYUQE0w/snXeaCjdvkSKWuUD+hfvlbN8pTrJTXg==",
+      "type": "package",
+      "path": "system.data.sqlclient/4.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "buildTransitive/net461/System.Data.SqlClient.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Data.SqlClient.targets",
+        "lib/net462/System.Data.SqlClient.dll",
+        "lib/net462/System.Data.SqlClient.xml",
+        "lib/net6.0/System.Data.SqlClient.dll",
+        "lib/net6.0/System.Data.SqlClient.xml",
+        "lib/net8.0/System.Data.SqlClient.dll",
+        "lib/net8.0/System.Data.SqlClient.xml",
+        "lib/netstandard2.0/System.Data.SqlClient.dll",
+        "lib/netstandard2.0/System.Data.SqlClient.xml",
+        "runtimes/unix/lib/net6.0/System.Data.SqlClient.dll",
+        "runtimes/unix/lib/net6.0/System.Data.SqlClient.xml",
+        "runtimes/unix/lib/net8.0/System.Data.SqlClient.dll",
+        "runtimes/unix/lib/net8.0/System.Data.SqlClient.xml",
+        "runtimes/win/lib/net6.0/System.Data.SqlClient.dll",
+        "runtimes/win/lib/net6.0/System.Data.SqlClient.xml",
+        "runtimes/win/lib/net8.0/System.Data.SqlClient.dll",
+        "runtimes/win/lib/net8.0/System.Data.SqlClient.xml",
+        "system.data.sqlclient.4.9.0.nupkg.sha512",
+        "system.data.sqlclient.nuspec"
+      ]
+    },
+    "System.Security.Cryptography.ProtectedData/8.0.0": {
+      "sha512": "+TUFINV2q2ifyXauQXRwy4CiBhqvDEDZeVJU7qfxya4aRYOKzVBpN+4acx25VcPB9ywUN6C0n8drWl110PhZEg==",
+      "type": "package",
+      "path": "system.security.cryptography.protecteddata/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Security.Cryptography.ProtectedData.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Security.Cryptography.ProtectedData.targets",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net462/System.Security.Cryptography.ProtectedData.dll",
+        "lib/net462/System.Security.Cryptography.ProtectedData.xml",
+        "lib/net6.0/System.Security.Cryptography.ProtectedData.dll",
+        "lib/net6.0/System.Security.Cryptography.ProtectedData.xml",
+        "lib/net7.0/System.Security.Cryptography.ProtectedData.dll",
+        "lib/net7.0/System.Security.Cryptography.ProtectedData.xml",
+        "lib/net8.0/System.Security.Cryptography.ProtectedData.dll",
+        "lib/net8.0/System.Security.Cryptography.ProtectedData.xml",
+        "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll",
+        "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.xml",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
+        "system.security.cryptography.protecteddata.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "EShop.Application/1.0.0": {
       "type": "project",
       "path": "../EShop.Application/EShop.Application.csproj",
@@ -83,7 +596,8 @@
       "EShop.Application >= 1.0.0",
       "EShop.Domain >= 1.0.0",
       "EShop.Infrastructure >= 1.0.0",
-      "EShop.Shared >= 1.0.0"
+      "EShop.Shared >= 1.0.0",
+      "System.Data.SqlClient >= 4.9.0"
     ]
   },
   "packageFolders": {
@@ -148,6 +662,12 @@
     "frameworks": {
       "net10.0": {
         "targetAlias": "net10.0",
+        "dependencies": {
+          "System.Data.SqlClient": {
+            "target": "Package",
+            "version": "[4.9.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -167,7 +687,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
