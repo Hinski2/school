@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EShop.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37bff852e0a6cf21b10fa86b644db76371bbba54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60b265a3f7696a1b498edea0570d12d20861c008")]
 [assembly: System.Reflection.AssemblyProductAttribute("EShop.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EShop.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

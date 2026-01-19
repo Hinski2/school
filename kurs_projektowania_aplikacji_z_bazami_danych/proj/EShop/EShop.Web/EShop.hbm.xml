@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="EShop.Domain" namespace="EShop.Domain">
+
+	<class name="Product" table="Product">
+		
+		<id name="Id">
+			<generator class="assigned"/>
+		</id>
+
+		<property name="Name"/>
+		<property name="Description"/>
+		<property name="PictureUrl"/>
+		<property name="Unit"/>
+		<property name="Status"/>
+
+		<component name="Price" class="EShop.Shared.Money, EShop.Shared">
+			<property name="Amount" column="PriceAmount"/>
+			<property name="Currency" column="PriceCurrency"/>
+		</component>
+		
+	</class>
+
+	<class name="Cart" table="Cart">
+		
+		<id name="Id">
+			<generator class="assigned"/>
+		</id>
+
+		<bag name="_items" table="CartItem" access="field" cascade="all-delete-orphan">
+			<key column="CartId"/>
+
+			<composite-element class="CartItem">
+				<property name="Id" column="ProductId"/>
+				<property name="Name"/>
+				<property name="Quantity"/>
+
+				<nested-composite-element name="UnitPrice" class="EShop.Shared.Money, EShop.Shared">
+					<property name="Amount" column="PriceAmount"/>
+					<property name="Currency" column="PriceCurrency"/>
+				</nested-composite-element>
+			</composite-element>
+			
+		</bag>
+	</class>
+
+</hibernate-mapping>

@@ -20,5 +20,7 @@ namespace EShop.Shared
         {
             return new (a.Amount * mult, a.Currency);
         }
+
+        protected Money() : this(0, "PLN") { }
     }
 }

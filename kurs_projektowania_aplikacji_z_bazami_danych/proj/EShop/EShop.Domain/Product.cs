@@ -9,13 +9,20 @@ namespace EShop.Domain
 {
     public class Product
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public Money Price { get; private set; }
-        public string PictureUrl { get; private set; }
-        public UnitType Unit { get; private set; }
-        public ProductLifecycle Status { get; private set; }
+        public virtual Guid Id { get; protected set; }
+        public virtual string Name { get; protected set; }
+        public virtual string Description { get; protected set; }
+        public virtual Money Price { get; protected set; }
+        public virtual string PictureUrl { get; protected set; }
+        public virtual UnitType Unit { get; protected set; }
+        public virtual ProductLifecycle Status { get; protected set; }
+
+        protected Product() {
+            Name = default!;
+            Description = default!;
+            PictureUrl = default!;
+            Price = default!;
+        }
 
         public Product(Guid id, string name, string description, Money price, string pictureUrl, UnitType unit, ProductLifecycle status)
         {
@@ -28,17 +35,17 @@ namespace EShop.Domain
             Status = status;
         }
 
-        public void Activate()
+        public virtual void Activate()
         {
             Status = ProductLifecycle.Active;
         }        
 
-        public void Discontinue()
+        public virtual void Discontinue()
         {
             Status = ProductLifecycle.Discontinued;
         }
 
-        public void Update(string name, string description, Money price, UnitType unit, string pictureUrl)
+        public virtual void Update(string name, string description, Money price, UnitType unit, string pictureUrl)
         {
             if(price.Amount < 0)
             {

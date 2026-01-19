@@ -9,7 +9,7 @@ namespace EShop.Domain
 {
     public class Cart
     {
-        public Guid Id { get; private set; }
+        public virtual Guid Id { get; protected set; }
         private readonly List<CartItem> _items = new();
 
         public Cart(Guid id)
@@ -17,7 +17,7 @@ namespace EShop.Domain
             Id = id;
         }
 
-        public void AddProduct(Product product, decimal quantity)
+        public virtual void AddProduct(Product product, decimal quantity)
         {
             if(product.Status == ProductLifecycle.Discontinued)
             {
@@ -39,7 +39,7 @@ namespace EShop.Domain
             }
         }
 
-        public void RemoveProduct(Guid id)
+        public virtual void RemoveProduct(Guid id)
         {
             var item = _items.FirstOrDefault(x => x.Id == id);
             if(item != null)
@@ -48,12 +48,12 @@ namespace EShop.Domain
             }
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             _items.Clear();
         }
 
-        public Money TotalAmount()
+        public virtual Money TotalAmount()
         {
             if(!_items.Any()) return Money.Zero();
             var sum = _items.Sum(i => i.TotalPrice.Amount);
@@ -61,6 +61,8 @@ namespace EShop.Domain
 
             return new Money(sum, currencty);
         }
+
+        protected Cart() { }
     }
 }
 

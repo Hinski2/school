@@ -37,5 +37,11 @@ namespace EShop.Domain
 
             Quantity = quantity;
         }
+
+        protected CartItem() 
+        {
+            Name = default!;
+            UnitPrice = default!;
+        }
     }
 }
