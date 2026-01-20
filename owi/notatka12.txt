@@ -1,0 +1,33 @@
+Prawna ochrona rozwiązań – wzory użytkowe i przemysłowe Agnieszka Kwiecień-Madej
+
+Wzór użytkowy
+
+Definicja prawna - Art. 94 ustawy Prawo własności przemysłowej (p.w.p.): Wzorem użytkowym jest nowe i nadające się do przemysłowego zastosowania rozwiązanie o charakterze technicznym, dotyczące kształtu lub budowy przedmiotu o trwałej postaci albo przedmiotu składającego się ze związanych ze sobą funkcjonalnie części o trwałej postaci.
+
+Upraszczając definicję: W tej formie można chronić konstrukcję wewnętrzną i zewnętrzną produktu. Czyli jego aspekty techniczne jak sposób łączenia, użyty materiał czy jego kształt.
+
+Wymóg postaci przedmiotu: Wymóg postaci przedmiotu uważa się za zachowany także wówczas, gdy:
+
+    wytwór według wzoru użytkowego zdefiniowany jest przestrzennie przez powtarzalne elementy o stałym stosunku rozmiarów,
+
+    wytwór według wzoru użytkowego zmienia swoją postać w związku z korzystaniem zgodnym z przeznaczeniem.
+
+Wyłączenia z ochrony: Oznacza to, że nie można ubiegać się o ochronę rozwiązań odnoszących się do np. sposobów postepowania lub zastosowań substancji.
+
+Trwała postać wytworu lub związanych ze sobą funkcjonalnie części tworzących przedmiot Źródło grafiki omawianej na wykładzie: J. Sieńczyło-Chlabicz (red), Ochrona własności intelektualnej. Teoria i praktyka. Warszawa 2021, s. 578.
+
+Cechy przedmiotu o trwałej postaci mogą przejawiać się w trzech aspektach:
+
+    Kształt (postać przestrzenna): Dotyczy zewnętrznego wyglądu wyrobu jednoelementowego.
+
+    Budowa (konstrukcja): Dotyczy wyrobu wieloelementowego, którego części są połączone przestrzennie.
+
+    Funkcjonalne powiązanie części o trwałej postaci: Dotyczy sytuacji, gdy części są połączone konstrukcyjnie albo współdziałają ze sobą konstrukcyjnie podczas używania.
+
+Typy rozwiązań chronionych wzorami użytkowymi
+
+    Zewnętrzne ukształtowanie: Podlega ochronie o ile pełni funkcję techniczną. Kształt, który ma wyłącznie "cieszyć oko kupującego" (funkcja estetyczna) nie podlega ochronie w tej formie. Przykład: urządzenie do automatycznego gaszenia wieżowców.
+
+    Części składowe: W takim przypadku w zgłoszeniu należy ujawnić całą konstrukcję i wzajemne powiązanie tych elementów. Przykład: silnik spalinowy do samolotów ultralekkich.
+
+    Zestawienie dwóch lub więcej rozwiązań technicznych, które są ze sobą połączone funkcjonalnie: Przykład: zestaw symulatora strzelania.

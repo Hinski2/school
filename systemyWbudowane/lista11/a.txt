@@ -1,0 +1,15 @@
+prawo ogma U = I * R 
+U - napięcie 
+I - prąd 
+R - rezystancja 
+
+mili volty
+
+tranzystor zamknięty -> można mierzyć siłę elektroamgnetyczną silnika. 
+    napięcie na silniku jest liniowo proporcjonalne do prędtości obrotowej silnika
+    ale my mierzymy w węźle pomiędzy silnikiem a tranzystorem. napięcie na silniu to 5V - to co zmierzyliśmy 
+
+tranzystor otwarty => można mierzyc prąd płynący przez silnik, bo otwarty tranzystor MOSFET pełni rolę rezystora
+    napięcie na tranzystorze jest liniowo proporcjonalne do wartosci prądu płynącego przez silnik (a więc momentu obrotowego islnika)
+
+moment - siła z jakąsilnik kręci wałem 
