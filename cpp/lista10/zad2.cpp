@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-#include <iomanip>
-#include <ios>
-#include <iostream>
 using namespace std;
 
 void foo(locale loc) {
@@ -16,9 +13,10 @@ void foo(locale loc) {
 
     // pieniądze
     wcout << "pieniadze\n";
-    wcout << put_money(100) << endl;
-    wcout << put_money(1000.43434) << endl;
-    wcout << put_money(10.22, true) << endl;
+    wcout << showbase;
+
+    wcout << put_money(1000.43434) << endl;     // false -> symbol lokalny
+    wcout << put_money(10.22, true) << endl;    // true -> symbol międzynarodowy
     wcout << endl;
 
     // datagodzina

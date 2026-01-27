@@ -10,7 +10,8 @@ int main() {
     wcout.imbue(loc);
 
     vector<wstring> v = {
-        L"żóbr",
+        L"żułtodziób",
+        L"żubr",
         L"zebra",
         L"mlecz",
         L"łabądź",
