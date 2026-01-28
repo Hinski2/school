@@ -40,7 +40,10 @@ int main() {
             for(int i = 0; i < 5; i++) {
                 LCD_GoTo(y, 0);
                 LCD_WriteData(i);
-                _delay_ms(100);
+
+                LCD_GoTo(y, 1);
+                LCD_WriteData(i);
+                _delay_ms(50);
             }
         }
 

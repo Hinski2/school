@@ -1,0 +1,154 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <avr/sfr_defs.h>
+#include <stdio.h>
+#include "stdint.h"
+#include "pid.h"
+
+#define K_P     0.40
+#define K_I     0.08
+#define K_D     0.08
+
+volatile struct GLOBAL_FLAGS {
+  //! True when PID control loop should run one time
+  uint8_t pidTimer:1;
+  uint8_t dummy:7;
+} gFlags = {0, 0};
+
+struct PID_DATA pidData;
+#define TIME_INTERVAL   15
+
+volatile int16_t target;
+
+//////////////////////////////////////////// uart
+
+#define BAUD 9600                          // baudrate
+#define UBRR_VALUE ((F_CPU)/16/(BAUD)-1)   // zgodnie ze wzorem
+
+// transmisja jednego znaku
+int uart_transmit(char data, FILE *stream) {
+  // czekaj aż transmiter gotowy
+  while(!(UCSR0A & _BV(UDRE0)));
+  UDR0 = data;
+  return 0;
+}
+
+// odczyt jednego znaku
+int uart_receive(FILE *stream) {
+  // czekaj aż znak dostępny
+  while (!(UCSR0A & _BV(RXC0)));
+  return UDR0;
+}
+
+//////////////////////////////////////////// timer 0 
+
+ISR(TIMER0_OVF_vect) {
+    static uint16_t i = 0;
+    if(i < TIME_INTERVAL) {
+        i++;
+    } else {
+        gFlags.pidTimer = 1;
+        i = 0;
+    }
+}
+
+//////////////////////////////////////////// adc i timer 1
+volatile uint16_t v_engine, i_engine; // v -> prędkość, i -> moment
+volatile uint8_t adc_engine = 0;
+
+uint16_t read_adc(uint8_t i) { // 0 -> potencjometr; 1 -> silnik
+    ADMUX = (i ? _BV(MUX0) : 0) | _BV(REFS0); // napięcie odniesiena AVcc + odpowiedni pin
+
+    ADCSRA |= _BV(ADSC);
+    while(ADCSRA & _BV(ADSC)); // gdy konwersja sie skończy mikrokontroler zeruej bit ADSC
+    return ADC; // wynik 10-bitowy
+}
+
+// przerwanei na TOP, tranzystor wyłączony
+ISR(TIMER1_CAPT_vect) {
+    v_engine = read_adc(1);
+    target = read_adc(0);
+}
+
+
+// przerwanie na BOTTOM, tranzystor włączony
+ISR(TIMER1_OVF_vect) {
+    i_engine = read_adc(1); 
+}
+
+//////////////////////////////////////////// pid
+
+int16_t Get_Reference(void) {
+    return target;
+}
+
+uint16_t v_engine_filtered = 0;
+int16_t Get_Measurement(void) {
+    v_engine_filtered = (0.8 * v_engine_filtered) + (0.2 * (1023 - v_engine));
+    return (int16_t) v_engine_filtered;
+}
+
+void Set_Input(int16_t inputValue) {
+  if(inputValue > 950) inputValue = 950;
+  if(inputValue < 0) inputValue = 0;
+
+  OCR1A = inputValue;
+}
+
+////////////////////////////////////////////
+
+void init(void) {
+    // uart 
+    UBRR0 = UBRR_VALUE; // ustaw baudrate
+    UCSR0B = _BV(RXEN0) | _BV(TXEN0); // włącz odbiornik i nadajnik
+    UCSR0C = _BV(UCSZ00) | _BV(UCSZ01); // ustaw format 8n1
+
+    // adc
+    ADMUX   = _BV(REFS0); // napięcie odniesienia 5V
+    DIDR0   = _BV(ADC0D); // wyłącz wejście cyfrowe na ADC0
+    ADCSRA  = _BV(ADPS1) | _BV(ADPS2); // preskaler 64 -> 16MHz / 64 = 250 kHz dla adc
+    ADCSRA |= _BV(ADEN); // włącz ADC
+
+    // timmer 1 phase and frequency correct, 1000Hz, top=ICR1, d=OCR1A
+    DDRB |= _BV(PB1); // output
+    TCCR1A = _BV(COM1A1); // fast pwm non inverting
+    TCCR1B = _BV(WGM13); // pwm phase and frequency correct, top ICR1
+    TCCR1B |= _BV(CS11); // preslaler 8
+    ICR1 = 1023;    // f_cpu / (2 * 8 * ICR1) ~ 1000hz
+    TIMSK1 |= _BV(ICIE1); // przerwanie na top
+    
+    // timer 0 dla pid: normal mode, ~1000hz
+    TCCR0A = 0; // normal mode 
+    TCCR0B = _BV(CS01) | _BV(CS00); // preskaler 64
+    TIMSK0 = _BV(TOIE0); // prerwanie dla przepełnienia
+
+    // pid
+    pid_Init(K_P * SCALING_FACTOR, K_I * SCALING_FACTOR , K_D * SCALING_FACTOR , &pidData);
+}
+
+FILE uart_file;
+int main(void) {
+    init();
+    sei();
+
+    fdev_setup_stream(&uart_file, uart_transmit, uart_receive, _FDEV_SETUP_RW);
+    stdin = stdout = stderr = &uart_file;
+
+    for(uint8_t cnt = 0;;) {
+        if(gFlags.pidTimer) {
+
+            int16_t ref = Get_Reference();
+            int16_t meas = Get_Measurement();
+            int16_t out = pid_Controller(ref, meas, &pidData);
+            Set_Input(out);
+
+            gFlags.pidTimer = 0;
+
+            cnt++;
+            if(cnt >= 30) {
+                printf("target: %d, current: %d, PWM: %d\r\n", target, v_engine_filtered, OCR1A);
+                cnt = 0;
+            }
+        }
+    }
+}
