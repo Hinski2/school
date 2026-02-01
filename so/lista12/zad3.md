@@ -44,7 +44,7 @@ bo:
 
 ### uruchamiany n identycznych wątków. Kolejno każdy z nich wchodzi do sekcji krytycznej, p czym zostaje wywłaszzony przez jądro. Ile czasu zajmie wszystkim wątkom jednokrotne przejście przez sekcje krytyczną - algorytm planisty to round - robin, kwant czasu wynosi 1ms
 
-Odp: $\frac{(n + 1) * (n + 2)}{2}  \ ms$ 
+Odp: $\frac{(n + 1) * (n + 2)}{2} - 1 \ ms$ 
 * wątek 1 dosataje procesor, wchodzi do sekcji krtycznej, kończy mu się kwant czasu i zostaje wywłaszczony zanim zwolni locka
 * wątek 2 dostaje procesor i próbuje wejśc do sekcji krytycznej ale nie może bo jest lock. marjuje 1ms
 * wątek 3 .. n tak samo wiec marnujemy n - 1 ms

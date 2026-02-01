@@ -15,8 +15,8 @@
 
 ``` c
 typedef struct __lock_t {
-    int flag;
-    int guard;
+    int flag;   // właściwy lock
+    int guard;  // pomocniczy lock
     queue_t *q;
 } lock_t;
 

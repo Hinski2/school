@@ -9,6 +9,11 @@
 
 ### gdzie jest przechowywana zawartosć dowiązania symbolicznego
 
+![](img/i5.png)
+
+zależy od długości ścieżki na która wskazuje dowiązanie:
+* krótkei ( < 60 bajtów) jest przechowyana węwnątrz samego iwęzłą
+* długie jest alokowany dodatkowy blok w którym zapisywana jest ścieżka 
 
 ### jak za pomocą dowiązania symbolicznego stworzyc w systemie plików pętle
 
@@ -17,7 +22,6 @@
 
 ### kiedy jądro systemu operacyjnego ja wykryje i zwróci `ELOOP` 
 
-![](img/i5.png)
 
 
 bład ELOOP (Too many levels of symbnolic links) dostaniemy podcas próby rozwiązania ścieżki.  jądro ma liczbik zagnieżdzeń gdy osiągniemy limit to oberacja jest przerywana ia zwracany jest błąd 

@@ -1,8 +1,5 @@
 # zad 3
 
----
-
-- `race condition` - 
 
 ---
 
