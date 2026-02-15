@@ -5,7 +5,7 @@ from typing import List, Tuple
 
 def unzip():
     files = get_files()
-    params, flags = get_flags()
+    params, flags = get_params_flags()
     
     assert len(files) == 1, "Error: you should provide only one file to unzip"
     assert files[0].endswith('.llmzip'), "Error: you can only uncompress files with .llmzip extension"
@@ -20,15 +20,20 @@ def unzip():
             output_name = param[1]
         else:
             raise Exception(f"Error: unknown parameater: {param[0]}={param[1]}")
+        
+    # decode 
+    llm_zip = LLMZip()
+    llm_zip.decode(files[0], output_name)
 
 def zip():
-    params, flags = get_flags()
+    params, flags = get_params_flags()
     files = get_files()
     
     # handle flags and params
     output_name = get_default_zip_name()
     recursive = False
     model = "0"
+    coding = "gamma"
     
     for flag in flags:
         if flag == '-r':
@@ -41,11 +46,17 @@ def zip():
             model = param[1]
         elif param[0] == '-output':
             output_name = param[1]
+        elif param[0] == '-coding':
+            coding = param[1]
         else: 
             raise Exception(f"Error: unknown parameater: {param[0]}={param[1]}")
+        
+    # encode 
+    llm_zip = LLMZip()
+    llm_zip.encode(coding, model, files, output_name, recursive)
 
-# smaller utils
-def get_flags() -> Tuple[List[Tuple[str, str]], List[str]]:
+# utils
+def get_params_flags() -> Tuple[List[Tuple[str, str]], List[str]]:
     args = sys.argv[1:]
     flags = [arg for arg in args if arg.startswith("-")]
     

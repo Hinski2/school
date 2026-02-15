@@ -1,2 +1,8 @@
+from ..models import Model
+
 class Decoder:
-    pass
+    def __init__(self, model: Model):
+        pass
+    
+    def decode(self, file_name: str, output_name: str) -> None:
+        pass

@@ -1,0 +1,2 @@
+class FileWriter:
+    pass

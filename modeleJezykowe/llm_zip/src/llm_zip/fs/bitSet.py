@@ -1,5 +1,6 @@
 from typing import List
 from array import array, ArrayType
+from ..utils import gamma_encode
 
 class BitSet:
     """
@@ -27,13 +28,13 @@ class BitSet:
         
         if directory:
             self.add([True])
-            self.add(BitSet._gamma_encode(len(file_name)))
+            self.add(gamma_encode(len(file_name)))
             self.add(file_name)
             
         else:
             self.add([False]) 
-            self.add(BitSet._gamma_encode(len(file_name)))
-            self.add(BitSet._gamma_encode(len(data)))
+            self.add(gamma_encode(len(file_name)))
+            self.add(gamma_encode(len(data)))
             self.add(file_name)
             
             data.insert(0, False) # read desc  
@@ -48,17 +49,3 @@ class BitSet:
             self.data[-1] |= (b << self._chunk_pos)
             self._chunk_pos += 1
    
-    @staticmethod 
-    def _gamma_encode(x: int) -> List[bool]:
-        ans: List[bool] = []
-        binary_representation: List[bool] = []
-        
-        while x:
-            binary_representation.append(x & 1 == 1)
-            x //= 2
-        binary_representation.reverse()
-        
-        for _ in range(len(binary_representation) - 1):
-            ans.append(False)
-            
-        return ans + binary_representation

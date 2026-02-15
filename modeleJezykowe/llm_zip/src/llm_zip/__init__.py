@@ -1,6 +1,5 @@
-from .coders import Encoder, Decoder
-from .utils import DataLoader, BitSet
-
+from .utils import DataLoader
+from .fs import BitSet
 from .core import LLMZip
 
-__all__ = ["Encoder", "Decoder", "DataLoader", "BitSet", "LLMZip"]
+__all__ = ["DataLoader", "BitSet", "LLMZip"]
