@@ -46,5 +46,6 @@ https://github.com/Hinski2/school/blob/main/modeleJezykowe/cwiczenia2/zad6.md
 
 * beta code:
     wersja gamma code która nie robi -1 przy rozmiarze 
+
 * gamma code:
     legitne kodowanie z wikipedii: https://en.wikipedia.org/wiki/Elias_gamma_coding

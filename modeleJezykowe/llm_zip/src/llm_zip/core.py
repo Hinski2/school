@@ -1,27 +1,21 @@
 from .coders import Encoder, Decoder
 from .models import Model
-from .utils import FileReader
-from typing import List, Tuple
+from typing import List
 
 
 class LLMZip:
-    def encode(self, coding_name: str, model_name: str, file_names: List[str], output_name: str, recursive: bool) -> None:
-        LLMZip._validate(model_name, coding_name)
-        
+    def encode(self, coding: bool, model_name: str, file_names: List[str], output_name: str) -> None:
+        LLMZip._validate(model_name)
         encoder = Encoder()
-        encoder.encode(file_names, output_name, recursive)
+        encoder.encode(file_names, output_name, model_name, coding=coding)
         
     def decode(self, file_name: str, output_name: str) -> None:
-        file_reader = FileReader(file_name)
-
         decoder = Decoder()
         decoder.decode(file_name, output_name)
     
     @staticmethod
-    def _validate(model: str, coding: str) -> None:
-        if not model in ["0"]: 
+    def _validate(model: str) -> None:
+        models = Model.get_all_model_names()
+        
+        if not model in models: 
             raise Exception(f"Error: unknown model: {model}")
-        
-        if not coding in ["gamma"]:
-            raise Exception(f"Error: unknown coding: {coding}")
-        

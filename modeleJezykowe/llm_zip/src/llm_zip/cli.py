@@ -53,7 +53,7 @@ def zip():
         
     # encode 
     llm_zip = LLMZip()
-    llm_zip.encode(coding, model, files, output_name, recursive)
+    llm_zip.encode(coding == "gamma", model, files, output_name)
 
 # utils
 def get_params_flags() -> Tuple[List[Tuple[str, str]], List[str]]:
