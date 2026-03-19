@@ -1,0 +1,11 @@
+CXX = g++
+CXXFLAGS = -Wall -std=c++23
+OBJS = a.o 
+
+moj_program: $(OBJS)
+	$(CXX) $(CXXFLAGS) -o moj_program $(OBJS)
+
+.PHONY: clean 
+clean: 
+	rm -f *.o moj_program
+

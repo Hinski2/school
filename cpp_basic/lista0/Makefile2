@@ -1,0 +1,5 @@
+CXX = g++
+CXXFLAGS = -Wall -std=c++23
+
+moj_program: a.cpp 
+	$(CXX) $(CXXFLAGS) a.cpp -o a

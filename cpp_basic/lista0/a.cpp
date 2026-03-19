@@ -12,7 +12,7 @@ bool isPrime(int64_t numb) {
 int main(int argc, char** argv) {
     for(int i = 1; i < argc; i++) {
         try {
-            const long long x = stoll(argv[i], 0); 
+            const long long x = stoll(argv[i]); 
             if(isPrime(x)) cout << x << endl;
         } catch (invalid_argument const& e) {
             cerr << "invalid argument " << argv[i] << endl; 
