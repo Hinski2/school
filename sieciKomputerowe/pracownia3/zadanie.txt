@@ -1,0 +1,158 @@
+Zadanie programistyczne nr 3
+z Sieci komputerowych
+1 Opis zadania
+Napisz program transport, który będzie łączyć się z określonym serwerem i wysyłając — zgodnie
+z opisanym niżej protokołem — datagramy UDP, pobierze od serwera plik o określonej wielkości.
+Program powinien przyjmować cztery argumenty: adres_IP , port , nazwa_pliku i rozmiar (w baj-
+tach). Celem jest pobranie od specjalnego serwera UDP nasłuchującego na porcie port komputera o
+adresie adres_IP pierwszych rozmiar bajtów pliku i zapisanie ich w pliku nazwa_pliku . Aby zażądać
+od serwera UDP fragmentu pliku, należy wysłać mu datagram UDP o następującej treści:
+GET start długość \n
+Wartość start powinna być liczbą całkowitą z zakresu [0, 10 000 000], zaś długość z zakresu [1, 1 000].
+Znak \n jest uniksowym końcem wiersza, zaś odstępy są pojedynczymi spacjami. Jedyną zawartością
+datagramu musi być powyższy napis: serwer zignoruje datagramy, które nie spełniają tej specyfikacji.
+W odpowiedzi serwer wyśle datagram, na którego początku będzie znajdować się napis:
+DATA start długość \n
+Wartości start i długość są takie, jakich zażądał klient. Po tym napisie znajduje się długość bajtów
+pliku: od bajtu o numerze start do bajtu o numerze start+długość -1. Bajty pliku numerowane są od
+zera.
+1.1 Przykład
+Jeśli program zostanie uruchomiony w następujący sposób:
+$> ./transport 127.0.0.1 40001 output 1100
+to może wysłać w do portu 40001 serwera uruchomionego pod adresem 127.0.0.1 dwa datagramy
+o treściach:
+GET 0 700\n
+oraz
+GET 700 400\n
+a następnie zaczekać na odpowiedzi serwera i zapisać odpowiednie 1100 bajtów do pliku output.
+1.2 Serwer UDP
+64-bitową statycznie skonsolidowaną wersję kodu serwera UDP o nazwie transport-server można
+pobrać ze strony wykładu i uruchomić na swoim komputerze podając jako argument port, na którym
+serwer ma nasłuchiwać. Można też uruchomić kod w maszynie wirtualnej.
+Na stronie wykładu dostępne są też opisane niżej programy transport-client-slow
+i transport-client-fast.1
+1Nie należy używać istniejącej w starszych wersjach Virbiana wersji serwera: potrafi on zakończyć działanie po odebraniu
+odpowiednio spreparowanego pakietu.
+1
+1.3 Dodatkowe wymagania
+Pamiętaj, że pobierane dane są danymi binarnymi i mogą zawierać bajt równy zero. Należy je zatem
+zapisywać do pliku funkcją write(), fwrite() lub podobną. Twój program powinien zapisywać dane
+wyłącznie na końcu pliku wyjściowego. W szczególności niedopuszczalne jest uzyskiwanie dostępu do
+różnych miejsc pliku wyjściowego za pomocą funkcji lseek() lub podobnej. Twój program powinien
+zużywać co najwyżej 6 MB pamięci operacyjnej (łącznie z binarnym kodem programu; patrz część
+Sposób oceniania programów).
+Program powinien obsługiwać błędne dane wejściowe, zgłaszając odpowiedni komunikat. Program
+nie powinien wypisywać niepotrzebnych komunikatów diagnostycznych, ale może wypisywać postęp
+w pobieraniu kolejnych części pliku.
+1.4 Zawodna komunikacja
+Wykorzystywany serwer UDP działa w następujący sposób:2
+1. Odpowiedź na dane żądanie zostaje wygenerowana z prawdopodobieństwem ok. 1/2.
+2. Każda wygenerowana odpowiedź zostanie zduplikowana z prawdopodobieństwem ok. 1/5. W
+tej definicji duplikat też jest traktowany jako odpowiedź, więc może pojawić się też duplikat
+duplikatu (z prawdopodobieństwem ok. 1/25) itd.
+3. Każdy wygenerowany datagram jest wysyłany z losowym opóźnieniem wynoszącym od 0,5 do 1,5
+sekundy.
+4. Serwer utrzymuje kolejkę co najwyżej 1000 wygenerowanych datagramów, które ma wysłać.
+1.5 Uwagi implementacyjne
+Konieczne jest sprawdzanie, czy źródłowy adres i port datagramu jest prawidłowy. Możesz założyć, że
+jeśli Twój program otrzymuje dane od adresu IP i portu, do którego dane uprzednio wysłał, to są one
+zgodne ze specyfikacją i nie trzeba tego sprawdzać.3
+Twój program będzie testowany pod kątem poprawności i wydajności. W najprostszym wariancie
+można zaprogramować go jako algorytm typu stop-and-wait. Do odczekiwania i sprawdzania, czy
+gniazdo zawiera datagram, można wykorzystać funkcję poll(). Tak zaimplementowany został program
+transport-client-slow. Za poprawną implementację takiego podejścia można dostać 4 punkty.
+Podejście typu stop-and-wait jest bardzo nieefektywne. Aby je poprawić, możesz zaimplementować algo-
+rytm okna przesuwnego utrzymujący odpowiednie liczniki czasu dla wszystkich żądanych fragmentów.
+(Ograniczenie na pamięć ma na celu wymuszenie, żeby okno nie mieściło wszystkich datagramów: prefiks
+danych, który udało nam się pobrać należy zapisać do pliku). Taki algorytm wykorzystuje program
+transport-client-fast. Za taką implementację można dostać maksymalną liczbę punktów.
+Twój program nie musi pobierać danych zgodnie z opisanymi wyżej schematami. Program będzie
+uruchamiany na dwóch połączonych ze sobą maszynach wirtualnych. Parametry wpływające na jego
+efektywność (czas odczekiwania i rozmiar okna) można dobrać eksperymentalnie. Napisanie programu,
+który będzie dynamicznie dostosowywał się do parametrów łącza nie jest wymagane.
+2Jest to symulacja wysyłania datagramów UDP w dość źle działającej sieci, w której takie datagramy mogą zostać
+zgubione, zduplikowane lub nadejść w innej kolejności niż były wysyłane.
+3W prawdziwych zastosowaniach byłby to bardzo zły pomysł.
+2
+2 Uwagi techniczne
+Ta sekcja jest taka sama dla wszystkich zadań programistycznych.
+Pliki. Sposób utworzenia napisu oznaczanego poniżej jako imie_nazwisko : Swoje (pierwsze) imię oraz
+nazwisko zapisz wyłącznie małymi literami, zastępując litery ze znakami diakrytycznymi przez
+ich łacińskie odpowiedniki (usuń ogonki). Pomiędzy imię i nazwisko wstaw znak podkreślenia.
+Prowadzącemu ćwiczeniopracownię należy dostarczyć plik imie_nazwisko.tar.xz z archiwum
+(w formacie tar, spakowane programem xz) zawierającym pojedynczy katalog o nazwie
+imie_nazwisko z następującymi plikami.
+▶ Kod źródłowy w C, C++ lub Rust, czyli pliki *.c, *.h, *.cpp, *.h lub *.rs. Każdy plik
+źródłowy na początku powinien zawierać w komentarzu imię, nazwisko i numer indeksu
+autora lub autorki.
+▶ Plik Makefile pozwalający na kompilację programu po uruchomieniu make. Takie wyma-
+ganie obowiązuje również w przypadku kodów źródłowych w Rust (wywołanie make może
+uruchamiać cargo lub rustc).
+▶ Ewentualnie plik README.txt lub README.md.
+W katalogu tym nie powinno być żadnych innych plików, w szczególności skompilowanego
+programu, obiektów *.o, czy plików źródłowych nienależących do projektu.
+Kompilacja. Kompilacja i uruchamianie przeprowadzone zostaną w 64-bitowym środowisku Linux;
+w szczególności kody powinno dać się uruchomić w maszynie wirtualnej Virbian bez instalacji
+dodatkowych pakietów.
+▶ Kompilacja w przypadku C ma wykorzystywać standard C17 lub C18 z ewentualnymi roz-
+szerzeniami GNU (opcja kompilatora -std=c17, -std=gnu17, -std=c18 lub -std=gnu18).
+▶ Kompilacja w przypadku C++ ma wykorzystywać standard C++14, C++17 lub C++20
+z ewentualnymi rozszerzeniami GNU (opcja kompilatora -std=c++14, . . . , -std=c++20,
+-std=gnu++14, . . . , -std=gnu++20).
+▶ Kompilacja w przypadku Rust ma wykorzystywać edycję 2018, 2021 lub 2024 (opcja
+kompilatora –edition 2018, . . . , –edition 2024).
+Kompilacja w przypadku C i C++ powinna korzystać z opcji -Wall i -Wextra. Podczas kompilacji
+w dowolnym języku nie powinny pojawiać się ostrzeżenia.
+3 Sposób oceniania programów
+Poniższe uwagi służą ujednoliceniu oceniania w poszczególnych grupach. Napisane są jako polecenia
+dla prowadzących, ale studenci powinni koniecznie się z nimi zapoznać, gdyż prowadzący będą się ich
+trzymać przy sprawdzaniu.
+▶ Programy będą testowane na zajęciach w obecności autora lub autorki programu.
+▶ Program niekompilujący się otrzymuje 0 punktów, nawet jeśli ładnie wygląda.
+▶ Program uruchamiany jest w różnych warunkach opisanych poniżej i otrzymuje za te uruchomienia
+od 0 do 10 punktów.
+3
+▶ Następnie obliczane są ewentualne punkty ujemne zgodnie z listą podaną poniżej.
+▶ Oceniamy z dokładnością do 0,5 punktu. Jeśli ostateczna liczba punktów wyjdzie ujemna,
+wstawiamy zero. (Ostatnia uwaga nie dotyczy przypadków plagiatów lub niesamodzielnych
+programów).
+Testowanie: punkty dodatnie Do testów należy uruchomić na dwie maszyny wirtualne połączone
+siecią (na jednym fizycznym komputerze). Na jednej z nich uruchomić instancję programu
+transport-server (pobraną ze strony wykładu), słuchającą na wybranym porcie, a na drugiej
+maszynie uruchamiać oceniany kod.
+Przy uruchamianiu programu należy wykorzystywać polecenie /usr/bin/time -v. Umożliwi to
+pomiar czasu i zajętość pamięci (pola Elapsed time i Maximum resident set size).
+Należy wykonać następujące testy.
+3 pkt. Uruchomić program do pobrania ok. 15 000 bajtów, gdzie liczba bajtów nie jest wielokrot-
+nością 1 000. Na takich samych danych uruchomić program transport-client-slow; niech
+t będzie czasem jego działania. Program otrzymuje punkty, jeśli jego czas działania jest nie
+większy niż 4 · t + 5 sek, zajętość pamięci nie większa niż 6 MB, a pliki generowane przez
+oba programy są identyczne.
+1 pkt. Uruchomić program do pobrania ok. 15 000 bajtów. Zatrzymać go w trakcie wykonywania;
+sprawdzić Wiresharkiem jaki jest jego port źródłowy. Następnie poleceniem nc wysłać do tego
+portu źródłowego datagram zawierający śmieci. Wznowić działanie programu i sprawdzić,
+czy generowany jest poprawny plik.
+3 pkt. Jak w pierwszym punkcie, ale pobieramy ok. 1 000 000 bajtów i porównujemy czas z czasem
+działania programu transport-client-fast; niech t będzie czasem jego działania. Czas
+działania programu nie powinien być większy niż 4 · t + 5 sek.
+3 pkt. Jak w poprzednim punkcie, ale pobieramy ok. 9 000 000 bajtów.
+Testowanie: punkty ujemne. Punkty ujemne przewidziane są za następujące usterki.
+-2 pkt. Za każdy rozpoczęty megabajt ponad limit 6 MB na zajętość pamięciową programu.
+-5 pkt. Zapis do pliku wyjściowego w innym miejscu niż na jego końcu.
+-1 pkt. Brak sprawdzania poprawności danych na wejściu.
+do -3 pkt. Zła/nieczytelna struktura programu: brak modularności i podziału na funkcjonalne
+części, niekonsekwentne wcięcia, powtórzenia kodu.
+-2 pkt. Aktywne czekanie zamiast zasypiania do momentu otrzymania pakietu.
+-1 pkt. Brak sprawdzania poprawności wywołania funkcji systemowych, takich jak recvfrom(),
+write() czy bind().
+-1 pkt. Nietrzymanie się specyfikacji wejścia i wyjścia. Przykładowo: wyświetlanie nadmiarowych
+informacji diagnostycznych lub inna niż w specyfikacji obsługa parametrów.
+-1 pkt. Zły plik Makefile lub jego brak.
+▶ Program powinien się kompilować poleceniem make.
+▶ Poszczególne pliki *.c i *.cpp powinny kompilować się do obiektów tymczasowych *.o
+a następnie powinny być konsolidowane do wykonywalnego programu.
+4
+▶ Polecenie make clean powinno czyścić katalog z tymczasowych obiektów (plików *.o),
+zaś polecenie make distclean powinno usuwać te obiekty i wykonywalny program
+pozostawiając tylko pliki źródłowe.
+-3 pkt. Kara za wysłanie programu po terminie; opóźnienie nie może być większe niż 1 tydzień.
