@@ -23,6 +23,7 @@ struct Network {
     }
 };
 
+// po jednym interface na każdą połączoną sieć 
 struct Interface {
     Network network;
     uint32_t local_ip;
@@ -36,6 +37,7 @@ struct RouteEntry {
     uint32_t turns_since_update;
 };
 
+// distance vector
 struct DvPacket {
     Network network;
     uint32_t dist;

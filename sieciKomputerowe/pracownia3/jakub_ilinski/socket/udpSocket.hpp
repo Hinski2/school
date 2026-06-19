@@ -23,5 +23,5 @@ public:
     UdpSocket& operator=(UdpSocket&&) = delete;
 
     void send(const std::vector<std::uint8_t>& datagram) const;
-    std::optional<std::pair<std::uint32_t, std::vector<std::uint8_t>>> tryRecv() const;
+    std::optional<std::pair<std::uint32_t, std::vector<std::uint8_t>>> tryRecv() const; // {ip_nadawcy, dane}
 };

@@ -80,7 +80,7 @@ void Router::processPacket(uint32_t sender_ip, const DvPacket& pkt) {
     if(!iface or sender_ip == iface->local_ip) // paket od nas
         return;
 
-    const uint32_t candidate = saturate(iface->dist, pkt.dist);
+    const uint32_t candidate = saturate(iface->dist, pkt.dist); // koszt łącza + odległość sąsiada
     auto it = table.find(pkt.network);
 
     if(it == table.end()) { // nowa sieć
